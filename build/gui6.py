@@ -8,185 +8,185 @@ from pathlib import Path
 # from tkinter import *
 # Explicit imports to satisfy Flake8
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
-
+import gui7
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"/media/sendoff/sendoff HDD/CS/THIRD YEAR/FIRST SEM/AppDev/shiela/frame6/build/assets/frame0")
+ASSETS_PATH = OUTPUT_PATH / Path(r"assets/frame6")
 
 
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
+def start(window, frame):
+    window = window
+    frame = frame
 
-window = Tk()
+    canvas = Canvas(
+        window,
+        bg = "#FFFFFF",
+        height = 845,
+        width = 1247,
+        bd = 0,
+        highlightthickness = 0,
+        relief = "ridge"
+    )
 
-window.geometry("1247x845")
-window.configure(bg = "#FFFFFF")
+    canvas.place(x = 0, y = 0)
+    image_image_1 = PhotoImage(
+        file=relative_to_assets("image_1.png"))
+    image_1 = canvas.create_image(
+        640.0,
+        77.0,
+        image=image_image_1
+    )
 
+    button_image_1 = PhotoImage(
+        file=relative_to_assets("button_1.png"))
+    button_1 = Button(
+        image=button_image_1,
+        borderwidth=0,
+        highlightthickness=0,
+        command=lambda: print("button_1 clicked"),
+        relief="flat"
+    )
+    button_1.place(
+        x=228.0,
+        y=71.0,
+        width=72.0,
+        height=29.0
+    )
 
-canvas = Canvas(
-    window,
-    bg = "#FFFFFF",
-    height = 845,
-    width = 1247,
-    bd = 0,
-    highlightthickness = 0,
-    relief = "ridge"
-)
+    button_image_2 = PhotoImage(
+        file=relative_to_assets("button_2.png"))
+    button_2 = Button(
+        image=button_image_2,
+        borderwidth=0,
+        highlightthickness=0,
+        command=lambda: print("button_2 clicked"),
+        relief="flat"
+    )
+    button_2.place(
+        x=359.0,
+        y=71.0,
+        width=87.0,
+        height=29.0
+    )
 
-canvas.place(x = 0, y = 0)
-image_image_1 = PhotoImage(
-    file=relative_to_assets("image_1.png"))
-image_1 = canvas.create_image(
-    640.0,
-    77.0,
-    image=image_image_1
-)
+    button_image_3 = PhotoImage(
+        file=relative_to_assets("button_3.png"))
+    button_3 = Button(
+        image=button_image_3,
+        borderwidth=0,
+        highlightthickness=0,
+        command=lambda: print("button_3 clicked"),
+        relief="flat"
+    )
+    button_3.place(
+        x=503.0,
+        y=71.0,
+        width=120.0,
+        height=29.0
+    )
 
-button_image_1 = PhotoImage(
-    file=relative_to_assets("button_1.png"))
-button_1 = Button(
-    image=button_image_1,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_1 clicked"),
-    relief="flat"
-)
-button_1.place(
-    x=228.0,
-    y=71.0,
-    width=72.0,
-    height=29.0
-)
+    canvas.create_rectangle(
+        41.0,
+        36.0,
+        163.0,
+        134.0,
+        fill="#D9D9D9",
+        outline="")
 
-button_image_2 = PhotoImage(
-    file=relative_to_assets("button_2.png"))
-button_2 = Button(
-    image=button_image_2,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_2 clicked"),
-    relief="flat"
-)
-button_2.place(
-    x=359.0,
-    y=71.0,
-    width=87.0,
-    height=29.0
-)
+    canvas.create_text(
+        86.0,
+        716.0,
+        anchor="nw",
+        text="Do you want to see your weekly or monthly report?",
+        fill="#000000",
+        font=("Inter Bold", 24 * -1)
+    )
 
-button_image_3 = PhotoImage(
-    file=relative_to_assets("button_3.png"))
-button_3 = Button(
-    image=button_image_3,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_3 clicked"),
-    relief="flat"
-)
-button_3.place(
-    x=503.0,
-    y=71.0,
-    width=120.0,
-    height=29.0
-)
+    button_image_4 = PhotoImage(
+        file=relative_to_assets("button_4.png"))
+    button_4 = Button(
+        image=button_image_4,
+        borderwidth=0,
+        highlightthickness=0,
+        command=lambda: gui7.start(window, frame),
+        relief="flat"
+    )
+    button_4.place(
+        x=720.0,
+        y=719.0,
+        width=213.0,
+        height=72.0
+    )
 
-canvas.create_rectangle(
-    41.0,
-    36.0,
-    163.0,
-    134.0,
-    fill="#D9D9D9",
-    outline="")
+    button_image_5 = PhotoImage(
+        file=relative_to_assets("button_5.png"))
+    button_5 = Button(
+        image=button_image_5,
+        borderwidth=0,
+        highlightthickness=0,
+        command=lambda: gui7.start(window, frame),
+        relief="flat"
+    )
+    button_5.place(
+        x=956.0,
+        y=719.0,
+        width=213.0,
+        height=72.0
+    )
 
-canvas.create_text(
-    86.0,
-    716.0,
-    anchor="nw",
-    text="Do you want to see your weekly or monthly report?",
-    fill="#000000",
-    font=("Inter Bold", 24 * -1)
-)
+    entry_image_1 = PhotoImage(
+        file=relative_to_assets("entry_1.png"))
+    entry_bg_1 = canvas.create_image(
+        480.0,
+        306.5,
+        image=entry_image_1
+    )
+    entry_1 = Text(
+        bd=0,
+        bg="#000000",
+        fg="#000716",
+        highlightthickness=0
+    )
+    entry_1.place(
+        x=163.0,
+        y=284.0,
+        width=634.0,
+        height=43.0
+    )
 
-button_image_4 = PhotoImage(
-    file=relative_to_assets("button_4.png"))
-button_4 = Button(
-    image=button_image_4,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_4 clicked"),
-    relief="flat"
-)
-button_4.place(
-    x=720.0,
-    y=719.0,
-    width=213.0,
-    height=72.0
-)
+    entry_image_2 = PhotoImage(
+        file=relative_to_assets("entry_2.png"))
+    entry_bg_2 = canvas.create_image(
+        375.5,
+        564.5,
+        image=entry_image_2
+    )
+    entry_2 = Text(
+        bd=0,
+        bg="#000000",
+        fg="#000716",
+        highlightthickness=0
+    )
+    entry_2.place(
+        x=163.0,
+        y=450.0,
+        width=425.0,
+        height=227.0
+    )
 
-button_image_5 = PhotoImage(
-    file=relative_to_assets("button_5.png"))
-button_5 = Button(
-    image=button_image_5,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_5 clicked"),
-    relief="flat"
-)
-button_5.place(
-    x=956.0,
-    y=719.0,
-    width=213.0,
-    height=72.0
-)
+    canvas.create_text(
+        163.0,
+        228.0,
+        anchor="nw",
+        text="[NAME],",
+        fill="#54899E",
+        font=("Inter Bold", 40 * -1)
+    )
+    window.resizable(False, False)
+    window.mainloop()
 
-entry_image_1 = PhotoImage(
-    file=relative_to_assets("entry_1.png"))
-entry_bg_1 = canvas.create_image(
-    480.0,
-    306.5,
-    image=entry_image_1
-)
-entry_1 = Text(
-    bd=0,
-    bg="#000000",
-    fg="#000716",
-    highlightthickness=0
-)
-entry_1.place(
-    x=163.0,
-    y=284.0,
-    width=634.0,
-    height=43.0
-)
-
-entry_image_2 = PhotoImage(
-    file=relative_to_assets("entry_2.png"))
-entry_bg_2 = canvas.create_image(
-    375.5,
-    564.5,
-    image=entry_image_2
-)
-entry_2 = Text(
-    bd=0,
-    bg="#000000",
-    fg="#000716",
-    highlightthickness=0
-)
-entry_2.place(
-    x=163.0,
-    y=450.0,
-    width=425.0,
-    height=227.0
-)
-
-canvas.create_text(
-    163.0,
-    228.0,
-    anchor="nw",
-    text="[NAME],",
-    fill="#54899E",
-    font=("Inter Bold", 40 * -1)
-)
-window.resizable(False, False)
-window.mainloop()
+if __name__ == '__main__':
+    exit(0)

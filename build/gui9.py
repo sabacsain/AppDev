@@ -11,7 +11,7 @@ from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"/media/sendoff/sendoff HDD/CS/THIRD YEAR/FIRST SEM/AppDev/Panda/figma/Tkinter-Designer/build/assets/frame9")
+ASSETS_PATH = OUTPUT_PATH / Path(r"/media/sendoff/sendoff HDD/CS/THIRD YEAR/FIRST SEM/AppDev/shiela/frame8/build/assets/frame0")
 
 
 def relative_to_assets(path: str) -> Path:
@@ -21,12 +21,12 @@ def relative_to_assets(path: str) -> Path:
 window = Tk()
 
 window.geometry("1247x845")
-window.configure(bg = "#E2EAFC")
+window.configure(bg = "#FFFFFF")
 
 
 canvas = Canvas(
     window,
-    bg = "#E2EAFC",
+    bg = "#FFFFFF",
     height = 845,
     width = 1247,
     bd = 0,
@@ -35,6 +35,14 @@ canvas = Canvas(
 )
 
 canvas.place(x = 0, y = 0)
+image_image_1 = PhotoImage(
+    file=relative_to_assets("image_1.png"))
+image_1 = canvas.create_image(
+    640.0,
+    77.0,
+    image=image_image_1
+)
+
 button_image_1 = PhotoImage(
     file=relative_to_assets("button_1.png"))
 button_1 = Button(
@@ -92,12 +100,12 @@ canvas.create_rectangle(
     outline="")
 
 canvas.create_text(
-    41.0,
-    164.0,
+    112.0,
+    250.0,
     anchor="nw",
-    text="some reports",
+    text="Some comments here about the report",
     fill="#000000",
-    font=("Inter Bold", 24 * -1)
+    font=("Inter Bold", 36 * -1)
 )
 window.resizable(False, False)
 window.mainloop()
