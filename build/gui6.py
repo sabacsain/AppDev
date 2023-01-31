@@ -8,7 +8,7 @@ from pathlib import Path
 # from tkinter import *
 # Explicit imports to satisfy Flake8
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
-import gui7
+import functions
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets/frame6")
@@ -111,7 +111,7 @@ def start(window, frame):
         image=button_image_4,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: gui7.start(window, frame),
+        command=lambda: functions.callGui7(window, frame),
         relief="flat"
     )
     button_4.place(
@@ -127,7 +127,7 @@ def start(window, frame):
         image=button_image_5,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: gui7.start(window, frame),
+        command=lambda: functions.callGui7(window, frame),
         relief="flat"
     )
     button_5.place(
