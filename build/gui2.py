@@ -55,7 +55,8 @@ def start(window, frame):
         image=button_image_1,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.callGui4(window, frame),
+        # command=lambda: functions.callGui4(window, frame),
+        command = lambda: functions.login(window,frame, entry_1,entry_2),
         relief="flat"
     )
     login_button.place(
@@ -173,6 +174,7 @@ def start(window, frame):
         font=("Inter Bold", 36 * -1)
     )
 
+    # Phone number entry
     entry_image_1 = PhotoImage(
         file=relative_to_assets("entry_1.png"))
     entry_bg_1 = canvas.create_image(
@@ -193,6 +195,7 @@ def start(window, frame):
         height=62.0
     )
 
+    # Password entry
     entry_image_2 = PhotoImage(
         file=relative_to_assets("entry_2.png"))
     entry_bg_2 = canvas.create_image(
@@ -204,7 +207,8 @@ def start(window, frame):
         bd=0,
         bg="#FFFFFF",
         fg="#000716",
-        highlightthickness=0
+        highlightthickness=0,
+        show="*"
     )
     entry_2.place(
         x=76.0,

@@ -61,7 +61,7 @@ def register(window,frame,fname_entry,lname_entry,phone_entry,birthday_entry,pas
             conn = sqlite3.connect('sleep_database.db')
             c = conn.cursor()
             
-            #CREATE TABLE IF DATABASE DOESNT EXIT
+            #CREATE TABLE IF DATABASE DOESNT EXIST
             c.execute("""CREATE TABLE IF NOT EXISTS accounts (
                 FNAME text,
                 LNAME text,
@@ -79,7 +79,6 @@ def register(window,frame,fname_entry,lname_entry,phone_entry,birthday_entry,pas
                 messagebox.showerror("Error","Entered phone number is already taken. Try using another number or try logging in.")
                 conn.commit()
                 conn.close()      
-                return
             
             else:
                 c.execute("INSERT into accounts VALUES (:FNAME, :LNAME, :SEX, :PHONE, :BIRTHDAY, :PASSWORD)",
@@ -105,12 +104,52 @@ def register(window,frame,fname_entry,lname_entry,phone_entry,birthday_entry,pas
                 conn.close()
 
                 callGui4(window,frame)
-                return
-        
+
         except Exception as error:
-            print(f'Error: {error}')
+            messagebox.showerror("Registration Unsuccessful",f'Error: {error}')
             return str(error)
 
 
-def login():
+def login(window,frame,phone_entry,password_entry):
+    phone = phone_entry.get()
+    password = password_entry.get()
+
+    if len(phone)==0 or len(password)==0:
+        messagebox.showerror("Error","Please satisfy all the fields")
+    
+    else:
+        try:
+            conn = sqlite3.connect('sleep_database.db')
+            c = conn.cursor()
+
+            #CREATE TABLE IF DATABASE DOESNT EXIST
+            c.execute("""CREATE TABLE IF NOT EXISTS accounts (
+                FNAME text,
+                LNAME text,
+                SEX text,
+                PHONE text,
+                BIRTHDAY text,
+                PASSWORD text )""")
+            conn.commit()
+
+            #check if phone number and password are correct (in the database)
+            c.execute("SELECT * FROM accounts where (PHONE=? AND PASSWORD=?)",[phone,password])
+            account = c.fetchone()
+
+            if(account==None):
+                messagebox.showerror("Error", "Login Failed. Invalid phone number/password was entered.")
+                conn.commit()
+                conn.close()
+            
+            else:
+                messagebox.showinfo("Login", "Login Successful!")
+                conn.commit()
+                conn.close()
+                callGui4(window,frame)
+    
+        except Exception as error:
+            messagebox.showerror("Login Unsuccessful",f'Error: {error}')
+            return str(error)
+
+       
     return
