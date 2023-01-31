@@ -1,16 +1,8 @@
-# AppDev Final Project
+# DEV Branch 
 # 
-Build directory -  andito yugn mga tentative design natin
+bali dito muna tinetest yugn codes bago i-push sa main. 
 #
-yung mga gui.py/s ayan yung mga design per frame
-#
-tas yugn mga nasa assets/frame[x] nandito yugn mga images or kugn anong files na ginamit sa designing
-#
-Note: pabago nung part na to
-ASSETS_PATH = OUTPUT_PATH / Path(r"/media/sendoff/sendoff HDD/CS/THIRD YEAR/FIRST SEM/AppDev/shiela/build/assets/frame0")
-makikita 'to sa kada gui.py paki-palitan na lang po based sa directory niyo kung nasaan yung corresponding frame
-sample:
-ASSETS_PATH = OUTPUT_PATH / Path(r"assets/frame0")
+eto run niyo lang pala yugn gui1.py tas ol goods na yan. [base sa test ko connected naman na]
 
 Ps.
 Pag may question and concerns, feel free na magtanong lang po sa gc. Thank you!
