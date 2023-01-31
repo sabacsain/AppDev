@@ -130,6 +130,7 @@ def start(window, frame):
         image=image_image_2
     )
 
+    #first name entry
     entry_image_1 = PhotoImage(
         file=relative_to_assets("entry_1.png"))
     entry_bg_1 = canvas.create_image(
@@ -137,7 +138,7 @@ def start(window, frame):
         401.0,
         image=entry_image_1
     )
-    entry_1 = Entry(
+    entry_1 = Entry( 
         bd=0,
         bg="#FFFFFF",
         fg="#000716",
@@ -150,6 +151,7 @@ def start(window, frame):
         height=62.0
     )
 
+    #last name entry
     entry_image_2 = PhotoImage(
         file=relative_to_assets("entry_2.png"))
     entry_bg_2 = canvas.create_image(
@@ -157,7 +159,7 @@ def start(window, frame):
         401.0,
         image=entry_image_2
     )
-    entry_2 = Entry(
+    entry_2 = Entry( 
         bd=0,
         bg="#FFFFFF",
         fg="#000716",
@@ -188,6 +190,7 @@ def start(window, frame):
         font=("Inter Regular", 17 * -1)
     )
 
+    #phone number entry
     entry_image_3 = PhotoImage(
         file=relative_to_assets("entry_3.png"))
     entry_bg_3 = canvas.create_image(
@@ -217,6 +220,7 @@ def start(window, frame):
         font=("Inter Regular", 17 * -1)
     )
 
+    # birthday entry
     entry_image_4 = PhotoImage(
         file=relative_to_assets("entry_4.png"))
     entry_bg_4 = canvas.create_image(
@@ -255,6 +259,7 @@ def start(window, frame):
         font=("Inter Regular", 17 * -1)
     )
 
+    # password entry
     entry_image_5 = PhotoImage(
         file=relative_to_assets("entry_5.png"))
     entry_bg_5 = canvas.create_image(
@@ -266,7 +271,8 @@ def start(window, frame):
         bd=0,
         bg="#FFFFFF",
         fg="#000716",
-        highlightthickness=0
+        highlightthickness=0,
+        show="*"
     )
     entry_5.place(
         x=89.0,
@@ -275,13 +281,15 @@ def start(window, frame):
         height=62.0
     )
 
+    # register button
     button_image_4 = PhotoImage(
         file=relative_to_assets("button_4.png"))
     register_button = Button(
         image=button_image_4,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.callGui4(window, frame),
+        # command=lambda: functions.callGui4(window, frame),
+        command=lambda: functions.register(window,frame,entry_1,entry_2,entry_3,entry_4,entry_5,button_5,button_6),
         relief="flat"
     )
     register_button.place(
@@ -291,13 +299,14 @@ def start(window, frame):
         height=72.0
     )
 
+    # male radio button
     button_image_5 = PhotoImage(
         file=relative_to_assets("button_5.png"))
     button_5 = Button(
         image=button_image_5,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_5 clicked"),
+        command = lambda: functions.disable_radioBtn(button_5,button_6),
         relief="flat"
     )
     button_5.place(
@@ -316,13 +325,14 @@ def start(window, frame):
         font=("Inter Regular", 17 * -1)
     )
 
+    # female radio button
     button_image_6 = PhotoImage(
         file=relative_to_assets("button_6.png"))
     button_6 = Button(
         image=button_image_6,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_6 clicked"),
+        command = lambda: functions.disable_radioBtn(button_6,button_5),
         relief="flat"
     )
     button_6.place(

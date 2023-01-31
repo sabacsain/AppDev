@@ -97,7 +97,7 @@ def start():
         image=button_image_4,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.callGui2(window, frame),
+        command=lambda: functions.callGui3(window, frame),
         relief="flat"
     )
     register_button.place(
