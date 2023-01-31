@@ -11,7 +11,7 @@ from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"/media/sendoff/sendoff HDD/CS/THIRD YEAR/FIRST SEM/AppDev/Panda/figma/Tkinter-Designer/build/assets/frame5")
+ASSETS_PATH = OUTPUT_PATH / Path(r"/media/sendoff/sendoff HDD/CS/THIRD YEAR/FIRST SEM/AppDev/shiela/frame5/build/assets/frame0")
 
 
 def relative_to_assets(path: str) -> Path:
@@ -21,12 +21,12 @@ def relative_to_assets(path: str) -> Path:
 window = Tk()
 
 window.geometry("1247x845")
-window.configure(bg = "#E2EAFC")
+window.configure(bg = "#FFFFFF")
 
 
 canvas = Canvas(
     window,
-    bg = "#E2EAFC",
+    bg = "#FFFFFF",
     height = 845,
     width = 1247,
     bd = 0,
@@ -35,6 +35,14 @@ canvas = Canvas(
 )
 
 canvas.place(x = 0, y = 0)
+image_image_1 = PhotoImage(
+    file=relative_to_assets("image_1.png"))
+image_1 = canvas.create_image(
+    634.0,
+    76.0,
+    image=image_image_1
+)
+
 button_image_1 = PhotoImage(
     file=relative_to_assets("button_1.png"))
 button_1 = Button(
@@ -83,6 +91,43 @@ button_3.place(
     height=29.0
 )
 
+canvas.create_rectangle(
+    41.0,
+    36.0,
+    163.0,
+    134.0,
+    fill="#D9D9D9",
+    outline="")
+
+canvas.create_text(
+    163.0,
+    320.0,
+    anchor="nw",
+    text="how many hours did you sleep today?",
+    fill="#000000",
+    font=("Inter SemiBold", 36 * -1)
+)
+
+entry_image_1 = PhotoImage(
+    file=relative_to_assets("entry_1.png"))
+entry_bg_1 = canvas.create_image(
+    430.5,
+    467.0,
+    image=entry_image_1
+)
+entry_1 = Entry(
+    bd=0,
+    bg="#FFFFFF",
+    fg="#000716",
+    highlightthickness=0
+)
+entry_1.place(
+    x=163.0,
+    y=435.0,
+    width=535.0,
+    height=62.0
+)
+
 button_image_4 = PhotoImage(
     file=relative_to_assets("button_4.png"))
 button_4 = Button(
@@ -93,63 +138,19 @@ button_4 = Button(
     relief="flat"
 )
 button_4.place(
-    x=137.0,
-    y=556.0,
-    width=383.0,
+    x=163.0,
+    y=719.0,
+    width=213.0,
     height=72.0
-)
-
-button_image_5 = PhotoImage(
-    file=relative_to_assets("button_5.png"))
-button_5 = Button(
-    image=button_image_5,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_5 clicked"),
-    relief="flat"
-)
-button_5.place(
-    x=135.0,
-    y=245.0,
-    width=383.0,
-    height=72.0
-)
-
-canvas.create_rectangle(
-    41.0,
-    36.0,
-    163.0,
-    134.0,
-    fill="#D9D9D9",
-    outline="")
-
-entry_image_1 = PhotoImage(
-    file=relative_to_assets("entry_1.png"))
-entry_bg_1 = canvas.create_image(
-    123.5,
-    204.0,
-    image=entry_image_1
-)
-entry_1 = Entry(
-    bd=0,
-    bg="#000000",
-    fg="#000716",
-    highlightthickness=0
-)
-entry_1.place(
-    x=118.0,
-    y=182.0,
-    width=11.0,
-    height=42.0
 )
 
 canvas.create_text(
-    135.0,
-    181.0,
+    163.0,
+    247.0,
     anchor="nw",
-    text="how many hours did you sleep today?",
-    fill="#000000",
-    font=("Inter Bold", 24 * -1)
+    text="[NAME],",
+    fill="#54899E",
+    font=("Inter Bold", 40 * -1)
 )
 window.resizable(False, False)
 window.mainloop()

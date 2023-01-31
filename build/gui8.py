@@ -11,7 +11,7 @@ from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"/media/sendoff/sendoff HDD/CS/THIRD YEAR/FIRST SEM/AppDev/Panda/figma/Tkinter-Designer/build/assets/frame8")
+ASSETS_PATH = OUTPUT_PATH / Path(r"/media/sendoff/sendoff HDD/CS/THIRD YEAR/FIRST SEM/AppDev/shiela/frame8/build/assets/frame0")
 
 
 def relative_to_assets(path: str) -> Path:
@@ -21,12 +21,12 @@ def relative_to_assets(path: str) -> Path:
 window = Tk()
 
 window.geometry("1247x845")
-window.configure(bg = "#E2EAFC")
+window.configure(bg = "#FFFFFF")
 
 
 canvas = Canvas(
     window,
-    bg = "#E2EAFC",
+    bg = "#FFFFFF",
     height = 845,
     width = 1247,
     bd = 0,
@@ -35,6 +35,14 @@ canvas = Canvas(
 )
 
 canvas.place(x = 0, y = 0)
+image_image_1 = PhotoImage(
+    file=relative_to_assets("image_1.png"))
+image_1 = canvas.create_image(
+    640.0,
+    77.0,
+    image=image_image_1
+)
+
 button_image_1 = PhotoImage(
     file=relative_to_assets("button_1.png"))
 button_1 = Button(
@@ -47,7 +55,7 @@ button_1 = Button(
 button_1.place(
     x=228.0,
     y=71.0,
-    width=75.0,
+    width=72.0,
     height=29.0
 )
 
@@ -83,22 +91,6 @@ button_3.place(
     height=29.0
 )
 
-button_image_4 = PhotoImage(
-    file=relative_to_assets("button_4.png"))
-button_4 = Button(
-    image=button_image_4,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_4 clicked"),
-    relief="flat"
-)
-button_4.place(
-    x=228.0,
-    y=635.0,
-    width=383.0,
-    height=72.0
-)
-
 canvas.create_rectangle(
     41.0,
     36.0,
@@ -108,180 +100,12 @@ canvas.create_rectangle(
     outline="")
 
 canvas.create_text(
-    44.0,
-    353.0,
+    112.0,
+    250.0,
     anchor="nw",
-    text="Phone Number",
+    text="Some comments here about the report",
     fill="#000000",
-    font=("Inter Bold", 25 * -1)
-)
-
-canvas.create_text(
-    44.0,
-    479.0,
-    anchor="nw",
-    text="Password\n",
-    fill="#000000",
-    font=("Inter Bold", 25 * -1)
-)
-
-canvas.create_text(
-    503.0,
-    353.0,
-    anchor="nw",
-    text="Birthday",
-    fill="#000000",
-    font=("Inter Bold", 25 * -1)
-)
-
-button_image_5 = PhotoImage(
-    file=relative_to_assets("button_5.png"))
-button_5 = Button(
-    image=button_image_5,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_5 clicked"),
-    relief="flat"
-)
-button_5.place(
-    x=532.0,
-    y=277.0,
-    width=106.0,
-    height=28.0
-)
-
-button_image_6 = PhotoImage(
-    file=relative_to_assets("button_6.png"))
-button_6 = Button(
-    image=button_image_6,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_6 clicked"),
-    relief="flat"
-)
-button_6.place(
-    x=720.0,
-    y=277.0,
-    width=106.0,
-    height=28.0
-)
-
-canvas.create_text(
-    503.0,
-    221.0,
-    anchor="nw",
-    text="Gender",
-    fill="#000000",
-    font=("Inter Bold", 25 * -1)
-)
-
-entry_image_1 = PhotoImage(
-    file=relative_to_assets("entry_1.png"))
-entry_bg_1 = canvas.create_image(
-    145.0,
-    296.0,
-    image=entry_image_1
-)
-entry_1 = Text(
-    bd=0,
-    bg="#FFFFFF",
-    fg="#000716",
-    highlightthickness=0
-)
-entry_1.place(
-    x=44.0,
-    y=273.0,
-    width=202.0,
-    height=44.0
-)
-
-entry_image_2 = PhotoImage(
-    file=relative_to_assets("entry_2.png"))
-entry_bg_2 = canvas.create_image(
-    245.0,
-    432.0,
-    image=entry_image_2
-)
-entry_2 = Text(
-    bd=0,
-    bg="#FFFFFF",
-    fg="#000716",
-    highlightthickness=0
-)
-entry_2.place(
-    x=44.0,
-    y=409.0,
-    width=402.0,
-    height=44.0
-)
-
-entry_image_3 = PhotoImage(
-    file=relative_to_assets("entry_3.png"))
-entry_bg_3 = canvas.create_image(
-    245.0,
-    558.0,
-    image=entry_image_3
-)
-entry_3 = Text(
-    bd=0,
-    bg="#FFFFFF",
-    fg="#000716",
-    highlightthickness=0
-)
-entry_3.place(
-    x=45.0,
-    y=535.0,
-    width=400.0,
-    height=44.0
-)
-
-entry_image_4 = PhotoImage(
-    file=relative_to_assets("entry_4.png"))
-entry_bg_4 = canvas.create_image(
-    638.0,
-    432.0,
-    image=entry_image_4
-)
-entry_4 = Text(
-    bd=0,
-    bg="#FFFFFF",
-    fg="#000716",
-    highlightthickness=0
-)
-entry_4.place(
-    x=508.0,
-    y=409.0,
-    width=260.0,
-    height=44.0
-)
-
-entry_image_5 = PhotoImage(
-    file=relative_to_assets("entry_5.png"))
-entry_bg_5 = canvas.create_image(
-    356.0,
-    296.0,
-    image=entry_image_5
-)
-entry_5 = Text(
-    bd=0,
-    bg="#FFFFFF",
-    fg="#000716",
-    highlightthickness=0
-)
-entry_5.place(
-    x=266.0,
-    y=273.0,
-    width=180.0,
-    height=44.0
-)
-
-canvas.create_text(
-    45.0,
-    221.0,
-    anchor="nw",
-    text="Name\n",
-    fill="#000000",
-    font=("Inter Bold", 25 * -1)
+    font=("Inter Bold", 36 * -1)
 )
 window.resizable(False, False)
 window.mainloop()

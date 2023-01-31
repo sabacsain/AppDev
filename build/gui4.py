@@ -11,7 +11,7 @@ from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"/media/sendoff/sendoff HDD/CS/THIRD YEAR/FIRST SEM/AppDev/Panda/figma/Tkinter-Designer/build/assets/frame4")
+ASSETS_PATH = OUTPUT_PATH / Path(r"/media/sendoff/sendoff HDD/CS/THIRD YEAR/FIRST SEM/AppDev/shiela/frame4/build/assets/frame0")
 
 
 def relative_to_assets(path: str) -> Path:
@@ -21,12 +21,12 @@ def relative_to_assets(path: str) -> Path:
 window = Tk()
 
 window.geometry("1247x845")
-window.configure(bg = "#E2EAFC")
+window.configure(bg = "#FFFFFF")
 
 
 canvas = Canvas(
     window,
-    bg = "#E2EAFC",
+    bg = "#FFFFFF",
     height = 845,
     width = 1247,
     bd = 0,
@@ -35,6 +35,14 @@ canvas = Canvas(
 )
 
 canvas.place(x = 0, y = 0)
+image_image_1 = PhotoImage(
+    file=relative_to_assets("image_1.png"))
+image_1 = canvas.create_image(
+    640.0,
+    77.0,
+    image=image_image_1
+)
+
 button_image_1 = PhotoImage(
     file=relative_to_assets("button_1.png"))
 button_1 = Button(
@@ -83,6 +91,14 @@ button_3.place(
     height=29.0
 )
 
+canvas.create_rectangle(
+    41.0,
+    36.0,
+    163.0,
+    134.0,
+    fill="#D9D9D9",
+    outline="")
+
 button_image_4 = PhotoImage(
     file=relative_to_assets("button_4.png"))
 button_4 = Button(
@@ -93,18 +109,28 @@ button_4 = Button(
     relief="flat"
 )
 button_4.place(
-    x=196.0,
-    y=538.0,
-    width=383.0,
+    x=121.0,
+    y=685.0,
+    width=213.0,
     height=72.0
 )
 
-canvas.create_rectangle(
-    41.0,
-    36.0,
-    163.0,
-    134.0,
-    fill="#D9D9D9",
-    outline="")
+canvas.create_text(
+    117.0,
+    247.0,
+    anchor="nw",
+    text="Let's track your sleep habits!",
+    fill="#000000",
+    font=("Inter SemiBold", 36 * -1)
+)
+
+canvas.create_text(
+    117.0,
+    388.0,
+    anchor="nw",
+    text="You prioritize your health,\nThen start sleeping at the proper time!",
+    fill="#000000",
+    font=("Inter SemiBold", 36 * -1)
+)
 window.resizable(False, False)
 window.mainloop()

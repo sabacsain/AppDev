@@ -11,7 +11,7 @@ from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"/media/sendoff/sendoff HDD/CS/THIRD YEAR/FIRST SEM/AppDev/Panda/figma/Tkinter-Designer/build/assets/frame6")
+ASSETS_PATH = OUTPUT_PATH / Path(r"/media/sendoff/sendoff HDD/CS/THIRD YEAR/FIRST SEM/AppDev/shiela/frame6/build/assets/frame0")
 
 
 def relative_to_assets(path: str) -> Path:
@@ -21,12 +21,12 @@ def relative_to_assets(path: str) -> Path:
 window = Tk()
 
 window.geometry("1247x845")
-window.configure(bg = "#E2EAFC")
+window.configure(bg = "#FFFFFF")
 
 
 canvas = Canvas(
     window,
-    bg = "#E2EAFC",
+    bg = "#FFFFFF",
     height = 845,
     width = 1247,
     bd = 0,
@@ -35,6 +35,14 @@ canvas = Canvas(
 )
 
 canvas.place(x = 0, y = 0)
+image_image_1 = PhotoImage(
+    file=relative_to_assets("image_1.png"))
+image_1 = canvas.create_image(
+    640.0,
+    77.0,
+    image=image_image_1
+)
+
 button_image_1 = PhotoImage(
     file=relative_to_assets("button_1.png"))
 button_1 = Button(
@@ -83,6 +91,23 @@ button_3.place(
     height=29.0
 )
 
+canvas.create_rectangle(
+    41.0,
+    36.0,
+    163.0,
+    134.0,
+    fill="#D9D9D9",
+    outline="")
+
+canvas.create_text(
+    86.0,
+    716.0,
+    anchor="nw",
+    text="Do you want to see your weekly or monthly report?",
+    fill="#000000",
+    font=("Inter Bold", 24 * -1)
+)
+
 button_image_4 = PhotoImage(
     file=relative_to_assets("button_4.png"))
 button_4 = Button(
@@ -93,9 +118,9 @@ button_4 = Button(
     relief="flat"
 )
 button_4.place(
-    x=681.0,
-    y=603.0,
-    width=212.0,
+    x=720.0,
+    y=719.0,
+    width=213.0,
     height=72.0
 )
 
@@ -109,87 +134,59 @@ button_5 = Button(
     relief="flat"
 )
 button_5.place(
-    x=937.0,
-    y=603.0,
-    width=212.0,
+    x=956.0,
+    y=719.0,
+    width=213.0,
     height=72.0
 )
-
-canvas.create_rectangle(
-    41.0,
-    36.0,
-    163.0,
-    134.0,
-    fill="#D9D9D9",
-    outline="")
 
 entry_image_1 = PhotoImage(
     file=relative_to_assets("entry_1.png"))
 entry_bg_1 = canvas.create_image(
-    155.0,
-    204.0,
+    480.0,
+    306.5,
     image=entry_image_1
 )
-entry_1 = Entry(
+entry_1 = Text(
     bd=0,
     bg="#000000",
     fg="#000716",
     highlightthickness=0
 )
 entry_1.place(
-    x=118.0,
-    y=182.0,
-    width=74.0,
-    height=42.0
+    x=163.0,
+    y=284.0,
+    width=634.0,
+    height=43.0
 )
 
 entry_image_2 = PhotoImage(
     file=relative_to_assets("entry_2.png"))
 entry_bg_2 = canvas.create_image(
-    390.5,
-    201.5,
+    375.5,
+    564.5,
     image=entry_image_2
 )
-entry_2 = Entry(
+entry_2 = Text(
     bd=0,
     bg="#000000",
     fg="#000716",
     highlightthickness=0
 )
 entry_2.place(
-    x=249.0,
-    y=181.0,
-    width=283.0,
-    height=39.0
-)
-
-entry_image_3 = PhotoImage(
-    file=relative_to_assets("entry_3.png"))
-entry_bg_3 = canvas.create_image(
-    321.5,
-    327.5,
-    image=entry_image_3
-)
-entry_3 = Entry(
-    bd=0,
-    bg="#000000",
-    fg="#000716",
-    highlightthickness=0
-)
-entry_3.place(
-    x=180.0,
-    y=307.0,
-    width=283.0,
-    height=39.0
+    x=163.0,
+    y=450.0,
+    width=425.0,
+    height=227.0
 )
 
 canvas.create_text(
-    26.0,
-    603.0,
+    163.0,
+    228.0,
     anchor="nw",
-    text="Do you want to see your weekly or monthly report?",
-    fill="#000000",
-    font=("Inter Bold", 24 * -1)
+    text="[NAME],",
+    fill="#54899E",
+    font=("Inter Bold", 40 * -1)
 )
 window.resizable(False, False)
 window.mainloop()

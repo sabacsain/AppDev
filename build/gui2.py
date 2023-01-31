@@ -11,7 +11,7 @@ from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"/media/sendoff/sendoff HDD/CS/THIRD YEAR/FIRST SEM/AppDev/Panda/figma/Tkinter-Designer/build/assets/frame2")
+ASSETS_PATH = OUTPUT_PATH / Path(r"/media/sendoff/sendoff HDD/CS/THIRD YEAR/FIRST SEM/AppDev/shiela/frame2/build/assets/frame0")
 
 
 def relative_to_assets(path: str) -> Path:
@@ -21,12 +21,12 @@ def relative_to_assets(path: str) -> Path:
 window = Tk()
 
 window.geometry("1247x845")
-window.configure(bg = "#E2EAFC")
+window.configure(bg = "#FFFFFF")
 
 
 canvas = Canvas(
     window,
-    bg = "#E2EAFC",
+    bg = "#FFFFFF",
     height = 845,
     width = 1247,
     bd = 0,
@@ -35,6 +35,22 @@ canvas = Canvas(
 )
 
 canvas.place(x = 0, y = 0)
+image_image_1 = PhotoImage(
+    file=relative_to_assets("image_1.png"))
+image_1 = canvas.create_image(
+    1013.0,
+    432.0,
+    image=image_image_1
+)
+
+canvas.create_rectangle(
+    39.0,
+    337.0,
+    668.0,
+    686.0,
+    fill="#DAE2EF",
+    outline="")
+
 button_image_1 = PhotoImage(
     file=relative_to_assets("button_1.png"))
 button_1 = Button(
@@ -45,10 +61,10 @@ button_1 = Button(
     relief="flat"
 )
 button_1.place(
-    x=228.0,
-    y=71.0,
-    width=75.0,
-    height=29.0
+    x=246.0,
+    y=591.0,
+    width=213.0,
+    height=72.0
 )
 
 button_image_2 = PhotoImage(
@@ -61,10 +77,36 @@ button_2 = Button(
     relief="flat"
 )
 button_2.place(
-    x=359.0,
-    y=71.0,
-    width=87.0,
-    height=29.0
+    x=332.0,
+    y=770.0,
+    width=160.0,
+    height=38.873291015625
+)
+
+canvas.create_rectangle(
+    41.0,
+    36.0,
+    163.0,
+    134.0,
+    fill="#D9D9D9",
+    outline="")
+
+canvas.create_text(
+    52.0,
+    772.0,
+    anchor="nw",
+    text="Haven't registered yet? ",
+    fill="#000000",
+    font=("Inter Regular", 25 * -1)
+)
+
+canvas.create_text(
+    279.0,
+    368.0,
+    anchor="nw",
+    text="Phone Number",
+    fill="#000000",
+    font=("Inter SemiBold", 20 * -1)
 )
 
 button_image_3 = PhotoImage(
@@ -77,9 +119,9 @@ button_3 = Button(
     relief="flat"
 )
 button_3.place(
-    x=503.0,
-    y=71.0,
-    width=120.0,
+    x=215.0,
+    y=70.0,
+    width=74.0,
     height=29.0
 )
 
@@ -93,27 +135,101 @@ button_4 = Button(
     relief="flat"
 )
 button_4.place(
-    x=240.0,
-    y=590.0,
-    width=383.0,
-    height=72.0
+    x=353.0,
+    y=70.0,
+    width=86.0,
+    height=29.0
 )
 
-canvas.create_rectangle(
-    41.0,
-    36.0,
-    163.0,
-    134.0,
-    fill="#D9D9D9",
-    outline="")
+button_image_5 = PhotoImage(
+    file=relative_to_assets("button_5.png"))
+button_5 = Button(
+    image=button_image_5,
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: print("button_5 clicked"),
+    relief="flat"
+)
+button_5.place(
+    x=490.0,
+    y=70.0,
+    width=134.0,
+    height=29.0
+)
 
 canvas.create_text(
     41.0,
-    307.0,
+    187.0,
     anchor="nw",
-    text="text",
+    text="Did you sleep well?",
     fill="#000000",
-    font=("Inter Bold", 24 * -1)
+    font=("Inter Medium", 40 * -1)
+)
+
+canvas.create_text(
+    39.0,
+    256.0,
+    anchor="nw",
+    text="WELCOME BACK!",
+    fill="#000000",
+    font=("Inter Bold", 36 * -1)
+)
+
+entry_image_1 = PhotoImage(
+    file=relative_to_assets("entry_1.png"))
+entry_bg_1 = canvas.create_image(
+    352.5,
+    436.0,
+    image=entry_image_1
+)
+entry_1 = Entry(
+    bd=0,
+    bg="#FFFFFF",
+    fg="#000716",
+    highlightthickness=0
+)
+entry_1.place(
+    x=76.0,
+    y=404.0,
+    width=553.0,
+    height=62.0
+)
+
+entry_image_2 = PhotoImage(
+    file=relative_to_assets("entry_2.png"))
+entry_bg_2 = canvas.create_image(
+    352.5,
+    548.0,
+    image=entry_image_2
+)
+entry_2 = Entry(
+    bd=0,
+    bg="#FFFFFF",
+    fg="#000716",
+    highlightthickness=0
+)
+entry_2.place(
+    x=76.0,
+    y=516.0,
+    width=553.0,
+    height=62.0
+)
+
+canvas.create_text(
+    301.0,
+    479.0,
+    anchor="nw",
+    text="Password",
+    fill="#000000",
+    font=("Inter SemiBold", 20 * -1)
+)
+
+image_image_2 = PhotoImage(
+    file=relative_to_assets("image_2.png"))
+image_2 = canvas.create_image(
+    835.0,
+    641.0,
+    image=image_image_2
 )
 window.resizable(False, False)
 window.mainloop()
