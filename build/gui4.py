@@ -17,7 +17,7 @@ ASSETS_PATH = OUTPUT_PATH / Path(r"assets/frame4")
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
-def start(window, frame):
+def start(window, frame, phone):
     window = window
     frame = frame
 
@@ -102,7 +102,7 @@ def start(window, frame):
         image=button_image_4,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.callGui5(window, frame),
+        command=lambda: functions.callGui5(window, frame, phone),
         relief="flat"
     )
     getStarted_button.place(
