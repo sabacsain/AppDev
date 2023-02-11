@@ -61,14 +61,14 @@ def start(window, frame):
 
     button_image_2 = PhotoImage(
         file=relative_to_assets("button_2.png"))
-    button_2 = Button(
+    edit_button = Button(
         image=button_image_2,
         borderwidth=0,
         highlightthickness=0,
         command=lambda: print("button_2 clicked"),
         relief="flat"
     )
-    button_2.place(
+    edit_button.place(
         x=68.0,
         y=415.0,
         width=195.0,
@@ -77,14 +77,14 @@ def start(window, frame):
 
     button_image_3 = PhotoImage(
         file=relative_to_assets("button_3.png"))
-    button_3 = Button(
+    weekly_button = Button(
         image=button_image_3,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_3 clicked"),
+        command=lambda: functions.callWeeklyGraph(window, frame),
         relief="flat"
     )
-    button_3.place(
+    weekly_button.place(
         x=649.0,
         y=369.0,
         width=554.0,
@@ -93,14 +93,14 @@ def start(window, frame):
 
     button_image_4 = PhotoImage(
         file=relative_to_assets("button_4.png"))
-    button_4 = Button(
+    update_button = Button(
         image=button_image_4,
         borderwidth=0,
         highlightthickness=0,
         command=lambda: print("button_4 clicked"),
         relief="flat"
     )
-    button_4.place(
+    update_button.place(
         x=647.0,
         y=262.0,
         width=554.0,
@@ -109,14 +109,14 @@ def start(window, frame):
 
     button_image_5 = PhotoImage(
         file=relative_to_assets("button_5.png"))
-    button_5 = Button(
+    monthly_button = Button(
         image=button_image_5,
         borderwidth=0,
         highlightthickness=0,
         command=lambda: print("button_5 clicked"),
         relief="flat"
     )
-    button_5.place(
+    monthly_button.place(
         x=650.0,
         y=476.0,
         width=554.0,
