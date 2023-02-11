@@ -11,14 +11,14 @@ from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 import functions
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"/media/sendoff/sendoff HDD/CS/THIRD YEAR/FIRST SEM/AppDev/hannahGCardiB/build/assets/frame2")
+ASSETS_PATH = OUTPUT_PATH / Path(r"assets/frame2")
 
 
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
 
-def start(window, frame):
+def start(window, frame, phone):
     window = window
     frame = frame
 
@@ -95,7 +95,7 @@ def start(window, frame):
         image=button_image_4,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.callInputSleep(window, frame),
+        command=lambda: functions.callInputSleep(window, frame, phone),
         relief="flat"
     )
     get_started_button.place(
