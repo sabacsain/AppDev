@@ -11,7 +11,7 @@ from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 import functions
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"/media/sendoff/sendoff HDD/CS/THIRD YEAR/FIRST SEM/AppDev/hannahGCardiB/build/assets/frame10")
+ASSETS_PATH = OUTPUT_PATH / Path(r"frame10")
 
 
 def relative_to_assets(path: str) -> Path:
@@ -46,7 +46,7 @@ def start(window, frame):
         image=button_image_1,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.callGetStarted(window, frame),
+        command=lambda: functions.login(window, frame, entry_1, entry_2),
         relief="flat"
     )
     login_button.place(
