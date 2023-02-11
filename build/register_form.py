@@ -111,7 +111,7 @@ def start(window, frame):
         image=button_image_1,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_1 clicked"),
+        command=lambda: functions.disable_radioBtn(button_1,button_2),
         relief="flat"
     )
     button_1.place(
@@ -127,7 +127,7 @@ def start(window, frame):
         image=button_image_2,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_2 clicked"),
+        command=lambda: functions.disable_radioBtn(button_2,button_1),
         relief="flat"
     )
     button_2.place(
@@ -179,7 +179,7 @@ def start(window, frame):
         image=button_image_3,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.callGetStarted(window, frame),
+        command=lambda: functions.register(window, frame, fname, lname, phone_number , birthday, password, button_1, button_2),
         relief="flat"
     )
     register_button.place(
@@ -244,13 +244,13 @@ def start(window, frame):
         394.5,
         image=entry_image_1
     )
-    entry_1 = Entry(
+    fname = Entry(
         bd=0,
         bg="#FFFFFF",
         fg="#000716",
         highlightthickness=0
     )
-    entry_1.place(
+    fname.place(
         x=211.0,
         y=369.0,
         width=139.0,
@@ -264,13 +264,13 @@ def start(window, frame):
         483.5,
         image=entry_image_2
     )
-    entry_2 = Entry(
+    phone_number = Entry(
         bd=0,
         bg="#FFFFFF",
         fg="#000716",
         highlightthickness=0
     )
-    entry_2.place(
+    phone_number.place(
         x=211.0,
         y=458.0,
         width=314.0,
@@ -284,13 +284,14 @@ def start(window, frame):
         575.5,
         image=entry_image_3
     )
-    entry_3 = Entry(
+    password = Entry(
         bd=0,
         bg="#FFFFFF",
         fg="#000716",
-        highlightthickness=0
+        highlightthickness=0,
+        show="*"
     )
-    entry_3.place(
+    password.place(
         x=211.0,
         y=550.0,
         width=314.0,
@@ -304,13 +305,13 @@ def start(window, frame):
         394.5,
         image=entry_image_4
     )
-    entry_4 = Entry(
+    lname = Entry(
         bd=0,
         bg="#FFFFFF",
         fg="#000716",
         highlightthickness=0
     )
-    entry_4.place(
+    lname.place(
         x=386.0,
         y=369.0,
         width=139.0,
@@ -324,13 +325,13 @@ def start(window, frame):
         483.5,
         image=entry_image_5
     )
-    entry_5 = Entry(
+    birthday = Entry(
         bd=0,
         bg="#FFFFFF",
         fg="#000716",
         highlightthickness=0
     )
-    entry_5.place(
+    birthday.place(
         x=567.0,
         y=458.0,
         width=165.0,
