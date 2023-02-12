@@ -8,7 +8,7 @@ from pathlib import Path
 # from tkinter import *
 # Explicit imports to satisfy Flake8
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
-
+import functions
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets/frame5")
@@ -19,9 +19,10 @@ def relative_to_assets(path: str) -> Path:
 
 
 
-def start(window, frame):
+def start(window, frame, phone):
     window = window
     frame = frame
+    user_profile = functions.get_user_profile(phone)
 
     canvas = Canvas(
         window,
@@ -57,7 +58,7 @@ def start(window, frame):
         image=button_image_1,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_1 clicked"),
+        command=lambda: functions.update_profile(phone, entry_1, entry_4, entry_5),
         relief="flat"
     )
     button_1.place(
@@ -126,7 +127,7 @@ def start(window, frame):
         image=button_image_2,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_2 clicked"),
+        command=lambda: functions.disable_radioBtn(button_1,button_2),
         relief="flat"
     )
     button_2.place(
@@ -142,7 +143,7 @@ def start(window, frame):
         image=button_image_3,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_3 clicked"),
+        command=lambda: functions.disable_radioBtn(button_2,button_1),
         relief="flat"
     )
     button_3.place(
@@ -286,6 +287,10 @@ def start(window, frame):
         width=165.0,
         height=49.0
     )
+    entry_1.insert(0, user_profile[0][0])
+    entry_2.insert(0, user_profile[0][3])
+    entry_4.insert(0, user_profile[0][1])
+    entry_5.insert(0, user_profile[0][4])
 
     button_image_4 = PhotoImage(
         file=relative_to_assets("button_4.png"))
@@ -293,7 +298,7 @@ def start(window, frame):
         image=button_image_4,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_4 clicked"),
+        command=lambda: functions.delete_account_and_records(window, phone),
         relief="flat"
     )
     button_4.place(
