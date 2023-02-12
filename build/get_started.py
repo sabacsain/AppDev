@@ -129,7 +129,7 @@ def start(window, frame, phone):
         image=button_image_5,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_5 clicked"),
+        command=lambda: functions.callHome(window, frame, phone),
         relief="flat"
     )
     button_5.place(

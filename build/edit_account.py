@@ -8,7 +8,7 @@ from pathlib import Path
 # from tkinter import *
 # Explicit imports to satisfy Flake8
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
-
+import functions
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets/frame5")
@@ -18,11 +18,11 @@ def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
 
-
-def start(window, frame):
+def start(window, frame, phone):
     window = window
+    
     frame = frame
-
+    user_profile = functions.get_user_profile(phone)
     canvas = Canvas(
         window,
         bg = "#DEEAEE",
@@ -42,15 +42,6 @@ def start(window, frame):
         image=image_image_1
     )
 
-    canvas.create_text(
-        0.0,
-        199.0,
-        anchor="nw",
-        text="Edit Account Details",
-        fill="#1E343D",
-        font=("Inter Bold", 50 * -1)
-    )
-
     button_image_1 = PhotoImage(
         file=relative_to_assets("button_1.png"))
     button_1 = Button(
@@ -61,10 +52,83 @@ def start(window, frame):
         relief="flat"
     )
     button_1.place(
+        x=230.0,
+        y=71.0,
+        width=72.0,
+        height=29.0
+    )
+
+    button_image_2 = PhotoImage(
+        file=relative_to_assets("button_2.png"))
+    button_2 = Button(
+        image=button_image_2,
+        borderwidth=0,
+        highlightthickness=0,
+        command=lambda: print("button_2 clicked"),
+        relief="flat"
+    )
+    button_2.place(
+        x=361.0,
+        y=71.0,
+        width=87.0,
+        height=29.0
+    )
+
+    button_image_3 = PhotoImage(
+        file=relative_to_assets("button_3.png"))
+    button_3 = Button(
+        image=button_image_3,
+        borderwidth=0,
+        highlightthickness=0,
+        command=lambda: print("button_3 clicked"),
+        relief="flat"
+    )
+    button_3.place(
+        x=505.0,
+        y=71.0,
+        width=120.0,
+        height=29.0
+    )
+
+    canvas.create_text(
+        0.0,
+        199.0,
+        anchor="nw",
+        text="Edit Account Details",
+        fill="#1E343D",
+        font=("Inter Bold", 50 * -1)
+    )
+
+    button_image_4 = PhotoImage(
+        file=relative_to_assets("button_4.png"))
+    button_4 = Button(
+        image=button_image_4,
+        borderwidth=0,
+        highlightthickness=0,
+        command=lambda: print("button_4 clicked"),
+        relief="flat"
+    )
+    button_4.place(
         x=310.0,
         y=630.0,
         width=639.0,
         height=84.0
+    )
+
+    button_image_5 = PhotoImage(
+        file=relative_to_assets("button_5.png"))
+    button_5 = Button(
+        image=button_image_5,
+        borderwidth=0,
+        highlightthickness=0,
+        command=lambda: functions.delete_account(window, phone),
+        relief="flat"
+    )
+    button_5.place(
+        x=938.0,
+        y=31.0,
+        width=250.0,
+        height=82.0
     )
 
     canvas.create_rectangle(
@@ -120,32 +184,32 @@ def start(window, frame):
         font=("Inter Bold", 17 * -1)
     )
 
-    button_image_2 = PhotoImage(
-        file=relative_to_assets("button_2.png"))
-    button_2 = Button(
-        image=button_image_2,
+    button_image_6 = PhotoImage(
+        file=relative_to_assets("button_6.png"))
+    button_6 = Button(
+        image=button_image_6,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_2 clicked"),
+        command=lambda: functions.disable_radioBtn(button_1,button_2),
         relief="flat"
     )
-    button_2.place(
+    button_6.place(
         x=705.0,
         y=343.0,
         width=29.0,
         height=29.0
     )
 
-    button_image_3 = PhotoImage(
-        file=relative_to_assets("button_3.png"))
-    button_3 = Button(
-        image=button_image_3,
+    button_image_7 = PhotoImage(
+        file=relative_to_assets("button_7.png"))
+    button_7 = Button(
+        image=button_image_7,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_3 clicked"),
+        command=lambda: functions.disable_radioBtn(button_2,button_1),
         relief="flat"
     )
-    button_3.place(
+    button_7.place(
         x=799.0,
         y=343.0,
         width=29.0,
@@ -198,7 +262,6 @@ def start(window, frame):
         width=139.0,
         height=49.0
     )
-
     canvas.create_rectangle(
         352.0,
         426.0,
@@ -206,7 +269,7 @@ def start(window, frame):
         477.0,
         fill="#FFFFFF",
         outline="")
-
+    
     entry_image_2 = PhotoImage(
         file=relative_to_assets("entry_2.png"))
     entry_bg_2 = canvas.create_image(
@@ -286,73 +349,20 @@ def start(window, frame):
         width=165.0,
         height=49.0
     )
+    entry_1.insert(0, user_profile[0][0])
+    entry_2.insert(0, user_profile[0][3])
+    entry_4.insert(0, user_profile[0][1])
+    entry_5.insert(0, user_profile[0][4])
 
-    button_image_4 = PhotoImage(
-        file=relative_to_assets("button_4.png"))
-    button_4 = Button(
-        image=button_image_4,
-        borderwidth=0,
-        highlightthickness=0,
-        command=lambda: print("button_4 clicked"),
-        relief="flat"
-    )
-    button_4.place(
-        x=939.0,
-        y=38.0,
-        width=249.0,
-        height=78.0
-    )
-
-    button_image_5 = PhotoImage(
-        file=relative_to_assets("button_5.png"))
-    button_5 = Button(
-        image=button_image_5,
-        borderwidth=0,
-        highlightthickness=0,
-        command=lambda: print("button_5 clicked"),
-        relief="flat"
-    )
-    button_5.place(
-        x=230.0,
-        y=56.0,
-        width=93.0,
-        height=40.0
-    )
-
-    button_image_6 = PhotoImage(
-        file=relative_to_assets("button_6.png"))
-    button_6 = Button(
-        image=button_image_6,
-        borderwidth=0,
-        highlightthickness=0,
-        command=lambda: print("button_6 clicked"),
-        relief="flat"
-    )
-    button_6.place(
-        x=363.0,
-        y=59.0,
-        width=106.0,
-        height=34.0
-    )
-
-    button_image_7 = PhotoImage(
-        file=relative_to_assets("button_7.png"))
-    button_7 = Button(
-        image=button_image_7,
-        borderwidth=0,
-        highlightthickness=0,
-        command=lambda: print("button_7 clicked"),
-        relief="flat"
-    )
-    button_7.place(
-        x=510.0,
-        y=59.0,
-        width=131.0,
-        height=37.0
-    )
+    canvas.create_rectangle(
+        31.0,
+        0.0,
+        230.0,
+        153.0,
+        fill="#FFFFFF",
+        outline="")
     window.resizable(False, False)
     window.mainloop()
-
 
 if __name__ == '__main__':
     window = Tk()

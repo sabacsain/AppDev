@@ -3,18 +3,18 @@ from tkinter import messagebox
 import sqlite3
 import register_form, login_form, home, get_started, \
         input_sleep, update, result, edit_account, \
-        weekly_input, monthly_input, about, weekly_graph 
+        weekly_input, monthly_input, about
 import datetime
 
-# def display(entry_1, entry_2):
-#     try:
-#         name = entry_1.get()
-#         age = entry_2.get()
-#         display = f'The name is {name} and you are {age}'
-#         return display
-#     except Exception as error:
-#         print(f'Error: {error}')
-#         return str(error)
+def display(entry_1, entry_2):
+    try:
+        name = entry_1.get()
+        age = entry_2.get()
+        display = f'The name is {name} and you are {age}'
+        return display
+    except Exception as error:
+        print(f'Error: {error}')
+        return str(error)
 
 # Calling all the GUI files
 def callRegister(window, frame):
@@ -26,8 +26,8 @@ def callLogin(window, frame):
 def callGetStarted(window, frame, phone):
     get_started.start(window, frame, phone)
 
-def callHome(window, frame):
-    home.start(window, frame)
+def callHome(window, frame, phone):
+    home.start(window, frame, phone)
 
 def callInputSleep(window, frame, phone):
     input_sleep.start(window, frame, phone)
@@ -39,14 +39,11 @@ def callResult(window, frame, sleep_value, phone):
     sleepTracker(sleep_value, phone)
     result.start(window, frame)
 
-def callEditAccount(window, frame):
-    edit_account.start(window, frame)
+def callEditAccount(window, frame, phone):
+    edit_account.start(window, frame, phone)
 
 def callWeeklyInput(window, frame):
     weekly_input.start(window, frame)
-
-def callWeeklyGraph(window, frame):
-    weekly_graph.start(window, frame)
 
 def callMonthlyInput(window, frame):
     monthly_input.start(window, frame)
@@ -54,8 +51,11 @@ def callMonthlyInput(window, frame):
 def callAbout(window, frame):
     about.start(window, frame)
 
+# def callGui6(window, frame, sleep_value, phone):
+#     sleepTracker(sleep_value, phone)
+#     gui6.start(window, frame)
 
-# Functions for the back-ends
+
 def disable_radioBtn(button1,button2):
     button1["state"] = DISABLED
     button2["state"] = NORMAL
@@ -74,7 +74,6 @@ def register(window,frame,fname_entry,lname_entry,phone_entry,birthday_entry,pas
         messagebox.showerror("Error", "Please satisfy all the fields")
         return
 
-    # print(fname,lname,phone,birthday,password,sex)
     else:
         try:
             conn = sqlite3.connect('sleep_database.db')
@@ -122,21 +121,19 @@ def register(window,frame,fname_entry,lname_entry,phone_entry,birthday_entry,pas
                 conn.commit()
                 conn.close()
 
-                # Call the get_started.py
-                callGetStarted(window,frame, phone)
+                callGetStarted(window, frame, phone)
 
         except Exception as error:
             messagebox.showerror("Registration Unsuccessful",f'Error: {error}')
             return str(error)
 
 
-def login(window,frame,phone_entry,password_entry):
+def login(window, frame, phone_entry, password_entry):
     phone = phone_entry.get()
     password = password_entry.get()
 
     if len(phone)==0 or len(password)==0:
         messagebox.showerror("Error","Please satisfy all the fields")
-    
     else:
         try:
             conn = sqlite3.connect('sleep_database.db')
@@ -164,7 +161,6 @@ def login(window,frame,phone_entry,password_entry):
                 messagebox.showinfo("Login", "Login Successful!")
                 conn.commit()
                 conn.close()
-                # Call the get_started.py
                 callGetStarted(window, frame, phone)
     
         except Exception as error:
@@ -237,3 +233,34 @@ def sleepTracker(sleep, phone):
             return str(error)
        
     return
+
+
+
+
+def delete_account(window, phone):
+    # Establish a connection to the database
+    conn = sqlite3.connect('sleep_database.db')
+    c = conn.cursor()
+
+    # Delete the account record from the database
+    delete_account_query = "DELETE FROM accounts WHERE phone = ?"
+    c.execute(delete_account_query, (phone,))
+
+    # Commit the changes and close the connection
+    conn.commit()
+    conn.close()
+    window.destroy()
+
+def get_user_profile(phone):
+    conn = sqlite3.connect('sleep_database.db')
+    c = conn.cursor()
+    c.execute('select * from accounts WHERE phone = ?', (phone,))
+    res = c.fetchall()
+    try:
+        conn.commit()
+        conn.close()
+        return res
+    except:
+        conn.close()
+        print('database error')
+        return False

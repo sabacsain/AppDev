@@ -7,11 +7,11 @@ from pathlib import Path
 
 # from tkinter import *
 # Explicit imports to satisfy Flake8
-from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage, ttk
-import functions
+from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
+
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"assets/frame8")
+ASSETS_PATH = OUTPUT_PATH / Path(r"frame8")
 
 
 def relative_to_assets(path: str) -> Path:
@@ -21,7 +21,6 @@ def relative_to_assets(path: str) -> Path:
 def start(window, frame):
     window = window
     frame = frame
-
 
     canvas = Canvas(
         window,
@@ -49,7 +48,7 @@ def start(window, frame):
         image=button_image_1,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.callWeeklyGraph(window, start),
+        command=lambda: print("button_1 clicked"),
         relief="flat"
     )
     generate_button.place(
@@ -173,34 +172,34 @@ def start(window, frame):
         479.5,
         image=entry_image_1
     )
-    # entry_1 = Entry(
-    #     bd=0,
-    #     bg="#FFFFFF",
-    #     fg="#000716",
-    #     highlightthickness=0
-    # )
-    # entry_1.place(
-    #     x=446.0,
-    #     y=448.0,
-    #     width=171.0,
-    #     height=61.0
-    # )
+    entry_1 = Entry(
+        bd=0,
+        bg="#FFFFFF",
+        fg="#000716",
+        highlightthickness=0
+    )
+    entry_1.place(
+        x=446.0,
+        y=448.0,
+        width=171.0,
+        height=61.0
+    )
 
-    # button_image_6 = PhotoImage(
-    #     file=relative_to_assets("button_6.png"))
-    # button_6 = Button(
-    #     image=button_image_6,
-    #     borderwidth=0,
-    #     highlightthickness=0,
-    #     command=lambda: print("button_6 clicked"),
-    #     relief="flat"
-    # )
-    # button_6.place(
-    #     x=592.0,
-    #     y=467.0,
-    #     width=31.300262451171875,
-    #     height=26.0
-    # )
+    button_image_6 = PhotoImage(
+        file=relative_to_assets("button_6.png"))
+    button_6 = Button(
+        image=button_image_6,
+        borderwidth=0,
+        highlightthickness=0,
+        command=lambda: print("button_6 clicked"),
+        relief="flat"
+    )
+    button_6.place(
+        x=592.0,
+        y=467.0,
+        width=31.300262451171875,
+        height=26.0
+    )
 
     canvas.create_text(
         476.0,
@@ -218,43 +217,43 @@ def start(window, frame):
         479.5,
         image=entry_image_2
     )
-    # entry_2 = Entry(
-    #     bd=0,
-    #     bg="#FFFFFF",
-    #     fg="#000716",
-    #     highlightthickness=0
-    # )
-    # entry_2.place(
-    #     x=662.0,
-    #     y=448.0,
-    #     width=171.0,
-    #     height=61.0
-    # )
+    entry_2 = Entry(
+        bd=0,
+        bg="#FFFFFF",
+        fg="#000716",
+        highlightthickness=0
+    )
+    entry_2.place(
+        x=662.0,
+        y=448.0,
+        width=171.0,
+        height=61.0
+    )
 
-    # button_image_7 = PhotoImage(
-    #     file=relative_to_assets("button_7.png"))
-    # button_7 = Button(
-    #     image=button_image_7,
-    #     borderwidth=0,
-    #     highlightthickness=0,
-    #     command=lambda: print("button_7 clicked"),
-    #     relief="flat"
-    # )
-    # button_7.place(
-    #     x=808.0,
-    #     y=467.0,
-    #     width=31.30023193359375,
-    #     height=26.0
-    # )
+    button_image_7 = PhotoImage(
+        file=relative_to_assets("button_7.png"))
+    button_7 = Button(
+        image=button_image_7,
+        borderwidth=0,
+        highlightthickness=0,
+        command=lambda: print("button_7 clicked"),
+        relief="flat"
+    )
+    button_7.place(
+        x=808.0,
+        y=467.0,
+        width=31.30023193359375,
+        height=26.0
+    )
 
-    # canvas.create_text(
-    #     715.0,
-    #     465.0,
-    #     anchor="nw",
-    #     text="2022",
-    #     fill="#665F5F",
-    #     font=("Inter ExtraLight", 25 * -1)
-    # )
+    canvas.create_text(
+        715.0,
+        465.0,
+        anchor="nw",
+        text="2022",
+        fill="#665F5F",
+        font=("Inter ExtraLight", 25 * -1)
+    )
 
     image_image_2 = PhotoImage(
         file=relative_to_assets("image_2.png"))
@@ -263,53 +262,8 @@ def start(window, frame):
         81.0,
         image=image_image_2
     )
-
-    #function to get value of combo box
-    def cbx_month_click(event):
-        print(cbx_month.get())
-
-    def cbx_year_click(event):
-        print(cbx_year.get())
-
-
-    cbx_month_options = ["01", "02", "03","04","05","06","07","08","09","10","11","12"]
-    cbx_month  = ttk.Combobox(values=cbx_month_options)
-    cbx_month.current(0)
-    cbx_month.bind("<<ComboboxSelected>>", cbx_month_click)
-    cbx_month.place(
-        x=440.0,
-        y=452.0,
-        width=184,
-        height=56,
-        )
-    cbx_month.config(
-        font=("Inter ExtraLight", 25 * -1),
-        justify="center"
-        )
-
-    cbx_year_options = ["2022","2023","2024"]
-    cbx_year  = ttk.Combobox(values=cbx_year_options)
-    cbx_year.current(0)
-    cbx_year.bind("<<ComboboxSelected>>", cbx_year_click)
-    cbx_year.place(
-        x=658.0,
-        y=452.0,
-        width=182,
-        height=56,
-        )
-    cbx_year.config(
-        font=("Inter ExtraLight", 25 * -1),
-        justify="center"
-        )
-
-    style = ttk.Style()
-    style.theme_use('clam')
-    style.configure("TCombobox", fieldbackground= "white", background= "#DEEAEE")
-
-
     window.resizable(False, False)
     window.mainloop()
-
 
 
 if __name__ == '__main__':

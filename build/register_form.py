@@ -101,7 +101,6 @@ def start(window, frame):
         525.0,
         anchor="nw",
         text="Password",
-        fill="#000000",
         font=("Inter Bold", 17 * -1)
     )
 

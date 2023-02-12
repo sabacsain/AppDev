@@ -11,7 +11,7 @@ from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 import functions
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"/media/sendoff/sendoff HDD/CS/THIRD YEAR/FIRST SEM/AppDev/hannahGCardiB/build/assets/frame3")
+ASSETS_PATH = OUTPUT_PATH / Path(r"assets/frame3")
 
 
 def relative_to_assets(path: str) -> Path:
@@ -19,7 +19,7 @@ def relative_to_assets(path: str) -> Path:
 
 
 
-def start(window, frame):
+def start(window, frame, phone):
     window = window
     frame = frame
 
@@ -61,14 +61,14 @@ def start(window, frame):
 
     button_image_2 = PhotoImage(
         file=relative_to_assets("button_2.png"))
-    edit_button = Button(
+    button_2 = Button(
         image=button_image_2,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_2 clicked"),
+        command=lambda: functions.callEditAccount(window, frame, phone),
         relief="flat"
     )
-    edit_button.place(
+    button_2.place(
         x=68.0,
         y=415.0,
         width=195.0,
@@ -77,14 +77,14 @@ def start(window, frame):
 
     button_image_3 = PhotoImage(
         file=relative_to_assets("button_3.png"))
-    weekly_button = Button(
+    button_3 = Button(
         image=button_image_3,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.callWeeklyGraph(window, frame),
+        command=lambda: print("button_3 clicked"),
         relief="flat"
     )
-    weekly_button.place(
+    button_3.place(
         x=649.0,
         y=369.0,
         width=554.0,
@@ -93,14 +93,14 @@ def start(window, frame):
 
     button_image_4 = PhotoImage(
         file=relative_to_assets("button_4.png"))
-    update_button = Button(
+    button_4 = Button(
         image=button_image_4,
         borderwidth=0,
         highlightthickness=0,
         command=lambda: print("button_4 clicked"),
         relief="flat"
     )
-    update_button.place(
+    button_4.place(
         x=647.0,
         y=262.0,
         width=554.0,
@@ -109,14 +109,14 @@ def start(window, frame):
 
     button_image_5 = PhotoImage(
         file=relative_to_assets("button_5.png"))
-    monthly_button = Button(
+    button_5 = Button(
         image=button_image_5,
         borderwidth=0,
         highlightthickness=0,
         command=lambda: print("button_5 clicked"),
         relief="flat"
     )
-    monthly_button.place(
+    button_5.place(
         x=650.0,
         y=476.0,
         width=554.0,

@@ -87,7 +87,8 @@ def start(window, frame):
         bd=0,
         bg="#FFFFFF",
         fg="#000716",
-        highlightthickness=0
+        highlightthickness=0,
+        show="*"
     )
     entry_2.place(
         x=235.0,
