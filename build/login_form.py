@@ -11,7 +11,7 @@ from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 import functions
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"frame10")
+ASSETS_PATH = OUTPUT_PATH / Path(r"assets/frame10")
 
 
 def relative_to_assets(path: str) -> Path:
@@ -87,7 +87,8 @@ def start(window, frame):
         bd=0,
         bg="#FFFFFF",
         fg="#000716",
-        highlightthickness=0
+        highlightthickness=0,
+        show="*"
     )
     entry_2.place(
         x=235.0,
