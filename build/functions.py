@@ -3,25 +3,25 @@ from tkinter import messagebox
 import sqlite3
 import register_form, login_form, home, get_started, \
         input_sleep, update, result, edit_account, \
-        weekly_input, monthly_input, about
+        weekly_input, monthly_input, about, weekly_graph 
 import datetime
 
-def display(entry_1, entry_2):
-    try:
-        name = entry_1.get()
-        age = entry_2.get()
-        display = f'The name is {name} and you are {age}'
-        return display
-    except Exception as error:
-        print(f'Error: {error}')
-        return str(error)
+# def display(entry_1, entry_2):
+#     try:
+#         name = entry_1.get()
+#         age = entry_2.get()
+#         display = f'The name is {name} and you are {age}'
+#         return display
+#     except Exception as error:
+#         print(f'Error: {error}')
+#         return str(error)
 
 # Calling all the GUI files
 def callRegister(window, frame):
     register_form.start(window, frame)
 
-def callLogin(window, frame, phone):
-    login_form.start(window, frame, phone)
+def callLogin(window, frame):
+    login_form.start(window, frame)
 
 def callGetStarted(window, frame, phone):
     get_started.start(window, frame, phone)
@@ -45,17 +45,17 @@ def callEditAccount(window, frame):
 def callWeeklyInput(window, frame):
     weekly_input.start(window, frame)
 
+def callWeeklyGraph(window, frame):
+    weekly_graph.start(window, frame)
+
 def callMonthlyInput(window, frame):
     monthly_input.start(window, frame)
 
 def callAbout(window, frame):
     about.start(window, frame)
 
-# def callGui6(window, frame, sleep_value, phone):
-#     sleepTracker(sleep_value, phone)
-#     gui6.start(window, frame)
 
-
+# Functions for the back-ends
 def disable_radioBtn(button1,button2):
     button1["state"] = DISABLED
     button2["state"] = NORMAL
@@ -122,6 +122,7 @@ def register(window,frame,fname_entry,lname_entry,phone_entry,birthday_entry,pas
                 conn.commit()
                 conn.close()
 
+                # Call the get_started.py
                 callGetStarted(window,frame, phone)
 
         except Exception as error:
@@ -163,6 +164,7 @@ def login(window,frame,phone_entry,password_entry):
                 messagebox.showinfo("Login", "Login Successful!")
                 conn.commit()
                 conn.close()
+                # Call the get_started.py
                 callGetStarted(window, frame, phone)
     
         except Exception as error:
