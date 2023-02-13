@@ -58,7 +58,7 @@ def start(window, frame, phone):
         image=save_button_image,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.update_profile(phone, entry_1, entry_4, entry_5),
+        command=lambda: functions.update_profile(phone, entry_1, entry_5, entry_2, entry_6, entry_4),
         relief="flat"
     )
     save_button.place(
@@ -302,10 +302,10 @@ def start(window, frame, phone):
     )
 
     # Insert 
-    entry_1.insert(0, user_profile[0][0])
-    entry_2.insert(0, user_profile[0][3])
-    entry_4.insert(0, user_profile[0][1])
-    entry_5.insert(0, user_profile[0][4])
+    entry_1.insert(0, user_profile[0][0]) # entry_1 = First Name
+    entry_5.insert(0, user_profile[0][1]) # entry_5 = Last Name
+    entry_2.insert(0, user_profile[0][3]) # entry_2 = Phone Number
+    entry_6.insert(0, user_profile[0][4]) # entry_6 = Birthday
     
     delete_button_image = PhotoImage(
         file=relative_to_assets("button_4.png"))
