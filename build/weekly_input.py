@@ -9,6 +9,7 @@ from pathlib import Path
 # Explicit imports to satisfy Flake8
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage, ttk
 import functions
+import datetime
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets/frame8")
@@ -49,7 +50,7 @@ def start(window, frame, phone):
         image=generate_button_image,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.callWeeklyGraph(window, frame, phone),
+        command=lambda: functions.callWeeklyGraph(window, frame, month, year, phone),
         relief="flat"
     )
     generate_button.place(
@@ -264,17 +265,23 @@ def start(window, frame, phone):
         image=image_image_2
     )
 
+    month = datetime.datetime.today().strftime('%m')
+    year = str(datetime.datetime.today().year)
+
     #function to get value of combo box
     def cbx_month_click(event):
-        print(cbx_month.get())
+        month = cbx_month.get()
+        print(month)
 
     def cbx_year_click(event):
-        print(cbx_year.get())
+        year = cbx_year.get()
+
+        print(year)
 
 
     cbx_month_options = ["01", "02", "03","04","05","06","07","08","09","10","11","12"]
     cbx_month  = ttk.Combobox(values=cbx_month_options)
-    cbx_month.current(0)
+    cbx_month.current(cbx_month_options.index(datetime.datetime.today().strftime('%m')))
     cbx_month.bind("<<ComboboxSelected>>", cbx_month_click)
     cbx_month.place(
         x=440.0,
@@ -284,12 +291,13 @@ def start(window, frame, phone):
         )
     cbx_month.config(
         font=("Inter ExtraLight", 25 * -1),
-        justify="center"
+        justify="center",
+        state="readonly"
         )
 
-    cbx_year_options = ["2022","2023","2024"]
+    cbx_year_options = [str(i) for i in range(2010,datetime.datetime.today().year + 1)]
     cbx_year  = ttk.Combobox(values=cbx_year_options)
-    cbx_year.current(0)
+    cbx_year.current(cbx_year_options.index(str(datetime.datetime.today().year)))
     cbx_year.bind("<<ComboboxSelected>>", cbx_year_click)
     cbx_year.place(
         x=658.0,
@@ -299,7 +307,8 @@ def start(window, frame, phone):
         )
     cbx_year.config(
         font=("Inter ExtraLight", 25 * -1),
-        justify="center"
+        justify="center",
+        state="readonly"
         )
 
     style = ttk.Style()
