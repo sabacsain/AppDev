@@ -272,16 +272,18 @@ def get_user_profile(phone):
 
 # yung dito guys hindi pa tapos kasi wala pa siyang phone number, password and gender parang sira yung gui or baka sa'kin lang?
 
-def update_profile(phone, fname, lname, phone_number, birthday, password):
+def update_profile(phone, fname, lname, phone_number, birthday, password, male_button, female_button):
     fname = fname.get()
     lname = lname.get()
     phone_number = phone_number.get()
     birthday = birthday.get()
     password = password.get().encode()
     password = hashlib.md5(password).hexdigest()
+    if (male_button["state"]==DISABLED): sex = "MALE"
+    else: sex = "FEMALE"
     conn = sqlite3.connect('sleep_database.db')
     c = conn.cursor()
-    c.execute('UPDATE accounts SET FNAME = ?, LNAME = ?, PHONE = ?, BIRTHDAY = ?, PASSWORD = ? WHERE phone = ?', (fname, lname, phone_number, birthday, password, phone,))
+    c.execute('UPDATE accounts SET FNAME = ?, LNAME = ?, PHONE = ?, BIRTHDAY = ?, PASSWORD = ?, SEX = ? WHERE phone = ?', (fname, lname, phone_number, birthday, password, sex, phone,))
     try:
         conn.commit()
         conn.close()
