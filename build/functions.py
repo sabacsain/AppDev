@@ -295,6 +295,7 @@ def update_profile(phone, fname, lname, phone_number, birthday, password, male_b
     conn = sqlite3.connect('sleep_database.db')
     c = conn.cursor()
     c.execute('UPDATE accounts SET FNAME = ?, LNAME = ?, PHONE = ?, BIRTHDAY = ?, PASSWORD = ?, SEX = ? WHERE phone = ?', (fname, lname, phone_number, birthday, password, sex, phone,))
+    c.execute('UPDATE sleep_tracker SET PHONE = ? WHERE phone = ?', (phone_number, phone,))
     try:
         conn.commit()
         conn.close()
