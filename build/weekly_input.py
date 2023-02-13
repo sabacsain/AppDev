@@ -265,17 +265,16 @@ def start(window, frame, phone):
         image=image_image_2
     )
 
-    month = datetime.datetime.today().strftime('%m')
-    year = str(datetime.datetime.today().year)
-
+    
     #function to get value of combo box
     def cbx_month_click(event):
+        global month
         month = cbx_month.get()
         print(month)
 
     def cbx_year_click(event):
+        global year
         year = cbx_year.get()
-
         print(year)
 
 
@@ -314,6 +313,10 @@ def start(window, frame, phone):
     style = ttk.Style()
     style.theme_use('clam')
     style.configure("TCombobox", fieldbackground= "white", background= "#DEEAEE")
+
+    # in case the user doesn't click the comboboxes
+    cbx_month_click("<<ComboboxSelected>>")
+    cbx_year_click("<<ComboboxSelected>>")
 
 
     hoverGenerate = PhotoImage(file=relative_to_assets("generate.png"))

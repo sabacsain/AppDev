@@ -1,11 +1,16 @@
 from tkinter import *
-from tkinter import messagebox
+from tkinter import messagebox, ttk
 import sqlite3
 import register_form, login_form, home, get_started, \
         input_sleep, update, result, edit_account, \
-        weekly_input, monthly_input, about
+        weekly_input, monthly_input, about, weekly_graph, monthly_graph
 import datetime
 import hashlib
+import os
+import sqlite3 as sql
+import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 def display(entry_1, entry_2):
     try:
@@ -38,16 +43,22 @@ def callUpdate(window, frame):
 
 def callResult(window, frame, sleep_value, phone):
     sleepTracker(sleep_value, phone)
-    result.start(window, frame)
+    result.start(window, frame, phone)
 
 def callEditAccount(window, frame, phone):
     edit_account.start(window, frame, phone)
 
-def callWeeklyInput(window, frame):
-    weekly_input.start(window, frame)
+def callWeeklyInput(window, frame, phone):
+    weekly_input.start(window, frame, phone)
 
-def callMonthlyInput(window, frame):
-    monthly_input.start(window, frame)
+def callWeeklyGraph(window, frame, month, year, phone):
+    weekly_graph.start(window, frame, month, year, phone)
+
+def callMonthlyInput(window, frame, phone):
+    monthly_input.start(window, frame, phone)
+
+def callMonthlyGraph(window, frame, year, phone):
+    monthly_graph.start(window, frame, year, phone)
 
 def callAbout(window, frame):
     about.start(window, frame)
@@ -292,3 +303,336 @@ def update_profile(phone, fname, lname, phone_number, birthday, password, male_b
         conn.close()
         print('database error')
         return False
+
+
+
+def create_weekly_df(window, month, year, phone):
+    print("MONTH: ", month, "\nYEAR: ", year, "\nPHONE: ", phone)
+    #list of weeks, and days
+    weeks = [1,2,3,4,5]
+    days = [1,2,3,4,5,6,7]
+
+    week1 = []
+    week2 = []
+    week3 = []
+    week4 = []
+    week5 = []
+    ave= []
+
+    days_list = (week1,week2,week3,week4,week5)
+    
+    # these will be used for computing ave
+    count = 0 
+    total = 0.00
+
+    # SQL Connection
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    db_path = os.path.join(BASE_DIR, "sleep_database.db")
+
+    conn = sql.connect(db_path)
+    c = conn.cursor()
+
+    # gets all sleep hours per day per week
+    for week in weeks:
+        for day in days :
+            c.execute("SELECT SLEEP FROM sleep_tracker WHERE PHONE = ? and strftime('%m', DATE) = ? and strftime('%Y', DATE) = ? and WEEK = ? and DAY = ?", [
+                phone,
+                month,
+                year,
+                week,
+                day]
+            )
+            
+            result = c.fetchone()
+            if result == None:
+                days_list[week-1].append(list('-'))
+                
+            else: days_list[week-1].append(list(result))
+
+    # computes average sleep hours for each week
+    for i in days_list: # i = week in bracket []
+        for j in i:   # j is hours in bracket. ex: [1.2]
+            for k in j:
+                # print(k)  # K IS HOURS
+                if type(k) == float:
+                    total += k
+                    count += 1
+                else: continue
+        try:
+            ave.append("{:.2f}" .format(total/count))
+        except:
+            ave.append(0)
+        total = 0.0
+        count = 0.0  
+
+    # Drop table if it exist
+    drop_table = ("DROP TABLE IF EXISTS Weekly")
+    c.execute(drop_table)
+    conn.commit()
+
+    # Create the Weekly table if it doesn't exist
+    create_table = """ CREATE table Weekly (Week text, Day1 int, 
+        Day2 int, Day3 int, Day4 int, Day5 int, Day6 int, Day7 int, Ave float);
+        """
+    c.execute(create_table)
+    conn.commit()
+
+    #TO STORE VALUES FROM sleep_tracker table to Weekly table ! ! ! ! !
+    for i in range(5):
+        c.execute('INSERT into Weekly(Week, Day1, Day2, Day3, Day4, Day5, Day6, Day7, Ave) values (?,?,?,?,?,?,?,?,?)',(
+            i+1, 
+            days_list[i][0][0],
+            days_list[i][1][0],
+            days_list[i][2][0],
+            days_list[i][3][0],
+            days_list[i][4][0],
+            days_list[i][5][0],
+            days_list[i][6][0],
+            ave[i]))
+        conn.commit()
+        print("WEEK# : ", i+1, "\nDAY 1: ", days_list[i][0][0], "\nDAY 2: ", days_list[i][1][0], "\nDAY 3: ", days_list[i][2][0] , "\nDAY 4: ", days_list[i][3][0] 
+        , "\nDAY 5: ", days_list[i][4][0] , "\nDAY 6: ", days_list[i][5][0], "\nDAY 7: ", days_list[i][6][0])
+
+ 
+    #####################################################################
+    # Generation of sleep_table  (treeview)
+
+    sleep_records = pd.read_sql_query("SELECT * FROM Weekly",conn)
+    conn.commit()
+    conn.close()
+
+    print(sleep_records)
+
+    # Create the treeview widget
+    sleep_table = ttk.Treeview(window, columns=('Week', 'Day1', 'Day2', 'Day3', 'Day4', 'Day5', 'Day6', 'Day7', 'Ave'), show='headings')
+    sleep_table.heading('Week', text="Week")
+    sleep_table.heading('Day1', text="Day 1")
+    sleep_table.heading('Day2', text="Day 2")
+    sleep_table.heading('Day3', text="Day 3")
+    sleep_table.heading('Day4', text="Day 4")
+    sleep_table.heading('Day5', text="Day 5")
+    sleep_table.heading('Day6', text="Day 6")
+    sleep_table.heading('Day7', text="Day 7")
+    sleep_table.heading('Ave', text="Avg")
+
+
+    # Set Initial Width of Columns
+    for col in sleep_table['columns']:
+        sleep_table.column(col, width=80)
+
+    sleep_table.tag_configure("oddrow", background="lightblue")
+
+    # Populate the treeview with data from the dataframe
+    for index, row in sleep_records.iterrows():
+        if index % 2 == 0: sleep_table.insert(parent='',index='end', values=list(row))
+        else: sleep_table.insert(parent='',index='end', values=list(row), tags = 'oddrow')
+
+    # Show the Sleep Table
+    sleep_table.grid(row=0, column=0, padx=270, pady=350)
+
+    #returns sleep_records dataframe to weekly_graph.py
+    return sleep_records
+
+
+# Create a bar graph using matplotlib
+def weekly_bar_graph(sleep_records):
+    plt.close()
+    fig = plt.figure(figsize=(4.5, 4.5))
+    ax = fig.add_subplot(1,1,1)
+    ax.bar(sleep_records["Week"], sleep_records["Ave"])
+    ax.set_title("Bar Graph")
+    ax.set_xlabel("Weeks")
+    ax.set_ylabel("Average Sleep")
+
+    # canvas = FigureCanvasTkAgg(fig, window)
+    plt.show()
+    # canvas.get_tk_widget().grid_forget()
+    # canvas.get_tk_widget().grid(row=0, column=1, padx=30, pady=0)
+
+    return fig
+
+# Create a line graph using matplotlib
+def weekly_line_graph(sleep_records):
+    plt.close()
+    fig, ax = plt.subplots(figsize=(4.5, 4.5))
+    ax.plot(sleep_records["Week"], sleep_records["Ave"])
+    ax.set_title("Line Graph")
+    ax.set_xlabel("Weeks")
+    ax.set_ylabel("Average Sleep")
+    plt.show()
+
+    # canvas = FigureCanvasTkAgg(fig, window)
+    # canvas.get_tk_widget().grid_forget()
+    # canvas.get_tk_widget().grid(row=0, column=1, padx=30, pady=0)
+
+    return fig
+
+
+def create_monthly_df(window, year, phone):
+
+    months = ['01','02','03','04','05','06','07','08','09','10','11','12']
+    months_list = []
+
+    # SQL Connection
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    db_path = os.path.join(BASE_DIR, "sleep_database.db")
+
+    conn = sql.connect(db_path)
+    c = conn.cursor()
+
+    for i in months:
+        c.execute("SELECT AVG(SLEEP) FROM sleep_tracker WHERE PHONE = ? AND strftime('%Y', DATE) = ? AND strftime('%m', DATE) = ? ", [phone, year, i])
+        results = c.fetchone()
+
+        if results == None:
+            months_list.append('-')
+        else:
+            months_list.append(results)
+
+    # Drop table if it exists
+    drop_table = ("DROP TABLE IF EXISTS Monthly")
+    c.execute(drop_table)
+
+    # Create the Monthly table if it doesn't exist
+    create_table = """ CREATE table Monthly (
+                        AVE text, 
+                        JAN float, 
+                        FEB float, 
+                        MAR float, 
+                        APR float, 
+                        MAY float, 
+                        JUN float, 
+                        JUL float, 
+                        AUG float, 
+                        SEPT float, 
+                        OCT float, 
+                        NOV float, 
+                        DEC float);"""
+    c.execute(create_table)
+    conn.commit()
+
+
+    #convert months_list tuple to list
+    months_list = list(months_list)
+
+    #converts each tuple in the months_list list to list 
+    for i in range(0,12):
+        months_list[i] = list(months_list[i])
+        if months_list[i][0] == None:
+            months_list[i][0] = 0.00  # assign 0.00 if ave sleep hours for the month is null
+    
+    c.execute("INSERT into Monthly (AVE, JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEPT, OCT, NOV, DEC) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",(
+                "AVE",
+                "{:.2f}" .format(months_list[0][0]),
+                "{:.2f}" .format(months_list[1][0]),
+                "{:.2f}" .format(months_list[2][0]),
+                "{:.2f}" .format(months_list[3][0]),
+                "{:.2f}" .format(months_list[4][0]),
+                "{:.2f}" .format(months_list[5][0]),
+                "{:.2f}" .format(months_list[6][0]),
+                "{:.2f}" .format(months_list[7][0]),
+                "{:.2f}" .format(months_list[8][0]),
+                "{:.2f}" .format(months_list[9][0]),
+                "{:.2f}" .format(months_list[10][0]),
+                "{:.2f}" .format(months_list[11][0]),      
+                ))
+    conn.commit()
+              
+    #####################################################################
+    # Generation of sleep_table  (treeview)
+    sleep_records = pd.read_sql_query("SELECT * FROM Monthly",conn)
+    conn.commit()
+    conn.close()
+
+    # print(sleep_records)
+    # print(type(sleep_records))
+    # print(sleep_records["JAN"])
+    # print(type(sleep_records["JAN"]))
+    # exit(0)
+    # Create the treeview widget
+    sleep_table = ttk.Treeview(window, columns=('Ave', 'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEPT', 'OCT', 'NOV', 'DEC'), show='headings')
+    sleep_table.heading('Ave', text="")
+    sleep_table.heading('JAN', text="JAN")
+    sleep_table.heading('FEB', text="FEB")
+    sleep_table.heading('MAR', text="MAR")
+    sleep_table.heading('APR', text="APR")
+    sleep_table.heading('MAY', text="MAY")
+    sleep_table.heading('JUN', text="JUN")
+    sleep_table.heading('JUL', text="JUL")
+    sleep_table.heading('AUG', text="AUG")
+    sleep_table.heading('SEPT', text="SEPT")
+    sleep_table.heading('OCT', text="OCT")
+    sleep_table.heading('NOV', text="NOV")
+    sleep_table.heading('DEC', text="DEC")
+
+    # Set Initial Width of Columns
+    for col in sleep_table['columns']:
+        sleep_table.column(col, width=75)
+    
+    # Populate the treeview with data from the dataframe
+    for index, row in sleep_records.iterrows():
+        sleep_table.insert(parent='',index='end', values=list(row))     
+
+    # Show the Sleep Table
+    sleep_table.grid(row=0, column=0, padx=128, pady=350)
+
+    # Returns sleep_records dataframe to monthly_graph.py
+    return sleep_records
+
+# Create a line graph using matplotlib
+def monthly_line_graph(sleep_records):
+        plt.close()
+        fig, ax = plt.subplots(figsize=(7,7))
+        ax.plot(["JAN","FEB","MAR","APR","MAY","JUN","JUL",'AUG',"SEPT","OCT","NOV","DEC"],
+                [sleep_records["JAN"],
+                sleep_records["FEB"],
+                sleep_records["MAR"],
+                sleep_records["APR"],
+                sleep_records["MAY"],
+                sleep_records["JUN"],
+                sleep_records["JUL"],
+                sleep_records["AUG"],
+                sleep_records["SEPT"],
+                sleep_records["OCT"],
+                sleep_records["NOV"],
+                sleep_records["DEC"]])
+        ax.set_title("LINE GRAPH")
+        ax.set_xlabel("MONTHS")
+        ax.set_ylabel("AVERAGE SLEEP")
+        plt.show()
+
+        # canvas = FigureCanvasTkAgg(fig, window)
+        # canvas.get_tk_widget().grid_forget()
+        # canvas.get_tk_widget().grid(row=0, column=1, padx=30, pady=0)
+
+        return fig
+
+
+# Create a bar graph using matplotlib
+def monthly_bar_graph(sleep_records):
+    plt.close()
+    fig = plt.figure(figsize=(10, 7))
+    ax = fig.add_subplot(1,1,1)
+    ax.bar(["JAN","FEB","MAR","APR","MAY","JUN","JUL",'AUG',"SEPT","OCT","NOV","DEC"],
+            [sleep_records.loc[0, "JAN"],
+            sleep_records.loc[0, "FEB"],
+            sleep_records.loc[0, "MAR"],
+            sleep_records.loc[0, "APR"],
+            sleep_records.loc[0, "MAY"],
+            sleep_records.loc[0, "JUN"],
+            sleep_records.loc[0, "JUL"],
+            sleep_records.loc[0, "AUG"],
+            sleep_records.loc[0, "SEPT"],
+            sleep_records.loc[0, "OCT"],
+            sleep_records.loc[0, "NOV"],
+            sleep_records.loc[0, "DEC"],
+        ])
+    ax.set_title("BAR GRAPH")
+    ax.set_xlabel("MONTHS")
+    ax.set_ylabel("AVERAGE SLEEP")
+
+    plt.show()
+    # canvas.get_tk_widget().grid_forget()
+    # canvas.get_tk_widget().grid(row=0, column=1, padx=30, pady=0)
+
+    return fig

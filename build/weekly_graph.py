@@ -110,7 +110,7 @@ def start(window, frame, month, year, phone):
         image=line_button_image,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.line_graph(sleep_records,window),
+        command=lambda: functions.weekly_line_graph(sleep_records),
         relief="raised"
     )
     line_button.place(
@@ -129,7 +129,7 @@ def start(window, frame, month, year, phone):
         image=bar_button_image,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.bar_graph(sleep_records, window),
+        command=lambda: functions.weekly_bar_graph(sleep_records),
         relief="raised"
     )
     bar_button.place(

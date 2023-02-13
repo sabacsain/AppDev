@@ -7,8 +7,9 @@ from pathlib import Path
 
 # from tkinter import *
 # Explicit imports to satisfy Flake8
-from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
+from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage, ttk
 import functions
+import datetime
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets/frame9")
@@ -48,7 +49,7 @@ def start(window, frame, phone):
         image=generate_button_image,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.callMonthlyGraph(window, frame, phone),
+        command=lambda: functions.callMonthlyGraph(window, frame, year, phone),
         relief="flat"
     )
     generate_button.place(
@@ -163,43 +164,43 @@ def start(window, frame, phone):
         428.5,
         image=entry_image_1
     )
-    entry_1 = Entry(
-        bd=0,
-        bg="#FFFFFF",
-        fg="#000716",
-        highlightthickness=0
-    )
-    entry_1.place(
-        x=443.0,
-        y=397.0,
-        width=393.0,
-        height=61.0
-    )
+    # entry_1 = Entry(
+    #     bd=0,
+    #     bg="#FFFFFF",
+    #     fg="#000716",
+    #     highlightthickness=0
+    # )
+    # entry_1.place(
+    #     x=443.0,
+    #     y=397.0,
+    #     width=393.0,
+    #     height=61.0
+    # )
 
-    button_image_6 = PhotoImage(
-        file=relative_to_assets("button_6.png"))
-    button_6 = Button(
-        image=button_image_6,
-        borderwidth=0,
-        highlightthickness=0,
-        command=lambda: print("button_6 clicked"),
-        relief="flat"
-    )
-    button_6.place(
-        x=795.0,
-        y=416.0,
-        width=43.0,
-        height=26.0
-    )
+    # button_image_6 = PhotoImage(
+    #     file=relative_to_assets("button_6.png"))
+    # button_6 = Button(
+    #     image=button_image_6,
+    #     borderwidth=0,
+    #     highlightthickness=0,
+    #     command=lambda: print("button_6 clicked"),
+    #     relief="flat"
+    # )
+    # button_6.place(
+    #     x=795.0,
+    #     y=416.0,
+    #     width=43.0,
+    #     height=26.0
+    # )
 
-    canvas.create_text(
-        589.0,
-        405.0,
-        anchor="nw",
-        text="2022",
-        fill="#665F5F",
-        font=("Inter ExtraLight", 40 * -1)
-    )
+    # canvas.create_text(
+    #     589.0,
+    #     405.0,
+    #     anchor="nw",
+    #     text="2022",
+    #     fill="#665F5F",
+    #     font=("Inter ExtraLight", 40 * -1)
+    # )
 
     image_image_2 = PhotoImage(
         file=relative_to_assets("image_2.png"))
@@ -208,6 +209,35 @@ def start(window, frame, phone):
         76.0,
         image=image_image_2
     )
+
+    def cbx_year_click(event):
+        global year
+        year = cbx_year.get()
+
+    cbx_year_options = [str(i) for i in range(2010,datetime.datetime.today().year + 1)]
+    cbx_year  = ttk.Combobox(values=cbx_year_options)
+    cbx_year.current(cbx_year_options.index(str(datetime.datetime.today().year)))
+    cbx_year.bind("<<ComboboxSelected>>", cbx_year_click)
+    cbx_year.place(
+        x=439.0,
+        y=401.0,
+        width=403.0,
+        height=56.0
+        )
+    cbx_year.config(
+        font=("Inter ExtraLight", 25 * -1),
+        justify="center",
+        state="readonly",
+        )
+
+    style = ttk.Style()
+    style.theme_use('clam')
+    style.configure("TCombobox", fieldbackground= "white", background= "#DEEAEE")
+
+    # in case the user doesn't choose from the combobox
+    cbx_year_click("<<ComboboxSelected>>")
+
+
 
     hoverGenerate = PhotoImage(file=relative_to_assets("generate.png"))
 

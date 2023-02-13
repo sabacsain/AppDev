@@ -7,7 +7,7 @@ from pathlib import Path
 # from tkinter import *
 # Explicit imports to satisfy Flake8
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
-
+import functions
 import sqlite3 as sql
 import tkinter as tk
 import pandas as pd
@@ -25,7 +25,7 @@ def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
 
-def start(window, frame, phone):
+def start(window, frame, year, phone):
     window = window
     frame = frame
 
@@ -104,13 +104,16 @@ def start(window, frame, phone):
         image=image_image_2
     )
 
+    #creates dataframe
+    sleep_records = functions.create_monthly_df(window, year, phone)
+
     line_button_image = PhotoImage(
         file=relative_to_assets("button_4.png"))
     line_button = Button(
         image=line_button_image,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: line_graph(),
+        command=lambda: functions.monthly_line_graph(sleep_records),
         relief="raised"
     )
     line_button.place(
@@ -126,7 +129,7 @@ def start(window, frame, phone):
         image=bar_button_image,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: bar_graph(),
+        command=lambda: functions.monthly_bar_graph(sleep_records),
         relief="raised"
     )
     bar_button.place(
@@ -160,116 +163,6 @@ def start(window, frame, phone):
         242.0,
         image=image_image_3
     )
-
-
-#####################################################################
-# User's Input starts here
-
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    db_path = os.path.join(BASE_DIR, "sleep_database.db")
-
-    #shan's code
-    # SQL Connection
-    conn = sql.connect(db_path)
-
-    conn = sql.connect('sleep_database.db')
-    sleep_records = pd.read_sql_query("SELECT * FROM Monthly",conn)
-    conn.commit()
-    conn.close()
-
-    # print(sleep_records)
-    # print(type(sleep_records))
-    # print(sleep_records["JAN"])
-    # print(type(sleep_records["JAN"]))
-    # exit(0)
-    # Create the treeview widget
-    sleep_table = ttk.Treeview(window, columns=('Ave', 'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEPT', 'OCT', 'NOV', 'DEC'), show='headings')
-    sleep_table.heading('Ave', text="")
-    sleep_table.heading('JAN', text="JAN")
-    sleep_table.heading('FEB', text="FEB")
-    sleep_table.heading('MAR', text="MAR")
-    sleep_table.heading('APR', text="APR")
-    sleep_table.heading('MAY', text="MAY")
-    sleep_table.heading('JUN', text="JUN")
-    sleep_table.heading('JUL', text="JUL")
-    sleep_table.heading('AUG', text="AUG")
-    sleep_table.heading('SEPT', text="SEPT")
-    sleep_table.heading('OCT', text="OCT")
-    sleep_table.heading('NOV', text="NOV")
-    sleep_table.heading('DEC', text="DEC")
-
-    # Set Initial Width of Columns
-    for col in sleep_table['columns']:
-        sleep_table.column(col, width=75)
-    
-    # Populate the treeview with data from the dataframe
-    for index, row in sleep_records.iterrows():
-        sleep_table.insert(parent='',index='end', values=list(row))     
-
-    # Show the Sleep Table
-    sleep_table.grid(row=0, column=0, padx=128, pady=350)
-
-    # Create a bar graph using matplotlib
-    def bar_graph():
-        plt.close()
-        fig = plt.figure(figsize=(10, 7))
-        ax = fig.add_subplot(1,1,1)
-        ax.bar(["JAN","FEB","MAR","APR","MAY","JUN","JUL",'AUG',"SEPT","OCT","NOV","DEC"],
-                [sleep_records.loc[0, "JAN"],
-                sleep_records.loc[0, "FEB"],
-                sleep_records.loc[0, "MAR"],
-                sleep_records.loc[0, "APR"],
-                sleep_records.loc[0, "MAY"],
-                sleep_records.loc[0, "JUN"],
-                sleep_records.loc[0, "JUL"],
-                sleep_records.loc[0, "AUG"],
-                sleep_records.loc[0, "SEPT"],
-                sleep_records.loc[0, "OCT"],
-                sleep_records.loc[0, "NOV"],
-                sleep_records.loc[0, "DEC"],
-            ])
-        ax.set_title("BAR GRAPH")
-        ax.set_xlabel("MONTHS")
-        ax.set_ylabel("AVERAGE SLEEP")
-
-        plt.show()
-        # canvas.get_tk_widget().grid_forget()
-        # canvas.get_tk_widget().grid(row=0, column=1, padx=30, pady=0)
-
-        return fig
-
-    # Create a line graph using matplotlib
-    def line_graph():
-        plt.close()
-        fig, ax = plt.subplots(figsize=(7,7))
-        ax.plot(["JAN","FEB","MAR","APR","MAY","JUN","JUL",'AUG',"SEPT","OCT","NOV","DEC"],
-                [sleep_records["JAN"],
-                sleep_records["FEB"],
-                sleep_records["MAR"],
-                sleep_records["APR"],
-                sleep_records["MAY"],
-                sleep_records["JUN"],
-                sleep_records["JUL"],
-                sleep_records["AUG"],
-                sleep_records["SEPT"],
-                sleep_records["OCT"],
-                sleep_records["NOV"],
-                sleep_records["DEC"]])
-        ax.set_title("LINE GRAPH")
-        ax.set_xlabel("MONTHS")
-        ax.set_ylabel("AVERAGE SLEEP")
-        plt.show()
-
-        # canvas = FigureCanvasTkAgg(fig, window)
-        # canvas.get_tk_widget().grid_forget()
-        # canvas.get_tk_widget().grid(row=0, column=1, padx=30, pady=0)
-
-        return fig
-
-    # Save the figure
-    # def save():
-    #     file_path = filedialog.asksaveasfilename(defaultextension='.svg')
-    #     figure.savefig(file_path)
 
 
     hoverLine = PhotoImage(file=relative_to_assets("line.png"))
