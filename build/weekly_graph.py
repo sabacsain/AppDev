@@ -104,10 +104,10 @@ def start(window, frame):
         image=image_image_2
     )
 
-    button_image_4 = PhotoImage(
+    line_button_image = PhotoImage(
         file=relative_to_assets("button_4.png"))
     line_button = Button(
-        image=button_image_4,
+        image=line_button_image,
         borderwidth=0,
         highlightthickness=0,
         command=lambda: line_graph(),
@@ -120,10 +120,10 @@ def start(window, frame):
         height=65.0
     )
 
-    button_image_5 = PhotoImage(
+    bar_button_image = PhotoImage(
         file=relative_to_assets("button_5.png"))
     bar_button = Button(
-        image=button_image_5,
+        image=bar_button_image,
         borderwidth=0,
         highlightthickness=0,
         command=lambda: bar_graph(),
@@ -154,7 +154,7 @@ def start(window, frame):
     # )
 
     image_image_3 = PhotoImage(
-        file=relative_to_assets("image_3.png"))
+        file=relative_to_assets("week.png"))
     image_3 = canvas.create_image(
         204.0,
         242.0,
@@ -177,7 +177,11 @@ def start(window, frame):
     conn.commit()
     conn.close()
 
-    print(sleep_records)
+    # print(sleep_records)
+    # print(type(sleep_records))
+    # print(sleep_records["Ave"])
+    # print(type(sleep_records["Ave"]))
+    # exit(0)
 
     # Create the treeview widget
     sleep_table = ttk.Treeview(window, columns=('Week', 'Day1', 'Day2', 'Day3', 'Day4', 'Day5', 'Day6', 'Day7', 'Ave'), show='headings')
@@ -196,16 +200,16 @@ def start(window, frame):
     for col in sleep_table['columns']:
         sleep_table.column(col, width=80)
 
+    # Set odd number rows to a light blue color
     sleep_table.tag_configure("oddrow", background="lightblue")
-
+    
     # Populate the treeview with data from the dataframe
     for index, row in sleep_records.iterrows():
         if index % 2 == 0: sleep_table.insert(parent='',index='end', values=list(row))
-        else: sleep_table.insert(parent='',index='end', values=list(row), tags = 'oddrow')
+        else: sleep_table.insert(parent='',index='end', values=list(row), tags = 'oddrow')          # Rows with lightblue
 
     # Show the Sleep Table
     sleep_table.grid(row=0, column=0, padx=270, pady=350)
-
 
     # Create a bar graph using matplotlib
     def bar_graph():
@@ -213,9 +217,9 @@ def start(window, frame):
         fig = plt.figure(figsize=(4.5, 4.5))
         ax = fig.add_subplot(1,1,1)
         ax.bar(sleep_records["Week"], sleep_records["Ave"])
-        ax.set_title("Bar Graph")
-        ax.set_xlabel("Weeks")
-        ax.set_ylabel("Average Sleep")
+        ax.set_title("BAR GRAPH")
+        ax.set_xlabel("MONTHS")
+        ax.set_ylabel("AVERAGE SLEEP")
 
         canvas = FigureCanvasTkAgg(fig, window)
         plt.show()
@@ -229,9 +233,9 @@ def start(window, frame):
         plt.close()
         fig, ax = plt.subplots(figsize=(4.5, 4.5))
         ax.plot(sleep_records["Week"], sleep_records["Ave"])
-        ax.set_title("Line Graph")
-        ax.set_xlabel("Weeks")
-        ax.set_ylabel("Average Sleep")
+        ax.set_title("LINE GRAPH")
+        ax.set_xlabel("MONTHS")
+        ax.set_ylabel("AVERAGE SLEEP")
         plt.show()
 
         # canvas = FigureCanvasTkAgg(fig, window)
@@ -245,6 +249,29 @@ def start(window, frame):
     #     file_path = filedialog.asksaveasfilename(defaultextension='.svg')
     #     figure.savefig(file_path)
 
+
+    hoverLine = PhotoImage(file=relative_to_assets("line.png"))
+    hoverBar = PhotoImage(file=relative_to_assets("bar.png"))
+
+    # Function to change image when mouse enters button
+    def change_imageLine(event):
+        line_button.config(image=hoverLine)
+    def change_imageBar(event):
+        bar_button.config(image=hoverBar)
+
+    # Function to change back to original image when mouse leaves button
+    def change_backLine(event):
+        line_button.config(image=line_button_image)
+    def change_backBar(event):
+        bar_button.config(image=bar_button_image)
+
+    # Bind the <Enter> event to change_image function
+    line_button.bind("<Enter>", change_imageLine)
+    bar_button.bind("<Enter>", change_imageBar)
+
+    # Bind the <Leave> event to change_back function
+    line_button.bind("<Leave>", change_backLine)
+    bar_button.bind("<Leave>", change_backBar)
 
     # Start the Tkinter event loop
     window.resizable(False, False)
