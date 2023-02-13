@@ -58,7 +58,7 @@ def start(window, frame, phone):
         image=save_button_image,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.update_profile(phone, entry_1, entry_5, entry_2, entry_6, entry_4),
+        command=lambda: functions.update_profile(phone, entry_1, entry_5, entry_2, entry_6, entry_4, radio_buttonMale, radio_buttonFemale),
         relief="flat"
     )
     save_button.place(
