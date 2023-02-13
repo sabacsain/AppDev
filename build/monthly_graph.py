@@ -177,8 +177,11 @@ def start(window, frame):
     conn.commit()
     conn.close()
 
-    print(sleep_records)
-
+    # print(sleep_records)
+    # print(type(sleep_records))
+    # print(sleep_records["JAN"])
+    # print(type(sleep_records["JAN"]))
+    # exit(0)
     # Create the treeview widget
     sleep_table = ttk.Treeview(window, columns=('Ave', 'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEPT', 'OCT', 'NOV', 'DEC'), show='headings')
     sleep_table.heading('Ave', text="")
@@ -195,7 +198,6 @@ def start(window, frame):
     sleep_table.heading('NOV', text="NOV")
     sleep_table.heading('DEC', text="DEC")
 
-
     # Set Initial Width of Columns
     for col in sleep_table['columns']:
         sleep_table.column(col, width=75)
@@ -210,21 +212,22 @@ def start(window, frame):
     # Create a bar graph using matplotlib
     def bar_graph():
         plt.close()
-        fig = plt.figure(figsize=(7, 7))
+        fig = plt.figure(figsize=(10, 7))
         ax = fig.add_subplot(1,1,1)
         ax.bar(["JAN","FEB","MAR","APR","MAY","JUN","JUL",'AUG',"SEPT","OCT","NOV","DEC"],
-                [sleep_records["JAN"],
-                sleep_records["FEB"],
-                sleep_records["MAR"],
-                sleep_records["APR"],
-                sleep_records["MAY"],
-                sleep_records["JUN"],
-                sleep_records["JUL"],
-                sleep_records["AUG"],
-                sleep_records["SEPT"],
-                sleep_records["OCT"],
-                sleep_records["NOV"],
-                sleep_records["DEC"]])
+                [sleep_records.loc[0, "JAN"],
+                sleep_records.loc[0, "FEB"],
+                sleep_records.loc[0, "MAR"],
+                sleep_records.loc[0, "APR"],
+                sleep_records.loc[0, "MAY"],
+                sleep_records.loc[0, "JUN"],
+                sleep_records.loc[0, "JUL"],
+                sleep_records.loc[0, "AUG"],
+                sleep_records.loc[0, "SEPT"],
+                sleep_records.loc[0, "OCT"],
+                sleep_records.loc[0, "NOV"],
+                sleep_records.loc[0, "DEC"],
+            ])
         ax.set_title("BAR GRAPH")
         ax.set_xlabel("MONTHS")
         ax.set_ylabel("AVERAGE SLEEP")
