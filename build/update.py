@@ -42,7 +42,7 @@ def start(window, frame, phone):
         image=update_button_image,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.update_sleep(date, entry_4),
+        command=lambda: functions.update_sleep(phone, entry_4, cal),
         relief="flat"
     )
     update_button.place(
@@ -67,8 +67,6 @@ def start(window, frame, phone):
                 day = 17)
 
     cal.grid(row=1, column=0, padx=350, pady = 200)
-
-    date = cal.get_date()                   # Getting the input date
 
     # canvas.create_text(
     #     551.0,
