@@ -20,6 +20,7 @@ def relative_to_assets(path: str) -> Path:
 def start(window, frame, phone):
     window = window
     frame = frame
+    user_profile = functions.get_user_profile(phone)
 
     canvas = Canvas(
         window,
@@ -36,7 +37,7 @@ def start(window, frame, phone):
         73.0,
         346.0,
         anchor="nw",
-        text="HELLO, SIR ELIAS!",
+        text="HELLO, " + user_profile[0][0] + "!",
         fill="#1E343D",
         font=("Inter Bold", 50 * -1)
     )
