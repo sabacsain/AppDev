@@ -382,16 +382,28 @@ def update_profile(phone, fname, lname, phone_number, birthday, password, male_b
     else: sex = "FEMALE"
     conn = sqlite3.connect('sleep_database.db')
     c = conn.cursor()
-    c.execute('UPDATE accounts SET FNAME = ?, LNAME = ?, PHONE = ?, BIRTHDAY = ?, PASSWORD = ?, SEX = ? WHERE phone = ?', (fname, lname, phone_number, birthday, password, sex, phone,))
-    c.execute('UPDATE sleep_tracker SET PHONE = ? WHERE phone = ?', (phone_number, phone,))
-    try:
-        conn.commit()
+
+    #checks if new phone number entered is already taken
+    c.execute("SELECT * FROM accounts WHERE( PHONE = ? AND PHONE != ?)", (phone_number, phone))
+    result = c.fetchall()
+    if (result):
+        print(result)
+        messagebox.showerror("Error","Entered phone number is already taken")
         conn.close()
-        return True
-    except:
-        conn.close()
-        print('database error')
-        return False
+        return
+
+    else:
+        c.execute('UPDATE accounts SET FNAME = ?, LNAME = ?, PHONE = ?, BIRTHDAY = ?, PASSWORD = ?, SEX = ? WHERE phone = ?', (fname, lname, phone_number, birthday, password, sex, phone,))
+        c.execute('UPDATE sleep_tracker SET PHONE = ? WHERE phone = ?', (phone_number, phone,))
+        
+        try:
+            conn.commit()
+            conn.close()
+            return True
+        except:
+            conn.close()
+            messagebox.showerror("Error","Database Error")
+            return False
 
 
 
