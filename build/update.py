@@ -66,7 +66,10 @@ def start(window, frame, phone):
                 year = 2023, month = 2,
                 day = 17)
 
-    cal.grid(row=1, column=0, padx=350, pady = 200)
+    cal.place(
+        x = 350, 
+        y = 190
+    )
 
     # canvas.create_text(
     #     551.0,
