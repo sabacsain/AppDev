@@ -106,7 +106,7 @@ def start(window, frame, phone):
         image=button_image_3,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.callHome(window, frame, window),
+        command=lambda: functions.callHome(window, frame, phone),
         relief="flat"
     )
     menu_button.place(
