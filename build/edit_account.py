@@ -19,6 +19,10 @@ def relative_to_assets(path: str) -> Path:
 
 
 def start(window, frame, phone):
+
+    ###
+    new_phone = phone
+
     window = window
     frame = frame
     user_profile = functions.get_user_profile(phone)
@@ -52,13 +56,19 @@ def start(window, frame, phone):
         font=("Inter Bold", 50 * -1)
     )
 
+    # updates phone after updating profile
+    def update_profile():
+        global new_phone
+        new_phone = functions.update_profile(phone, entry_1, entry_5, entry_2, entry_6, entry_4, radio_buttonMale, radio_buttonFemale)
+       
+
     save_button_image = PhotoImage(
         file=relative_to_assets("button_1.png"))
     save_button = Button(
         image=save_button_image,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.update_profile(phone, entry_1, entry_5, entry_2, entry_6, entry_4, radio_buttonMale, radio_buttonFemale),
+        command= update_profile,
         relief="flat"
     )
     save_button.place(
@@ -313,7 +323,7 @@ def start(window, frame, phone):
         image=delete_button_image,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.delete_account_and_records(window, phone),
+        command=lambda: functions.delete_account_and_records(window, new_phone),
         relief="flat"
     )
     delete_button.place(
@@ -329,7 +339,7 @@ def start(window, frame, phone):
         image=button_image_5,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.callHome(window, frame, phone),
+        command=lambda: functions.callHome(window, frame, new_phone),
         relief="flat"
     )
     menu_button.place(
@@ -345,7 +355,7 @@ def start(window, frame, phone):
         image=button_image_6,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.callAbout(window, frame, phone),
+        command=lambda: functions.callAbout(window, frame, new_phone),
         relief="flat"
     )
     about_button.place(
@@ -361,7 +371,7 @@ def start(window, frame, phone):
         image=button_image_7,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.callContact(window, frame, phone),
+        command=lambda: functions.callContact(window, frame, new_phone),
         relief="flat"
     )
     contact_button.place(
@@ -381,9 +391,11 @@ def start(window, frame, phone):
     # Function to change image when radiobutton is clicked
     def change_imageRadioMale():
         radio_buttonMale.config(image=hoverRadio)
+        functions.disable_radioBtn(radio_buttonMale,radio_buttonFemale)
         change_backRadioFemale()
     def change_imageRadioFemale():
         radio_buttonFemale.config(image=hoverRadio)
+        functions.disable_radioBtn(radio_buttonFemale,radio_buttonMale)
         change_backRadioMale()
 
     # Function to change back to original image when mouse leaves button or radiobutton disabled

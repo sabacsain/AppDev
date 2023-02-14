@@ -1,6 +1,5 @@
 # ISSUES:
-  - yung pag edit and delete ng account nag eerror kapag walang sleep_tracker table
-  - yung sa pag edit ng acc, kapag 'di ka nag lagay sa password tas cinlick yung "Save Changes" ang magiging password mo is white space
+  - (edit_acc.py) password kapag nagleave ng whitespace, ayun nababasa niya
 # Calendar
   - Nawawala kapag di dumeretso sa update
   
