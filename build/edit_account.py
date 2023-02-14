@@ -381,9 +381,11 @@ def start(window, frame, phone):
     # Function to change image when radiobutton is clicked
     def change_imageRadioMale():
         radio_buttonMale.config(image=hoverRadio)
+        functions.disable_radioBtn(radio_buttonMale,radio_buttonFemale)
         change_backRadioFemale()
     def change_imageRadioFemale():
         radio_buttonFemale.config(image=hoverRadio)
+        functions.disable_radioBtn(radio_buttonFemale,radio_buttonMale)
         change_backRadioMale()
 
     # Function to change back to original image when mouse leaves button or radiobutton disabled
