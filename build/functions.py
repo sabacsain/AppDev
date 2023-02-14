@@ -244,7 +244,7 @@ def sleepTracker(sleep, phone):
                 conn.commit()
                 conn.close()
             else:
-                c.execute("UPDATE sleep_tracker SET SLEEP = ?, WEEK = ?, DAY = ? WHERE DATE = ? AND PHONE = ?", [sleep_value, week, DAY ,current_date, phone])
+                c.execute("UPDATE sleep_tracker SET SLEEP = ?, WEEK = ?, DAY = ? WHERE DATE = ? AND PHONE = ?", [sleep_value, week, DAY, current_date, phone])
                 conn.commit()
                 conn.close()
         except Exception as error:
@@ -287,16 +287,71 @@ def get_user_profile(phone):
         return False
 
 
-def update_sleep(date, hours):
-    date = date
-    hours = hours
+def update_sleep(phone, hours, cal):
+    current_date = datetime.datetime.now()
+    DAY = 0
+    date = datetime.datetime.strptime(cal.get_date(), f"%m/%d/%y").date()
+    # to get if current_date's day is day 1 or day 2 or day 3... or day 7 of the weeek 
+    if current_date.day % 7 == 0:
+        DAY = 7
+    else:
+        DAY = current_date.day % 7
+
+    # to get if day is in the first, second, third, or fourth week
+    if current_date.day <= 7 :
+        week = 1
+    elif current_date.day <= 14:
+        week = 2
+    elif current_date.day <= 21:
+        week = 3
+    elif current_date.day <= 28:
+        week = 4
+    else:
+        week = 5
+        
+    # to get if current_date's day is day 1 or day 2 or day 3... or day 7 of the weeek 
+    if date.day % 7 == 0:
+        DAY = 7
+    else:
+        DAY = date.day % 7
+
+    # to get if day is in the first, second, third, or fourth week
+    if date.day <= 7 :
+        week = 1
+    elif date.day <= 14:
+        week = 2
+    elif date.day <= 21:
+        week = 3
+    elif date.day <= 28:
+        week = 4
+    else:
+        week = 5
+
+    current_date = current_date.strftime("%Y-%m-%d")
+    hours = hours.get()
     conn = sql.connect('sleep_database.db')
     c = conn.cursor()
-    c.execute('select sleep from sleep_tracker where (Date=?)',[date])
-    #UPDATEEEEE the hours 
+    #check if date is existing
+    c.execute("SELECT * FROM sleep_tracker WHERE PHONE = ? AND DATE = ?",[phone, date])
+    new = c.fetchone()
+    if (new == None):
+        c.execute("INSERT into sleep_tracker VALUES (:PHONE, :SLEEP, :DATE, :WEEK, :DAY)",
+                  {
+                    "PHONE": phone,
+                    "SLEEP": hours,
+                    "DATE": date,
+                    "WEEK": week,
+                    "DAY" : DAY
+                  }
+        )
+        conn.commit()
+        conn.close()
+    #UPDATE the hours 
+    else:
+        c.execute("UPDATE sleep_tracker SET SLEEP = ?, WEEK = ?, DAY = ? WHERE DATE = ? AND PHONE = ?", [hours, week, DAY, current_date, phone])
+        conn.commit()
+        conn.close()
 
-
-# yung dito guys hindi pa tapos kasi wala pa siyang phone number, password and gender parang sira yung gui or baka sa'kin lang?
 def update_profile(phone, fname, lname, phone_number, birthday, password, male_button, female_button):
     fname = fname.get()
     lname = lname.get()
