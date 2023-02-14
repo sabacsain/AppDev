@@ -43,8 +43,8 @@ def callUpdate(window, frame, phone):
     update.start(window, frame, phone)
 
 def callResult(window, frame, sleep_value, phone):
-    sleepTracker(sleep_value, phone)
-    result.start(window, frame, phone)
+    success = sleepTracker(sleep_value, phone)
+    if success: result.start(window, frame, phone)
 
 def callEditAccount(window, frame, phone):
     edit_account.start(window, frame, phone)
@@ -212,6 +212,7 @@ def sleepTracker(sleep, phone):
 
     if len(sleep_value) == 0:
         messagebox.showerror("Error","Please satisfy all the fields")
+        return False
     else:
         try:
             conn = sqlite3.connect('sleep_database.db')
@@ -248,9 +249,9 @@ def sleepTracker(sleep, phone):
                 conn.close()
         except Exception as error:
             messagebox.showerror("Failed to save sleep value",f'Error: {error}')
-            return str(error)
+            return False
        
-    return
+    return True
 
 def delete_account_and_records(window, phone):
     # Establish a connection to the database
@@ -285,8 +286,25 @@ def get_user_profile(phone):
         print('database error')
         return False
 
-# yung dito guys hindi pa tapos kasi wala pa siyang phone number, password and gender parang sira yung gui or baka sa'kin lang?
 
+# def update_sleep(phone, date, hours):
+#     date = date
+#     hours = hours
+#     conn = sql.connect('sleep_database.db')
+#     c = conn.cursor()
+#     c.execute('select sleep from sleep_tracker where (Date=?)',[date])
+#     res = c.fetchall()
+#     try:
+#         conn.commit()
+#         conn.close()
+#         return res
+#     except:
+#         conn.close()
+#         print('database error')
+#         return False
+
+
+# yung dito guys hindi pa tapos kasi wala pa siyang phone number, password and gender parang sira yung gui or baka sa'kin lang?
 def update_profile(phone, fname, lname, phone_number, birthday, password, male_button, female_button):
     fname = fname.get()
     lname = lname.get()
