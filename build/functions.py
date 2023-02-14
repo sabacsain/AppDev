@@ -106,6 +106,16 @@ def register(window,frame,fname_entry,lname_entry,phone_entry,birthday_entry,pas
                 PASSWORD text )""")
             conn.commit()
 
+            #CREATE sleep_tracker TABLE IF DATABASE DOESNT EXIST
+            c.execute("""CREATE TABLE IF NOT EXISTS sleep_tracker (
+                PHONE text,
+                SLEEP FLOAT,
+                DATE text,
+                WEEK INT,
+                DAY INT
+                )""")
+
+
             #check if phone number is already taken
             c.execute("SELECT * FROM accounts where (PHONE=?)",[phone])
             accounts = c.fetchall()
@@ -166,6 +176,15 @@ def login(window, frame, phone_entry, password_entry):
                 BIRTHDAY text,
                 PASSWORD text )""")
             conn.commit()
+
+            #CREATE sleep_tracker TABLE IF DATABASE DOESNT EXIST
+            c.execute("""CREATE TABLE IF NOT EXISTS sleep_tracker (
+                PHONE text,
+                SLEEP FLOAT,
+                DATE text,
+                WEEK INT,
+                DAY INT
+                )""")
 
             #check if phone number and password are correct (in the database)
             c.execute("SELECT * FROM accounts where (PHONE=? AND PASSWORD=?)",[phone,password])
