@@ -18,9 +18,11 @@ def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
 
+
 def start(window, frame, phone):
     window = window
     frame = frame
+
 
     canvas = Canvas(
         window,
@@ -33,6 +35,7 @@ def start(window, frame, phone):
     )
 
     canvas.place(x = 0, y = 0)
+    
     update_button_image = PhotoImage(
         file=relative_to_assets("button_1.png"))
     update_button = Button(
@@ -50,17 +53,35 @@ def start(window, frame, phone):
     )
 
     canvas.create_text(
-        163.0,
-        246.0,
+        183.0,
+        266.0,
         anchor="nw",
-        text="DATE",
+        text="MONTH",
         fill="#000000",
         font=("Inter SemiBold", 36 * -1)
     )
 
     canvas.create_text(
-        163.0,
-        423.0,
+        551.0,
+        266.0,
+        anchor="nw",
+        text="YEAR",
+        fill="#000000",
+        font=("Inter SemiBold", 36 * -1)
+    )
+
+    canvas.create_text(
+        394.0,
+        266.0,
+        anchor="nw",
+        text="DAY",
+        fill="#000000",
+        font=("Inter SemiBold", 36 * -1)
+    )
+
+    canvas.create_text(
+        183.0,
+        419.0,
         anchor="nw",
         text="HOURS OF SLEEP",
         fill="#000000",
@@ -123,26 +144,10 @@ def start(window, frame, phone):
         height=37.0
     )
 
-    # button_image_5 = PhotoImage(
-    #     file=relative_to_assets("button_5.png"))
-    # button_5 = Button(
-    #     image=button_image_5,
-    #     borderwidth=0,
-    #     highlightthickness=0,
-    #     command=lambda: print("button_5 clicked"),
-    #     relief="flat"
-    # )
-    # button_5.place(
-    #     x=1023.0,
-    #     y=72.0,
-    #     width=136.0,
-    #     height=39.0
-    # )
-
     entry_image_1 = PhotoImage(
         file=relative_to_assets("entry_1.png"))
     entry_bg_1 = canvas.create_image(
-        430.5,
+        252.0,
         339.5,
         image=entry_image_1
     )
@@ -155,15 +160,15 @@ def start(window, frame, phone):
     entry_1.place(
         x=173.0,
         y=314.0,
-        width=515.0,
+        width=158.0,
         height=49.0
     )
 
     entry_image_2 = PhotoImage(
         file=relative_to_assets("entry_2.png"))
     entry_bg_2 = canvas.create_image(
-        430.5,
-        516.5,
+        432.0,
+        339.5,
         image=entry_image_2
     )
     entry_2 = Entry(
@@ -173,6 +178,46 @@ def start(window, frame, phone):
         highlightthickness=0
     )
     entry_2.place(
+        x=353.0,
+        y=314.0,
+        width=158.0,
+        height=49.0
+    )
+
+    entry_image_3 = PhotoImage(
+        file=relative_to_assets("entry_3.png"))
+    entry_bg_3 = canvas.create_image(
+        612.0,
+        339.5,
+        image=entry_image_3
+    )
+    entry_3 = Entry(
+        bd=0,
+        bg="#FFFFFF",
+        fg="#000716",
+        highlightthickness=0
+    )
+    entry_3.place(
+        x=533.0,
+        y=314.0,
+        width=158.0,
+        height=49.0
+    )
+
+    entry_image_4 = PhotoImage(
+        file=relative_to_assets("entry_4.png"))
+    entry_bg_4 = canvas.create_image(
+        430.5,
+        516.5,
+        image=entry_image_4
+    )
+    entry_4 = Entry(
+        bd=0,
+        bg="#FFFFFF",
+        fg="#000716",
+        highlightthickness=0
+    )
+    entry_4.place(
         x=173.0,
         y=491.0,
         width=515.0,
@@ -194,7 +239,7 @@ def start(window, frame, phone):
         491.0,
         image=image_image_3
     )
-
+    
     hoverUpdate = PhotoImage(file=relative_to_assets("update.png"))
 
     # Function to change image when mouse enters button
@@ -210,14 +255,10 @@ def start(window, frame, phone):
 
     # Bind the <Leave> event to change_back function
     update_button.bind("<Leave>", change_backGetStarted)
-
-
-
-
+    
     window.resizable(False, False)
     window.mainloop()
-
-
+    
 if __name__ == '__main__':
     window = Tk()
     window.geometry("1244x838")

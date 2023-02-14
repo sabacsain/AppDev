@@ -39,8 +39,8 @@ def callHome(window, frame, phone):
 def callInputSleep(window, frame, phone):
     input_sleep.start(window, frame, phone)
 
-def callUpdate(window, frame):
-    update.start(window, frame)
+def callUpdate(window, frame, phone):
+    update.start(window, frame, phone)
 
 def callResult(window, frame, sleep_value, phone):
     sleepTracker(sleep_value, phone)
@@ -61,8 +61,8 @@ def callMonthlyInput(window, frame, phone):
 def callMonthlyGraph(window, frame, year, phone):
     monthly_graph.start(window, frame, year, phone)
 
-def callAbout(window, frame):
-    about.start(window, frame)
+def callAbout(window, frame, phone):
+    about.start(window, frame, phone)
 
 def callContact(window, frame, phone):
     contact.start(window, frame, phone)
