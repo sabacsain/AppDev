@@ -370,6 +370,8 @@ def update_sleep(phone, hours, cal):
         c.execute("UPDATE sleep_tracker SET SLEEP = ?, WEEK = ?, DAY = ? WHERE DATE = ? AND PHONE = ?", [hours, week, DAY, current_date, phone])
         conn.commit()
         conn.close()
+    
+    messagebox.showinfo("Updated","Press ANY Key to Continue.")
 
 def update_profile(phone, fname, lname, phone_number, birthday, password, male_button, female_button):
     fname = fname.get()
