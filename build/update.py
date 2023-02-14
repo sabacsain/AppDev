@@ -9,6 +9,7 @@ from pathlib import Path
 # Explicit imports to satisfy Flake8
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 import functions
+from tkcalendar import Calendar
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets/frame4")
@@ -22,7 +23,6 @@ def relative_to_assets(path: str) -> Path:
 def start(window, frame, phone):
     window = window
     frame = frame
-
 
     canvas = Canvas(
         window,
@@ -42,7 +42,7 @@ def start(window, frame, phone):
         image=update_button_image,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("update butotn clicked"),
+        command=lambda: functions.update_sleep(date, entry_4),
         relief="flat"
     )
     update_button.place(
@@ -56,28 +56,37 @@ def start(window, frame, phone):
         183.0,
         266.0,
         anchor="nw",
-        text="MONTH",
+        text="DATE",
         fill="#000000",
         font=("Inter SemiBold", 36 * -1)
     )
 
-    canvas.create_text(
-        551.0,
-        266.0,
-        anchor="nw",
-        text="YEAR",
-        fill="#000000",
-        font=("Inter SemiBold", 36 * -1)
-    )
+        # Add Calendar
+    cal = Calendar(window, selectmode = 'day',
+                year = 2023, month = 2,
+                day = 17)
 
-    canvas.create_text(
-        394.0,
-        266.0,
-        anchor="nw",
-        text="DAY",
-        fill="#000000",
-        font=("Inter SemiBold", 36 * -1)
-    )
+    cal.grid(row=1, column=0, padx=350, pady = 200)
+
+    date = cal.get_date()                   # Getting the input date
+
+    # canvas.create_text(
+    #     551.0,
+    #     266.0,
+    #     anchor="nw",
+    #     text="YEAR",
+    #     fill="#000000",
+    #     font=("Inter SemiBold", 36 * -1)
+    # )
+
+    # canvas.create_text(
+    #     394.0,
+    #     266.0,
+    #     anchor="nw",
+    #     text="DAY",
+    #     fill="#000000",
+    #     font=("Inter SemiBold", 36 * -1)
+    # )
 
     canvas.create_text(
         183.0,
@@ -144,65 +153,65 @@ def start(window, frame, phone):
         height=37.0
     )
 
-    entry_image_1 = PhotoImage(
-        file=relative_to_assets("entry_1.png"))
-    entry_bg_1 = canvas.create_image(
-        252.0,
-        339.5,
-        image=entry_image_1
-    )
-    entry_1 = Entry(
-        bd=0,
-        bg="#FFFFFF",
-        fg="#000716",
-        highlightthickness=0
-    )
-    entry_1.place(
-        x=173.0,
-        y=314.0,
-        width=158.0,
-        height=49.0
-    )
+    # entry_image_1 = PhotoImage(
+    #     file=relative_to_assets("entry_1.png"))
+    # entry_bg_1 = canvas.create_image(
+    #     252.0,
+    #     339.5,
+    #     image=entry_image_1
+    # )
+    # entry_1 = Entry(
+    #     bd=0,
+    #     bg="#FFFFFF",
+    #     fg="#000716",
+    #     highlightthickness=0
+    # )
+    # entry_1.place(
+    #     x=173.0,
+    #     y=314.0,
+    #     width=158.0,
+    #     height=49.0
+    # )
 
-    entry_image_2 = PhotoImage(
-        file=relative_to_assets("entry_2.png"))
-    entry_bg_2 = canvas.create_image(
-        432.0,
-        339.5,
-        image=entry_image_2
-    )
-    entry_2 = Entry(
-        bd=0,
-        bg="#FFFFFF",
-        fg="#000716",
-        highlightthickness=0
-    )
-    entry_2.place(
-        x=353.0,
-        y=314.0,
-        width=158.0,
-        height=49.0
-    )
+    # entry_image_2 = PhotoImage(
+    #     file=relative_to_assets("entry_2.png"))
+    # entry_bg_2 = canvas.create_image(
+    #     432.0,
+    #     339.5,
+    #     image=entry_image_2
+    # )
+    # entry_2 = Entry(
+    #     bd=0,
+    #     bg="#FFFFFF",
+    #     fg="#000716",
+    #     highlightthickness=0
+    # )
+    # entry_2.place(
+    #     x=353.0,
+    #     y=314.0,
+    #     width=158.0,
+    #     height=49.0
+    # )
 
-    entry_image_3 = PhotoImage(
-        file=relative_to_assets("entry_3.png"))
-    entry_bg_3 = canvas.create_image(
-        612.0,
-        339.5,
-        image=entry_image_3
-    )
-    entry_3 = Entry(
-        bd=0,
-        bg="#FFFFFF",
-        fg="#000716",
-        highlightthickness=0
-    )
-    entry_3.place(
-        x=533.0,
-        y=314.0,
-        width=158.0,
-        height=49.0
-    )
+    # entry_image_3 = PhotoImage(
+    #     file=relative_to_assets("entry_3.png"))
+    # entry_bg_3 = canvas.create_image(
+    #     612.0,
+    #     339.5,
+    #     image=entry_image_3
+    # )
+    # entry_3 = Entry(
+    #     bd=0,
+    #     bg="#FFFFFF",
+    #     fg="#000716",
+    #     highlightthickness=0
+    # )
+    # entry_3.place(
+    #     x=533.0,
+    #     y=314.0,
+    #     width=158.0,
+    #     height=49.0
+    # )
 
     entry_image_4 = PhotoImage(
         file=relative_to_assets("entry_4.png"))
@@ -223,6 +232,7 @@ def start(window, frame, phone):
         width=515.0,
         height=49.0
     )
+
 
     image_image_2 = PhotoImage(
         file=relative_to_assets("image_2.png"))

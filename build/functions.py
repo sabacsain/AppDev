@@ -287,21 +287,13 @@ def get_user_profile(phone):
         return False
 
 
-# def update_sleep(phone, date, hours):
-#     date = date
-#     hours = hours
-#     conn = sql.connect('sleep_database.db')
-#     c = conn.cursor()
-#     c.execute('select sleep from sleep_tracker where (Date=?)',[date])
-#     res = c.fetchall()
-#     try:
-#         conn.commit()
-#         conn.close()
-#         return res
-#     except:
-#         conn.close()
-#         print('database error')
-#         return False
+def update_sleep(date, hours):
+    date = date
+    hours = hours
+    conn = sql.connect('sleep_database.db')
+    c = conn.cursor()
+    c.execute('select sleep from sleep_tracker where (Date=?)',[date])
+    #UPDATEEEEE the hours 
 
 
 # yung dito guys hindi pa tapos kasi wala pa siyang phone number, password and gender parang sira yung gui or baka sa'kin lang?
