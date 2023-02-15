@@ -2,9 +2,9 @@ from tkinter import *
 from tkinter import messagebox, ttk
 import sqlite3
 import register_form, login_form, home, get_started, \
-        input_sleep, update, result, edit_account, \
+        input_sleep, update, result_good, edit_account, \
         weekly_input, monthly_input, about, weekly_graph, \
-        monthly_graph, contact
+        monthly_graph, contact, result_bad
 import datetime
 import hashlib
 import os
@@ -43,8 +43,9 @@ def callUpdate(window, frame, phone):
     update.start(window, frame, phone)
 
 def callResult(window, frame, sleep_value, phone):
-    success = sleepTracker(sleep_value, phone)
-    if success: result.start(window, frame, phone)
+    enough_sleep = sleepTracker(sleep_value, phone)
+    if enough_sleep: result_good.start(window, frame, phone)
+    else: result_bad.start(window, frame, phone)
 
 def callEditAccount(window, frame, phone):
     edit_account.start(window, frame, phone)
@@ -232,45 +233,53 @@ def sleepTracker(sleep, phone):
     if len(sleep_value) == 0:
         messagebox.showerror("Error","Please satisfy all the fields")
         return False
-    else:
-        try:
-            conn = sqlite3.connect('sleep_database.db')
-            c = conn.cursor()
+    
+    try:
+        sleep_value = float(sleep_value)
+    except Exception:
+        messagebox.showerror("Error","Invalid Input!")
+        return False
+    
+    try:
+        conn = sqlite3.connect('sleep_database.db')
+        c = conn.cursor()
 
-            #CREATE TABLE IF DATABASE DOESNT EXIST
-            c.execute("""CREATE TABLE IF NOT EXISTS sleep_tracker (
-                PHONE text,
-                SLEEP FLOAT,
-                DATE text,
-                WEEK INT,
-                DAY INT
-                )""")
+        #CREATE TABLE IF DATABASE DOESNT EXIST
+        c.execute("""CREATE TABLE IF NOT EXISTS sleep_tracker (
+            PHONE text,
+            SLEEP FLOAT,
+            DATE text,
+            WEEK INT,
+            DAY INT
+            )""")
+        conn.commit()
+        #check if phone number (in the database)
+        c.execute("SELECT * FROM sleep_tracker where (PHONE=? AND DATE=?)",[phone, current_date])
+        user_sleep = c.fetchone()
+
+        if(user_sleep==None):
+            c.execute("INSERT into sleep_tracker VALUES (:PHONE, :SLEEP, :DATE, :WEEK, :DAY)",
+                {
+                    "PHONE": phone,
+                    "SLEEP": sleep_value,
+                    "DATE": current_date,
+                    "WEEK": week,
+                    "DAY" : DAY
+                }
+            )
             conn.commit()
-            #check if phone number (in the database)
-            c.execute("SELECT * FROM sleep_tracker where (PHONE=? AND DATE=?)",[phone, current_date])
-            user_sleep = c.fetchone()
-
-            if(user_sleep==None):
-                c.execute("INSERT into sleep_tracker VALUES (:PHONE, :SLEEP, :DATE, :WEEK, :DAY)",
-                    {
-                        "PHONE": phone,
-                        "SLEEP": sleep_value,
-                        "DATE": current_date,
-                        "WEEK": week,
-                        "DAY" : DAY
-                    }
-                )
-                conn.commit()
-                conn.close()
-            else:
-                c.execute("UPDATE sleep_tracker SET SLEEP = ?, WEEK = ?, DAY = ? WHERE DATE = ? AND PHONE = ?", [sleep_value, week, DAY, current_date, phone])
-                conn.commit()
-                conn.close()
-        except Exception as error:
-            messagebox.showerror("Failed to save sleep value",f'Error: {error}')
-            return False
-       
-    return True
+            conn.close()
+        else:
+            c.execute("UPDATE sleep_tracker SET SLEEP = ?, WEEK = ?, DAY = ? WHERE DATE = ? AND PHONE = ?", [sleep_value, week, DAY, current_date, phone])
+            conn.commit()
+            conn.close()
+    except Exception as error:
+        messagebox.showerror("Failed to save sleep value",f'Error: {error}')
+        return False
+    
+    # Condition going to Result Good or Bad Frame
+    if sleep_value >=  7: return True
+    else: return False
 
 def delete_account_and_records(window, phone):
     # Establish a connection to the database
@@ -373,7 +382,7 @@ def update_sleep(phone, hours, cal):
     
     messagebox.showinfo("Updated","Press ANY Key to Continue.")
 
-def update_profile(phone, fname, lname, phone_number, birthday, password, male_button, female_button):
+def update_profile(window, frame, phone, fname, lname, phone_number, birthday, password, male_button, female_button):
     fname = fname.get()
     lname = lname.get()
     phone_number = phone_number.get()
@@ -401,10 +410,10 @@ def update_profile(phone, fname, lname, phone_number, birthday, password, male_b
         c.execute('UPDATE sleep_tracker SET PHONE = ? WHERE phone = ?', (phone_number, phone,))
         
         try:
+            messagebox.showinfo("Account Updated", "Thank you for updating your account!")
             conn.commit()
             conn.close()
-            messagebox.showinfo("Account Updated","Press ANY Key to Continue.")
-            return True
+            callHome(window, frame, phone_number)
         except:
             conn.close()
             messagebox.showerror("Error","Database Error")

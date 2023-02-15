@@ -26,8 +26,7 @@ def start(window, frame, phone):
     window = window
     frame = frame
     user_profile = functions.get_user_profile(phone)
-
-
+        
     canvas = Canvas(
         window,
         bg = "#DEEAEE",
@@ -58,8 +57,8 @@ def start(window, frame, phone):
 
     # updates phone after updating profile
     def update_profile():
-        global new_phone
-        new_phone = functions.update_profile(phone, entry_1, entry_5, entry_2, entry_6, entry_4, radio_buttonMale, radio_buttonFemale)
+        nonlocal new_phone
+        new_phone = functions.update_profile(window, frame, phone, entry_1, entry_5, entry_2, entry_6, entry_4, radio_buttonMale, radio_buttonFemale)
        
 
     save_button_image = PhotoImage(
@@ -317,13 +316,17 @@ def start(window, frame, phone):
     entry_2.insert(0, user_profile[0][3]) # entry_2 = Phone Number
     entry_6.insert(0, user_profile[0][4]) # entry_6 = Birthday
     
+
+    def delete_account_and_records():
+        functions.delete_account_and_records(window, new_phone),
+
     delete_button_image = PhotoImage(
         file=relative_to_assets("button_4.png"))
     delete_button = Button(
         image=delete_button_image,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.delete_account_and_records(window, new_phone),
+        command=delete_account_and_records,
         relief="flat"
     )
     delete_button.place(
@@ -333,13 +336,25 @@ def start(window, frame, phone):
         height=78.0
     )
 
+    def callHome(new_phone):
+        try:
+            new_phone
+        except:
+            new_phone = phone
+            functions.callHome(window, frame, new_phone)
+            return
+        functions.callHome(window, frame, new_phone)
+
+            
+
+
     button_image_5 = PhotoImage(
         file=relative_to_assets("button_5.png"))
     menu_button = Button(
         image=button_image_5,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.callHome(window, frame, new_phone),
+        command = lambda: callHome(new_phone),
         relief="flat"
     )
     menu_button.place(
@@ -349,13 +364,26 @@ def start(window, frame, phone):
         height=40.0
     )
 
+
+    def callAbout(new_phone):
+        try:
+            new_phone
+        except:
+            new_phone = phone,
+            functions.callAbout(window, frame, new_phone)
+            return
+        functions.callAbout(window, frame, new_phone)
+
+
+
+
     button_image_6 = PhotoImage(
         file=relative_to_assets("button_6.png"))
     about_button = Button(
         image=button_image_6,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.callAbout(window, frame, new_phone),
+        command =  lambda: callAbout(new_phone),
         relief="flat"
     )
     about_button.place(
@@ -365,13 +393,24 @@ def start(window, frame, phone):
         height=34.0
     )
 
+
+    def callContact():
+        try:
+            new_phone
+        except:
+            new_phone = phone,
+            functions.callContact(window, frame, new_phone)
+            return
+        functions.callContact(window, frame, new_phone)
+
+
     button_image_7 = PhotoImage(
         file=relative_to_assets("button_7.png"))
     contact_button = Button(
         image=button_image_7,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.callContact(window, frame, new_phone),
+        command=callContact,
         relief="flat"
     )
     contact_button.place(
