@@ -373,7 +373,7 @@ def update_sleep(phone, hours, cal):
     
     messagebox.showinfo("Updated","Press ANY Key to Continue.")
 
-def update_profile(phone, fname, lname, phone_number, birthday, password, male_button, female_button):
+def update_profile(window, frame, phone, fname, lname, phone_number, birthday, password, male_button, female_button):
     fname = fname.get()
     lname = lname.get()
     phone_number = phone_number.get()
