@@ -42,7 +42,7 @@ def start(window, frame, phone):
         image=update_button_image,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.update_sleep(phone, entry_4, cal),
+        command=lambda: functions.update_sleep(window, frame, phone, entry_4, cal),
         relief="flat"
     )
     update_button.place(
@@ -274,4 +274,4 @@ if __name__ == '__main__':
     window = Tk()
     window.geometry("1244x838")
     window.configure(bg = "#DEEAEE")
-    start(window, frame=window)
+    start(window, frame=window, phone='123')

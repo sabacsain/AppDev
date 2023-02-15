@@ -318,7 +318,14 @@ def get_user_profile(phone):
         return False
 
 
-def update_sleep(phone, hours, cal):
+def update_sleep(window, frame, phone, hours, cal):
+    hours = hours.get()
+    try:
+        hours = float(hours)
+    except:
+        messagebox.showerror("Error", 'Invalid Input')
+        return
+
     current_date = datetime.datetime.now()
     DAY = 0
     date = datetime.datetime.strptime(cal.get_date(), f"%m/%d/%y").date()
@@ -359,7 +366,6 @@ def update_sleep(phone, hours, cal):
         week = 5
 
     current_date = current_date.strftime("%Y-%m-%d")
-    hours = hours.get()
     conn = sql.connect('sleep_database.db')
     c = conn.cursor()
     #check if date is existing
@@ -384,6 +390,7 @@ def update_sleep(phone, hours, cal):
         conn.close()
     
     messagebox.showinfo("Updated","Press ANY Key to Continue.")
+    callHome(window, frame, phone)
 
 def update_profile(window, frame, phone, fname, lname, phone_number, birthday, password, male_button, female_button):
     fname = fname.get()
