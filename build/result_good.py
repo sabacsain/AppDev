@@ -70,7 +70,7 @@ def start(window, frame, phone):
     )
 
     button_image_3 = PhotoImage(
-        file=relative_to_assets("button_3.png"))
+        file=relative_to_assets("button_1.png"))
     menu_button = Button(
         image=button_image_3,
         borderwidth=0,
@@ -86,7 +86,7 @@ def start(window, frame, phone):
     )
     
     button_image_4 = PhotoImage(
-        file=relative_to_assets("button_4.png"))
+        file=relative_to_assets("button_2.png"))
     about_button = Button(
         image=button_image_4,
         borderwidth=0,
@@ -102,7 +102,7 @@ def start(window, frame, phone):
     )
 
     button_image_5 = PhotoImage(
-        file=relative_to_assets("button_5.png"))
+        file=relative_to_assets("button_3.png"))
     contact_button = Button(
         image=button_image_5,
         borderwidth=0,
@@ -134,7 +134,7 @@ def start(window, frame, phone):
     )
 
     weekly_button_image = PhotoImage(
-        file=relative_to_assets("button_1.png"))
+        file=relative_to_assets("button_4.png"))
     weekly_button = Button(
         image=weekly_button_image,
         borderwidth=0,
@@ -150,7 +150,7 @@ def start(window, frame, phone):
     )
 
     monthly_button_image = PhotoImage(
-        file=relative_to_assets("button_2.png"))
+        file=relative_to_assets("button_5.png"))
     monthly_button = Button(
         image=monthly_button_image,
         borderwidth=0,
