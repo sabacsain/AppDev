@@ -401,10 +401,10 @@ def update_profile(phone, fname, lname, phone_number, birthday, password, male_b
         c.execute('UPDATE sleep_tracker SET PHONE = ? WHERE phone = ?', (phone_number, phone,))
         
         try:
+            messagebox.showinfo("Account Updated", "Thank you for updating your account!")
             conn.commit()
             conn.close()
-            messagebox.showinfo("Account Updated","Press ANY Key to Continue.")
-            return True
+            callHome(window, frame, phone_number)
         except:
             conn.close()
             messagebox.showerror("Error","Database Error")
