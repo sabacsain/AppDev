@@ -84,8 +84,8 @@ def start(window, frame, phone):
         relief="flat"
     )
     weekly_button.place(
-        x=649.0,
-        y=369.0,
+        x=651.0,
+        y=298.0,
         width=554.0,
         height=94.0
     )
@@ -100,10 +100,10 @@ def start(window, frame, phone):
         relief="flat"
     )
     update_button.place(
-        x=647.0,
-        y=262.0,
-        width=554.0,
-        height=94.0
+    x=649.0,
+    y=191.0,
+    width=554.0,
+    height=94.0
     )
 
     monthly_button_image = PhotoImage(
@@ -116,8 +116,24 @@ def start(window, frame, phone):
         relief="flat"
     )
     monthly_button.place(
-        x=650.0,
-        y=476.0,
+        x=652.0,
+        y=405.0,
+        width=554.0,
+        height=94.0
+    )
+
+    view_button_image = PhotoImage(
+    file=relative_to_assets("view_all.png"))
+    view_button = Button(
+        image=view_button_image,
+        borderwidth=0,
+        highlightthickness=0,
+        command=lambda: functions.callView(window, frame, phone),
+        relief="flat"
+    )
+    view_button.place(
+        x=653.0,
+        y=512.0,
         width=554.0,
         height=94.0
     )
@@ -130,10 +146,10 @@ def start(window, frame, phone):
         image=image_image_1
     )
 
-    button_image_6 = PhotoImage(
+    menu_button_image = PhotoImage(
         file=relative_to_assets("button_6.png"))
     menu_button = Button(
-        image=button_image_6,
+        image=menu_button_image,
         borderwidth=0,
         highlightthickness=0,
         command=lambda: functions.callHome(window, frame, phone),
@@ -207,6 +223,7 @@ def start(window, frame, phone):
     hoverWeekly = PhotoImage(file=relative_to_assets("generateWeekly.png"))
     hoverMonthly = PhotoImage(file=relative_to_assets("generateMonthly.png"))
     hoverEdit = PhotoImage(file=relative_to_assets("edit_details.png"))
+    hoverView = PhotoImage(file=relative_to_assets("view_all_blue.png"))
 
     # Function to change image when mouse enters button
     def change_imageGetStarted(event):
@@ -219,6 +236,8 @@ def start(window, frame, phone):
         monthly_button.config(image=hoverMonthly)
     def change_imageEdit(event):
         edit_button.config(image=hoverEdit)
+    def change_imageView(event):
+        view_button.config(image=hoverView)
 
     # Function to change back to original image when mouse leaves button
     def change_backGetStarted(event):
@@ -231,13 +250,16 @@ def start(window, frame, phone):
         monthly_button.config(image=monthly_button_image)
     def change_backEdit(event):
         edit_button.config(image=edit_button_image)
-
+    def change_backView(event):
+        view_button.config(image=view_button_image)
+    
     # Bind the <Enter> event to change_image function
     logout_button.bind("<Enter>", change_imageGetStarted)
     update_button.bind("<Enter>", change_imageUpdate)
     weekly_button.bind("<Enter>", change_imageWeekly)
     monthly_button.bind("<Enter>", change_imageMonthly)
     edit_button.bind("<Enter>", change_imageEdit)
+    view_button.bind("<Enter>", change_imageView)
 
     # Bind the <Leave> event to change_back function
     logout_button.bind("<Leave>", change_backGetStarted)
@@ -245,6 +267,7 @@ def start(window, frame, phone):
     weekly_button.bind("<Leave>", change_backWeekly)
     monthly_button.bind("<Leave>", change_backMonthly)
     edit_button.bind("<Leave>", change_backEdit)
+    view_button.bind("<Leave>", change_backView)
     
     window.resizable(False, False)
     window.mainloop()
@@ -253,4 +276,4 @@ if __name__ == '__main__':
     window = Tk()
     window.geometry("1244x838")
     window.configure(bg = "#DEEAEE")
-    start(window, frame=window)
+    start(window, frame=window, phone='11')

@@ -4,7 +4,7 @@ import sqlite3
 import register_form, login_form, home, get_started, \
         input_sleep, update, result_good, edit_account, \
         weekly_input, monthly_input, about, weekly_graph, \
-        monthly_graph, contact, result_bad
+        monthly_graph, contact, result_bad, all_records
 import datetime
 import hashlib
 import os
@@ -67,6 +67,9 @@ def callAbout(window, frame, phone):
 
 def callContact(window, frame, phone):
     contact.start(window, frame, phone)
+
+def callView(window, frame, phone):
+    all_records.start(window, frame, phone)
 
 # def callGui6(window, frame, sleep_value, phone):
 #     sleepTracker(sleep_value, phone)
