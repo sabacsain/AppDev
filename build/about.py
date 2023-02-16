@@ -117,7 +117,7 @@ def start(window, frame, phone):
     about_image = PhotoImage(
         file=relative_to_assets("cheatImage2.png"))
     about = canvas.create_image(
-        600,
+        610,
         500,
         image=about_image
     )
