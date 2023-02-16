@@ -53,7 +53,8 @@ def start(window, frame, phone):
     )
     logout_button.place(
         x=41.0,
-        y=644.0,
+        # y=644.0,
+        y = 700,
         width=1174.0,
         height=106.0
     )
@@ -85,7 +86,8 @@ def start(window, frame, phone):
     )
     weekly_button.place(
         x=651.0,
-        y=298.0,
+        # y=298.0,
+        y = 334,
         width=554.0,
         height=94.0
     )
@@ -101,7 +103,8 @@ def start(window, frame, phone):
     )
     update_button.place(
     x=649.0,
-    y=191.0,
+    # y=191.0,
+    y = 227.0,
     width=554.0,
     height=94.0
     )
@@ -117,7 +120,8 @@ def start(window, frame, phone):
     )
     monthly_button.place(
         x=652.0,
-        y=405.0,
+        # y=405.0,
+        y = 441.0,
         width=554.0,
         height=94.0
     )
@@ -133,7 +137,8 @@ def start(window, frame, phone):
     )
     view_button.place(
         x=653.0,
-        y=512.0,
+        # y=512.0,
+        y = 548.0,
         width=554.0,
         height=94.0
     )
