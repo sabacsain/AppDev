@@ -239,11 +239,15 @@ def sleepTracker(sleep, phone):
     if len(sleep_value) == 0:
         messagebox.showerror("Error","Please satisfy all the fields")
         return False
-    
+      
     try:
         sleep_value = float(sleep_value)
     except Exception:
         messagebox.showerror("Error","Invalid Input!")
+        return False
+    
+    if sleep_value > 24 or sleep_value < 0:
+        messagebox.showerror("Error","Input should not be more than 24!")
         return False
     
     try:
@@ -326,11 +330,14 @@ def get_user_profile(phone):
 
 def update_sleep(window, frame, phone, hours, cal):
     hours = hours.get()
+
     try:
         hours = float(hours)
     except:
         messagebox.showerror("Error", 'Invalid Input')
         return
+    
+    if hours > 24 or hours < 0: messagebox.showerror("Error", 'Input should not be more than 24'); return
 
     current_date = datetime.datetime.now()
     DAY = 0
@@ -404,7 +411,7 @@ def update_profile(window, frame, phone, fname, lname, phone_number, birthday, p
     phone_number = phone_number.get()
     birthday = birthday.get()
     password = password.get().encode()
-    if not password: messagebox.showwarning('Password Error', 'Please input a password!'); return
+    if not password: messagebox.showwarning('Password Error', 'Please input a password!'); return phone
     password = hashlib.md5(password).hexdigest()
 
     if (male_button["state"]==DISABLED): sex = "MALE"
