@@ -413,7 +413,7 @@ def update_profile(window, frame, phone, fname, lname, phone_number, birthday, p
         print(result)
         messagebox.showerror("Error","Entered phone number is already taken")
         conn.close()
-        return
+        return phone
 
     else:
         c.execute('UPDATE accounts SET FNAME = ?, LNAME = ?, PHONE = ?, BIRTHDAY = ?, PASSWORD = ?, SEX = ? WHERE phone = ?', (fname, lname, phone_number, birthday, password, sex, phone,))
@@ -423,14 +423,16 @@ def update_profile(window, frame, phone, fname, lname, phone_number, birthday, p
             messagebox.showinfo("Account Updated", "Thank you for updating your account!")
             conn.commit()
             conn.close()
+            phone = phone_number
+            callHome(window, frame, phone)
+
+            return phone
             callHome(window, frame, phone_number)
         except:
             conn.close()
             messagebox.showerror("Error","Database Error")
-            return False
-
-
-
+            return phone
+        
 def create_weekly_df(window, month, year, phone):
     print("MONTH: ", month, "\nYEAR: ", year, "\nPHONE: ", phone)
     #list of weeks, and days
