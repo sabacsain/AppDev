@@ -38,9 +38,9 @@ def start(window, frame, phone):
         112.0,
         250.0,
         anchor="nw",
-        text="Enter date range?",
+        text="Enter date range:",
         fill="#000000",
-        font=("Inter Bold", 36 * -1)
+        font=("Inter Bold", 36 * -1, 'bold')
     )
 
     generate_button_image = PhotoImage(
@@ -65,7 +65,7 @@ def start(window, frame, phone):
         anchor="nw",
         text="YEAR",
         fill="#000000",
-        font=("Inter Bold", 24 * -1)
+        font=("Inter Bold", 24 * -1, 'bold')
     )
 
     image_image_3 = PhotoImage(
