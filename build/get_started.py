@@ -120,7 +120,7 @@ def start(window, frame, phone):
         anchor="nw",
         text="You prioritize your health,\nThen start sleeping at the proper time!",
         fill="#000000",
-        font=("Inter SemiBold", 36 * -1)
+        font=("Inter SemiBold", 36 * -1, 'bold')
     )
 
     # button_image_5 = PhotoImage(
