@@ -7,8 +7,8 @@ from pathlib import Path
 
 # from tkinter import *
 # Explicit imports to satisfy Flake8
-from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
-import functions
+from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage, messagebox
+import functions 
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets/frame5")
@@ -22,6 +22,8 @@ def start(window, frame, phone):
 
     ###
     new_phone = phone
+    global gender
+    gender = None
 
     window = window
     frame = frame
@@ -58,7 +60,7 @@ def start(window, frame, phone):
     # updates phone after updating profile
     def update_profile():
         nonlocal new_phone
-        new_phone = functions.update_profile(window, frame, phone, entry_1, entry_5, entry_2, entry_6, entry_4, radio_buttonMale, radio_buttonFemale)
+        new_phone = functions.update_profile(window, frame, phone, entry_1, entry_5, entry_2, entry_6, entry_4, gender)
        
 
     save_button_image = PhotoImage(
@@ -317,6 +319,13 @@ def start(window, frame, phone):
     entry_6.insert(0, user_profile[0][4]) # entry_6 = Birthday
     
 
+    def confirm_delete_account():
+        answer = messagebox.askyesno("Confirm Deletion of Account", "Are your sure you want to Delete your Account?")
+        if answer == 1:
+            delete_account_and_records()
+        else:
+            return
+
     def delete_account_and_records():
         functions.delete_account_and_records(window, frame, new_phone),
 
@@ -326,7 +335,8 @@ def start(window, frame, phone):
         image=delete_button_image,
         borderwidth=0,
         highlightthickness=0,
-        command=delete_account_and_records,
+        # command=delete_account_and_records,
+        command = confirm_delete_account,
         relief="flat"
     )
     delete_button.place(
@@ -428,12 +438,16 @@ def start(window, frame, phone):
    
     # Function to change image when radiobutton is clicked
     def change_imageRadioMale():
+        global gender
+        gender = 'MALE'
         radio_buttonMale.config(image=hoverRadio)
-        functions.disable_radioBtn(radio_buttonMale,radio_buttonFemale)
+        # functions.disable_radioBtn(radio_buttonMale,radio_buttonFemale)
         change_backRadioFemale()
     def change_imageRadioFemale():
+        global gender
+        gender = 'FEMALE'
         radio_buttonFemale.config(image=hoverRadio)
-        functions.disable_radioBtn(radio_buttonFemale,radio_buttonMale)
+        # functions.disable_radioBtn(radio_buttonFemale,radio_buttonMale)
         change_backRadioMale()
 
     # Function to change back to original image when mouse leaves button or radiobutton disabled
@@ -459,4 +473,4 @@ if __name__ == '__main__':
     window = Tk()
     window.geometry("1244x838")
     window.configure(bg = "#DEEAEE")
-    start(window, frame=window)
+    start(window, frame=window, phone='11')

@@ -13,6 +13,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
+
 def display(entry_1, entry_2):
     try:
         name = entry_1.get()
@@ -79,24 +80,22 @@ def callView(window, frame, phone):
 #     gui6.start(window, frame)
 
 
-def disable_radioBtn(button1,button2):
-    button1["state"] = DISABLED
-    button2["state"] = NORMAL
+# def disable_radioBtn(button1,button2):
+#     button1["state"] = DISABLED
+#     button2["state"] = NORMAL
 
-def register(window,frame,fname_entry,lname_entry,phone_entry,birthday_entry,password_entry,male_btn,female_btn):
+def register(window,frame,fname_entry,lname_entry,phone_entry,birthday_entry,password_entry,gender):
     fname = fname_entry.get().upper()
     lname = lname_entry.get().upper()
     phone = phone_entry.get().upper()
     birthday = birthday_entry.get()
     password = password_entry.get().encode()
+    if not password: messagebox.showwarning('Password Error', 'Please input a password!'); return
     password = hashlib.md5(password).hexdigest()
-
-    if (male_btn["state"]==DISABLED): sex = "MALE"
-    else: sex = "FEMALE"
     
-    if len(fname)==0 or len(lname)==0 or len(phone)==0 or len(password)==0 or len(birthday)==0 or (male_btn["state"]==NORMAL and female_btn["state"]==NORMAL) :
+    if not fname or not lname or not phone or not birthday or (gender== None) :
         messagebox.showerror("Error", "Please satisfy all the fields")
-        return
+        return 
 
     else:
         try:
@@ -137,7 +136,7 @@ def register(window,frame,fname_entry,lname_entry,phone_entry,birthday_entry,pas
                     {
                         "FNAME": fname,
                         "LNAME": lname,
-                        "SEX": sex,
+                        "SEX": gender,
                         "PHONE": phone,
                         "BIRTHDAY": birthday,
                         "PASSWORD": password
@@ -405,7 +404,7 @@ def update_sleep(window, frame, phone, hours, cal):
     messagebox.showinfo("Updated","Press ANY Key to Continue.")
     callHome(window, frame, phone)
 
-def update_profile(window, frame, phone, fname, lname, phone_number, birthday, password, male_button, female_button):
+def update_profile(window, frame, phone, fname, lname, phone_number, birthday, password, gender):
     fname = fname.get()
     lname = lname.get()
     phone_number = phone_number.get()
@@ -414,8 +413,10 @@ def update_profile(window, frame, phone, fname, lname, phone_number, birthday, p
     if not password: messagebox.showwarning('Password Error', 'Please input a password!'); return phone
     password = hashlib.md5(password).hexdigest()
 
-    if (male_button["state"]==DISABLED): sex = "MALE"
-    else: sex = "FEMALE"
+    if not fname or not lname or not phone or not birthday or (gender== None) :
+        messagebox.showerror("Error", "Please satisfy all the fields")
+        return phone
+    
     conn = sqlite3.connect('sleep_database.db')
     c = conn.cursor()
 
@@ -429,7 +430,7 @@ def update_profile(window, frame, phone, fname, lname, phone_number, birthday, p
         return phone
 
     else:
-        c.execute('UPDATE accounts SET FNAME = ?, LNAME = ?, PHONE = ?, BIRTHDAY = ?, PASSWORD = ?, SEX = ? WHERE phone = ?', (fname, lname, phone_number, birthday, password, sex, phone,))
+        c.execute('UPDATE accounts SET FNAME = ?, LNAME = ?, PHONE = ?, BIRTHDAY = ?, PASSWORD = ?, SEX = ? WHERE phone = ?', (fname, lname, phone_number, birthday, password, gender, phone,))
         c.execute('UPDATE sleep_tracker SET PHONE = ? WHERE phone = ?', (phone_number, phone,))
         
         try:

@@ -21,6 +21,9 @@ def start(window, frame):
     window = window
     frame = frame
 
+    global gender
+    gender = None
+
     canvas = Canvas(
         window,
         bg = "#DEEAEE",
@@ -177,7 +180,7 @@ def start(window, frame):
         image=register_button_image,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.register(window, frame, fname, lname, phone_number , birthday, password, radio_buttonMale, radio_buttonFemale),
+        command=lambda: functions.register(window, frame, fname, lname, phone_number , birthday, password, gender),
         relief="flat"
     )
     register_button.place(
@@ -356,11 +359,15 @@ def start(window, frame):
 
     # Function to change image when radiobutton is clicked
     def change_imageRadioMale():
-        functions.disable_radioBtn(radio_buttonMale,radio_buttonFemale)
+        # functions.disable_radioBtn(radio_buttonMale,radio_buttonFemale)
+        global gender
+        gender = 'MALE'
         radio_buttonMale.config(image=hoverRadio)
         change_backRadioFemale()
     def change_imageRadioFemale():
-        functions.disable_radioBtn(radio_buttonFemale,radio_buttonMale)
+        # functions.disable_radioBtn(radio_buttonFemale,radio_buttonMale)
+        global gender
+        gender = 'FEMALE'
         radio_buttonFemale.config(image=hoverRadio)
         change_backRadioMale()
 
