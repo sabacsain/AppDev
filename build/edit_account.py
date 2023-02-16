@@ -86,7 +86,7 @@ def start(window, frame, phone):
     #     608.0,
     #     fill="#92A8D1",
     #     outline="")
-    
+
     rectangle_image = PhotoImage(                                       # Rounded Rectangle
         file=relative_to_assets("rectangle1.png"))
     rectangle = canvas.create_image(
@@ -449,10 +449,13 @@ def start(window, frame, phone):
     
     hoverSave = PhotoImage(file=relative_to_assets("save.png"))
     hoverRadio = PhotoImage(file=relative_to_assets("radioClicked.png"))
+    hoverDelete = PhotoImage(file=relative_to_assets("deleteRed.png"))
     
     # Function to change image when mouse enters button
     def change_imageGetStarted(event):
         save_button.config(image=hoverSave)
+    def change_imageDelete(event):
+        delete_button.config(image=hoverDelete)
    
     # Function to change image when radiobutton is clicked
     def change_imageRadioMale():
@@ -471,6 +474,8 @@ def start(window, frame, phone):
     # Function to change back to original image when mouse leaves button or radiobutton disabled
     def change_backGetStarted(event):
         save_button.config(image=save_button_image)
+    def change_backDelete(event):
+        delete_button.config(image=delete_button_image)
     def change_backRadioMale():
         radio_buttonMale.config(image=radio_buttonMale_image)
     def change_backRadioFemale():   
@@ -478,10 +483,12 @@ def start(window, frame, phone):
 
     # Bind the <Enter> event to change_image function
     save_button.bind("<Enter>", change_imageGetStarted)
+    delete_button.bind("<Enter>", change_imageDelete)
     
     # Bind the <Leave> event to change_back function
     save_button.bind("<Leave>", change_backGetStarted)
-    
+    delete_button.bind("<Leave>", change_backDelete)
+
     window.resizable(False, False)
     window.mainloop()
     

@@ -116,7 +116,7 @@ def start(window, frame):
     )
 
     register_button_image = PhotoImage(
-        file=relative_to_assets("button_2.png"))
+        file=relative_to_assets("registerRed.png"))
     register_button = Button(
         image=register_button_image,
         borderwidth=0,
@@ -217,7 +217,7 @@ def start(window, frame):
     # )
 
 
-    hoverRegister = PhotoImage(file=relative_to_assets("register_LoginForm.png"))
+    hoverRegister = PhotoImage(file=relative_to_assets("registerRedder.png"))
     hoverLogin = PhotoImage(file=relative_to_assets("login_LoginForm.png"))
 
     # Function to change image when mouse enters button

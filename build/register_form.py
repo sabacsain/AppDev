@@ -60,7 +60,8 @@ def start(window, frame):
     #     721.0,
     #     fill="#92A8D1",
     #     outline="")
-    rectangle_image = PhotoImage(
+
+    rectangle_image = PhotoImage(                                       # Rounded Rectangle
         file=relative_to_assets("rectangle.png"))
     rectangle = canvas.create_image(
         480,
@@ -202,7 +203,7 @@ def start(window, frame):
     )
 
     login_button_image = PhotoImage(
-        file=relative_to_assets("button_4.png"))
+        file=relative_to_assets("loginRed.png"))
     login_button = Button(
         image=login_button_image,
         borderwidth=0,
@@ -364,7 +365,7 @@ def start(window, frame):
     )
 
     hoverRegister = PhotoImage(file=relative_to_assets("register_RegisterForm.png"))
-    hoverLogin = PhotoImage(file=relative_to_assets("login_RegisterForm.png"))
+    hoverLogin = PhotoImage(file=relative_to_assets("loginRedder.png"))
     hoverRadio = PhotoImage(file=relative_to_assets("radioClicked.png"))
 
     # Function to change image when mouse enters button
