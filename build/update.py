@@ -54,7 +54,7 @@ def start(window, frame, phone):
 
     canvas.create_text(
         183.0,
-        266.0,
+        200,
         anchor="nw",
         text="DATE",
         fill="#000000",
@@ -67,8 +67,8 @@ def start(window, frame, phone):
                 day = 17)
 
     cal.place(
-        x = 350, 
-        y = 190
+        x = 183.0, 
+        y = 250
     )
 
     # canvas.create_text(
@@ -91,7 +91,7 @@ def start(window, frame, phone):
 
     canvas.create_text(
         183.0,
-        419.0,
+        460.0,
         anchor="nw",
         text="HOURS OF SLEEP",
         fill="#000000",
@@ -218,7 +218,7 @@ def start(window, frame, phone):
         file=relative_to_assets("entry_4.png"))
     entry_bg_4 = canvas.create_image(
         430.5,
-        516.5,
+        540.0,
         image=entry_image_4
     )
     entry_4 = Entry(
@@ -231,7 +231,7 @@ def start(window, frame, phone):
     )
     entry_4.place(
         x=173.0,
-        y=494.0,
+        y=517.0,
         width=515.0,
         height=47.0
     )
