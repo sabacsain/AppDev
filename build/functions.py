@@ -4,7 +4,7 @@ import sqlite3
 import register_form, login_form, home, get_started, \
         input_sleep, update, result_good, edit_account, \
         weekly_input, monthly_input, about, weekly_graph, \
-        monthly_graph, contact, result_bad, all_records
+        monthly_graph, contact, result_bad, all_records, main
 import datetime
 import hashlib
 import os
@@ -24,6 +24,9 @@ def display(entry_1, entry_2):
         return str(error)
 
 # Calling all the GUI files
+def callMain():
+    main.start()
+
 def callRegister(window, frame):
     register_form.start(window, frame)
 
@@ -43,10 +46,10 @@ def callUpdate(window, frame, phone):
     update.start(window, frame, phone)
 
 def callResult(window, frame, sleep_value, phone):
-    enough_sleep = sleepTracker(sleep_value, phone)
-    if enough_sleep: result_good.start(window, frame, phone)
-    else: result_bad.start(window, frame, phone)
-
+    sleep = sleepTracker(sleep_value, phone)
+    if sleep == 'enough': result_good.start(window, frame, phone)
+    elif sleep == 'not enough': result_bad.start(window, frame, phone)
+    
 def callEditAccount(window, frame, phone):
     edit_account.start(window, frame, phone)
 
@@ -281,10 +284,10 @@ def sleepTracker(sleep, phone):
         return False
     
     # Condition going to Result Good or Bad Frame
-    if sleep_value >=  7: return True
-    else: return False
+    if sleep_value >=  7: return 'enough'
+    else: return 'not enough'
 
-def delete_account_and_records(window, phone):
+def delete_account_and_records(window, frame, phone):
     # Establish a connection to the database
     conn = sqlite3.connect('sleep_database.db')
     c = conn.cursor()
@@ -298,10 +301,13 @@ def delete_account_and_records(window, phone):
     c.execute(delete_records_query, (phone,))
 
     # Commit the changes and close the connection
-    messagebox.showinfo("Notice!", "Account is Deleted!")
     conn.commit()
     conn.close()
+    messagebox.showinfo("Notice!", "Account is Deleted!")
+    # callRegister(window, frame)
     window.destroy()
+    callMain()
+    return
 
 def get_user_profile(phone):
     conn = sqlite3.connect('sleep_database.db')
