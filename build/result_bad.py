@@ -185,7 +185,7 @@ def start(window, frame, phone):
     )
 
     canvas.create_text(
-        288.0,
+        327.0,
         580.0,
         anchor="nw",
         text="Create a restful environment.",
