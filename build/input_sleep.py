@@ -40,7 +40,7 @@ def start(window, frame, phone):
         anchor="nw",
         text="how many hours did you sleep today?",
         fill="#000000",
-        font=("Inter SemiBold", 36 * -1)
+        font=("Inter SemiBold", 36 * -1, 'bold')
     )
 
     enter_button_image = PhotoImage(
@@ -63,9 +63,9 @@ def start(window, frame, phone):
         164.0,
         247.0,
         anchor="nw",
-        text= user_profile[0][0] + ",",         # Change to first name 
+        text= str(user_profile[0][0]).upper() + ",",         # Change to first name 
         fill="#54899E",
-        font=("Inter Bold", 40 * -1)
+        font=("Inter Bold", 40 * -1, 'bold')
     )
 
     image_image_1 = PhotoImage(
