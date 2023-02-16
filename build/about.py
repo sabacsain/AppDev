@@ -97,107 +97,22 @@ def start(window, frame, phone):
     )
 
     canvas.create_text(
-        178.0,
-        247.0,
-        anchor="nw",
-        text="About here....................................",
-        fill="#000000",
-        font=("Inter Bold", 24 * -1)
-    )
+    91.0,
+    340.0,
+    anchor="nw",
+    text="         Sleep Ease is a comprehensive system designed to help individuals assess the impact of their sleep patterns on their mood, track their sleeping habits, and identify their mood patterns. With Sleep Ease, users can gain a deeper understanding of the relationship between sleep and mood, and make informed decisions about their health.\n\n          Sleep Ease uses an advanced algorithm to analyze sleep patterns and provide personalized recommendations for better sleep. It also keeps track of how well you slept, how stressed you were, and how active you were. This lets people see how their feelings change over time.\n\n          Whether you are struggling with insomnia, have a demanding job, or simply want to improve your sleep and mood, Sleep Ease is the perfect tool to help you achieve your goals. \n\nStart tracking your sleep and mood today with Sleep Ease, and take control of your well-being!\n",
+    fill="#000000",
+    font=("Yinmar Regular", 28 * -1)
+)
 
     canvas.create_text(
-        111.0,
-        734.0,
-        anchor="nw",
-        text="Bacsain,\nShan Allen",
-        fill="#000000",
-        font=("Inter Bold", 24 * -1)
-    )
-
-    canvas.create_text(
-        1007.0,
-        734.0,
-        anchor="nw",
-        text="Bacsain,\nShan Allen",
-        fill="#000000",
-        font=("Inter Bold", 24 * -1)
-    )
-
-    canvas.create_text(
-        335.0,
-        728.0,
-        anchor="nw",
-        text="Bacsain,\nShan Allen",
-        fill="#000000",
-        font=("Inter Bold", 24 * -1)
-    )
-
-    canvas.create_text(
-        559.0,
-        728.0,
-        anchor="nw",
-        text="Bacsain,\nShan Allen",
-        fill="#000000",
-        font=("Inter Bold", 24 * -1)
-    )
-
-    canvas.create_text(
-        783.0,
-        734.0,
-        anchor="nw",
-        text="Bacsain,\nShan Allen",
-        fill="#000000",
-        font=("Inter Bold", 24 * -1)
-    )
-
-    canvas.create_text(
-        377.0,
-        186.0,
-        anchor="nw",
-        text="Lalagay ba tayo about us or about app lang?",
-        fill="#000000",
-        font=("Inter Bold", 24 * -1)
-    )
-
-    canvas.create_rectangle(
-        73.0,
-        548.0,
-        275.0,
-        718.0,
-        fill="#D9D9D9",
-        outline="")
-
-    canvas.create_rectangle(
-        297.0,
-        548.0,
-        499.0,
-        718.0,
-        fill="#D9D9D9",
-        outline="")
-
-    canvas.create_rectangle(
         521.0,
-        548.0,
-        723.0,
-        718.0,
-        fill="#D9D9D9",
-        outline="")
-
-    canvas.create_rectangle(
-        745.0,
-        548.0,
-        947.0,
-        718.0,
-        fill="#D9D9D9",
-        outline="")
-
-    canvas.create_rectangle(
-        969.0,
-        548.0,
-        1171.0,
-        718.0,
-        fill="#D9D9D9",
-        outline="")
+        173.0,
+        anchor="nw",
+        text="Sleep Ease",
+        fill="#000000",
+        font=("WaitingfortheSunrise", 64 * -1)
+    )
     window.resizable(False, False)
     window.mainloop()
 
@@ -205,4 +120,4 @@ if __name__ == '__main__':
     window = Tk()
     window.geometry("1244x838")
     window.configure(bg = "#DEEAEE")
-    start(window, frame=window)
+    start(window, frame=window, phone='11')
