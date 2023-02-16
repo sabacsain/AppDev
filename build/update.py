@@ -225,13 +225,15 @@ def start(window, frame, phone):
         bd=0,
         bg="#FFFFFF",
         fg="#000716",
-        highlightthickness=0
+        highlightthickness=0,
+        font=("Inter Regular", 24 * -1),
+        justify="center"
     )
     entry_4.place(
         x=173.0,
-        y=491.0,
+        y=494.0,
         width=515.0,
-        height=49.0
+        height=47.0
     )
 
 

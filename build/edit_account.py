@@ -202,7 +202,8 @@ def start(window, frame, phone):
         bd=0,
         bg="#FFFFFF",
         fg="#000716",
-        highlightthickness=0
+        highlightthickness=0,
+        font=("Inter Regular", 16 * -1)
     )
     entry_1.place(
         x=362.0,
@@ -222,7 +223,8 @@ def start(window, frame, phone):
         bd=0,
         bg="#FFFFFF",
         fg="#000716",
-        highlightthickness=0
+        highlightthickness=0,
+        font=("Inter Regular", 16 * -1)
     )
     entry_2.place(
         x=362.0,
@@ -242,7 +244,8 @@ def start(window, frame, phone):
         bd=0,
         bg="#FFFFFF",
         fg="#000716",
-        highlightthickness=0
+        highlightthickness=0,
+        font=("Inter Regular", 16 * -1)
     )
     entry_3.place(
         x=362.0,
@@ -263,7 +266,8 @@ def start(window, frame, phone):
         bg="#FFFFFF",
         fg="#000716",
         highlightthickness=0,
-        show='*'
+        show='*',
+        font=("Inter Regular", 16 * -1)
     )
     entry_4.place(
         x=362.0,
@@ -284,6 +288,7 @@ def start(window, frame, phone):
         bg="#FFFFFF",
         fg="#000716",
         highlightthickness=0,
+        font=("Inter Regular", 16 * -1)
     )
     entry_5.place(
         x=537.0,
@@ -303,7 +308,8 @@ def start(window, frame, phone):
         bd=0,
         bg="#FFFFFF",
         fg="#000716",
-        highlightthickness=0
+        highlightthickness=0,
+        font=("Inter Regular", 16 * -1)
     )
     entry_6.place(
         x=718.0,

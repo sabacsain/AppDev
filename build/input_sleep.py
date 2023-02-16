@@ -151,13 +151,15 @@ def start(window, frame, phone):
         bd=0,
         bg="#FFFFFF",
         fg="#000716",
-        highlightthickness=0
+        highlightthickness=0,
+        font=("Inter Regular", 24 * -1),
+	    justify = "center"
     )
     entry_1.place(
         x=174.0,
-        y=445.0,
+        y=448.0,
         width=515.0,
-        height=49.0
+        height=46.0
     )
 
     image_image_2 = PhotoImage(

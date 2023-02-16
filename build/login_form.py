@@ -67,7 +67,9 @@ def start(window, frame):
         bd=0,
         bg="#FFFFFF",
         fg="#000716",
-        highlightthickness=0
+        highlightthickness=0,
+        font=("Inter Regular", 18 * -1),
+	    justify = "center"
     )
     phone_number_entry.place(
         x=236.0,
@@ -88,7 +90,9 @@ def start(window, frame):
         bg="#FFFFFF",
         fg="#000716",
         highlightthickness=0,
-        show='*'
+        show='*',
+        font=("Inter Regular", 18 * -1),
+	    justify = "center"
     )
     password_entry.place(
         x=235.0,

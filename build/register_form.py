@@ -249,7 +249,8 @@ def start(window, frame):
         bd=0,
         bg="#FFFFFF",
         fg="#000716",
-        highlightthickness=0
+        highlightthickness=0,
+        font=("Inter Regular", 16 * -1)
     )
     fname.place(
         x=211.0,
@@ -269,7 +270,8 @@ def start(window, frame):
         bd=0,
         bg="#FFFFFF",
         fg="#000716",
-        highlightthickness=0
+        highlightthickness=0,
+        font=("Inter Regular", 16 * -1)
     )
     phone_number.place(
         x=211.0,
@@ -290,7 +292,8 @@ def start(window, frame):
         bg="#FFFFFF",
         fg="#000716",
         highlightthickness=0,
-        show="*"
+        show="*",
+        font=("Inter Regular", 16 * -1)
     )
     password.place(
         x=211.0,
@@ -310,7 +313,8 @@ def start(window, frame):
         bd=0,
         bg="#FFFFFF",
         fg="#000716",
-        highlightthickness=0
+        highlightthickness=0,
+        font=("Inter Regular", 16 * -1)
     )
     lname.place(
         x=386.0,
@@ -330,7 +334,8 @@ def start(window, frame):
         bd=0,
         bg="#FFFFFF",
         fg="#000716",
-        highlightthickness=0
+        highlightthickness=0,
+        font=("Inter Regular", 16 * -1)
     )
     birthday.place(
         x=567.0,
