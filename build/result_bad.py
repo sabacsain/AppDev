@@ -36,11 +36,11 @@ def start(window, frame, phone):
     canvas.place(x = 0, y = 0)
     canvas.create_text(
         93.0,
-        716.0,
+        760.0,
         anchor="nw",
         text="Do you want to see your weekly or monthly report?",
         fill="#000000",
-        font=("Inter Bold", 24 * -1)
+        font=("Inter Bold",  24 * -1, 'bold')
     )
 
     weekly_button_image = PhotoImage(
@@ -54,7 +54,8 @@ def start(window, frame, phone):
     )
     weekly_button.place(
         x=717.0,
-        y=701.0,
+        # y=701.0,
+        y = 735.0,
         width=219.0,
         height=78.0
     )
@@ -70,7 +71,8 @@ def start(window, frame, phone):
     )
     monthly_button.place(
         x=960.0,
-        y=701.0,
+        # y=701.0,
+        y = 735.0,
         width=219.0,
         height=78.0
     )
@@ -81,16 +83,16 @@ def start(window, frame, phone):
         anchor="nw",
         text="get more sleep with these tips.",
         fill="#000000",
-        font=("Inter SemiBold", 36 * -1)
+        font=("Inter SemiBold", 36 * -1, 'bold')
     )
 
     canvas.create_text(
         163.0,
         171.0,
         anchor="nw",
-        text= user_profile[0][0] + ",",
+        text= str(user_profile[0][0]).upper() + ",",
         fill="#54899E",
-        font=("Inter Bold", 40 * -1)
+        font=("Inter Bold", 40 * -1, 'bold')
     )
 
     image_image_1 = PhotoImage(
