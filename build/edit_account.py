@@ -79,13 +79,25 @@ def start(window, frame, phone):
         height=84.0
     )
 
-    canvas.create_rectangle(
-        310.0,
-        283.0,
-        939.0,
-        608.0,
-        fill="#92A8D1",
-        outline="")
+    # canvas.create_rectangle(
+    #     310.0,
+    #     283.0,
+    #     939.0,
+    #     608.0,
+    #     fill="#92A8D1",
+    #     outline="")
+    
+    rectangle_image = PhotoImage(                                       # Rounded Rectangle
+        file=relative_to_assets("rectangle1.png"))
+    rectangle = canvas.create_image(
+        628,
+        450,
+        # 188.0,
+        # 369.0,
+        # 817.0,
+        # 718.0,
+        image=rectangle_image
+    )
 
     canvas.create_text(
         352.0,

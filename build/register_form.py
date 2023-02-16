@@ -53,13 +53,24 @@ def start(window, frame):
         font=("Inter Bold", 36 * -1)
     )
 
-    canvas.create_rectangle(
-        159.0,
-        315.0,
-        788.0,
-        721.0,
-        fill="#92A8D1",
-        outline="")
+    # canvas.create_rectangle(
+    #     159.0,
+    #     315.0,
+    #     788.0,
+    #     721.0,
+    #     fill="#92A8D1",
+    #     outline="")
+    rectangle_image = PhotoImage(
+        file=relative_to_assets("rectangle.png"))
+    rectangle = canvas.create_image(
+        480,
+        520,
+        # 188.0,
+        # 369.0,
+        # 817.0,
+        # 718.0,
+        image=rectangle_image
+    )
 
     canvas.create_text(
         201.0,

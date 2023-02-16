@@ -32,13 +32,27 @@ def start(window, frame):
     )
 
     canvas.place(x = 0, y = 0)
-    canvas.create_rectangle(
-        188.0,
-        369.0,
-        817.0,
-        718.0,
-        fill="#92A8D1",
-        outline="")
+
+    # canvas.create_rectangle(
+    #     188.0,
+    #     369.0,
+    #     817.0,
+    #     718.0,
+    #     fill="#92A8D1",
+    #     outline="")
+    
+    rectangle_image = PhotoImage(
+        file=relative_to_assets("rectangle.png"))
+    rectangle = canvas.create_image(
+        506,
+        550,
+        # 188.0,
+        # 369.0,
+        # 817.0,
+        # 718.0,
+        image=rectangle_image
+    )
+
 
     login_button_image = PhotoImage(
         file=relative_to_assets("button_1.png"))
@@ -201,6 +215,7 @@ def start(window, frame):
     #     width=127.0,
     #     height=29.0
     # )
+
 
     hoverRegister = PhotoImage(file=relative_to_assets("register_LoginForm.png"))
     hoverLogin = PhotoImage(file=relative_to_assets("login_LoginForm.png"))
