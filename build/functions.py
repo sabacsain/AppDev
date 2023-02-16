@@ -578,10 +578,10 @@ def create_weekly_df(window, month, year, phone):
 # Create a bar graph using matplotlib
 def weekly_bar_graph(sleep_records):
     plt.close()
-    fig = plt.figure(figsize=(4.5, 4.5))
+    fig = plt.figure(figsize=(6, 6))
     ax = fig.add_subplot(1,1,1)
     ax.bar(sleep_records["Week"], sleep_records["Ave"])
-    ax.set_title("Bar Graph")
+    ax.set_title("Sleep Ease Trend Analysis: \nVisualizing Your Sleep Patterns Over Time")
     ax.set_xlabel("Weeks")
     ax.set_ylabel("Average Sleep")
 
@@ -595,9 +595,9 @@ def weekly_bar_graph(sleep_records):
 # Create a line graph using matplotlib
 def weekly_line_graph(sleep_records):
     plt.close()
-    fig, ax = plt.subplots(figsize=(4.5, 4.5))
+    fig, ax = plt.subplots(figsize=(6, 6))
     ax.plot(sleep_records["Week"], sleep_records["Ave"])
-    ax.set_title("Line Graph")
+    ax.set_title("Sleep Ease Trend Analysis: \nVisualizing Your Sleep Patterns Over Time")
     ax.set_xlabel("Weeks")
     ax.set_ylabel("Average Sleep")
     plt.show()
@@ -737,7 +737,7 @@ def monthly_line_graph(sleep_records):
                 sleep_records["OCT"],
                 sleep_records["NOV"],
                 sleep_records["DEC"]])
-        ax.set_title("LINE GRAPH")
+        ax.set_title("Sleep Ease Trend Analysis: \nVisualizing Your Sleep Patterns Over Time")
         ax.set_xlabel("MONTHS")
         ax.set_ylabel("AVERAGE SLEEP")
         plt.show()
@@ -768,7 +768,7 @@ def monthly_bar_graph(sleep_records):
             sleep_records.loc[0, "NOV"],
             sleep_records.loc[0, "DEC"],
         ])
-    ax.set_title("BAR GRAPH")
+    ax.set_title("Sleep Ease Trend Analysis: \nVisualizing Your Sleep Patterns Over Time")
     ax.set_xlabel("MONTHS")
     ax.set_ylabel("AVERAGE SLEEP")
 
