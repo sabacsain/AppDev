@@ -37,9 +37,9 @@ def start(window, frame, phone):
         73.0,
         346.0,
         anchor="nw",
-        text="HELLO, " + user_profile[0][0] + "!",
+        text="HELLO, " + str(user_profile[0][0]).upper() + "!",
         fill="#1E343D",
-        font=("Inter Bold", 50 * -1)
+        font=("Inter Bold", 50 * -1, 'bold')
     )
 
     logout_button_image = PhotoImage(
