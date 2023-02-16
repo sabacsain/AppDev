@@ -393,8 +393,7 @@ def start(window, frame, phone):
         height=34.0
     )
 
-
-    def callContact():
+    def callContact(new_phone):
         try:
             new_phone
         except:
@@ -410,7 +409,7 @@ def start(window, frame, phone):
         image=button_image_7,
         borderwidth=0,
         highlightthickness=0,
-        command=callContact,
+        command= lambda: callContact(new_phone),
         relief="flat"
     )
     contact_button.place(
