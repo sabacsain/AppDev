@@ -21,6 +21,7 @@ def relative_to_assets(path: str) -> Path:
 def start(window, frame, phone):
     window = window
     frame = frame
+    user_profile = functions.get_user_profile(phone)
 
     canvas = Canvas(
         window,
@@ -62,7 +63,7 @@ def start(window, frame, phone):
         164.0,
         247.0,
         anchor="nw",
-        text="[NAME],",
+        text= user_profile[0][0] + ",",         # Change to first name 
         fill="#54899E",
         font=("Inter Bold", 40 * -1)
     )
@@ -200,4 +201,4 @@ if __name__ == '__main__':
     window = Tk()
     window.geometry("1244x838")
     window.configure(bg = "#DEEAEE")
-    start(window, frame=window)
+    start(window, frame=window, phone='11')

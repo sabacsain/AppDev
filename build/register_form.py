@@ -17,8 +17,6 @@ ASSETS_PATH = OUTPUT_PATH / Path(r"assets/frame1")
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
-def nor():
-    print("norman")
 def start(window, frame):
     window = window
     frame = frame

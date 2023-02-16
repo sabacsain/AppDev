@@ -318,7 +318,7 @@ def start(window, frame, phone):
     
 
     def delete_account_and_records():
-        functions.delete_account_and_records(window, new_phone),
+        functions.delete_account_and_records(window, frame, new_phone),
 
     delete_button_image = PhotoImage(
         file=relative_to_assets("button_4.png"))
