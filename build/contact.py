@@ -96,108 +96,14 @@ def start(window, frame, phone):
         image=image_image_2
     )
 
-    canvas.create_text(
-        178.0,
-        247.0,
-        anchor="nw",
-        text="Contact here....................................",
-        fill="#000000",
-        font=("Inter Bold", 24 * -1)
+    image_image_3 = PhotoImage(
+        file=relative_to_assets("image_3.png"))
+    image_3 = canvas.create_image(
+        620,
+        485,
+        image=image_image_3
     )
-
-    canvas.create_text(
-        111.0,
-        734.0,
-        anchor="nw",
-        text="Bacsain,\nShan Allen",
-        fill="#000000",
-        font=("Inter Bold", 24 * -1)
-    )
-
-    canvas.create_text(
-        1007.0,
-        734.0,
-        anchor="nw",
-        text="Bacsain,\nShan Allen",
-        fill="#000000",
-        font=("Inter Bold", 24 * -1)
-    )
-
-    canvas.create_text(
-        335.0,
-        728.0,
-        anchor="nw",
-        text="Bacsain,\nShan Allen",
-        fill="#000000",
-        font=("Inter Bold", 24 * -1)
-    )
-
-    canvas.create_text(
-        559.0,
-        728.0,
-        anchor="nw",
-        text="Bacsain,\nShan Allen",
-        fill="#000000",
-        font=("Inter Bold", 24 * -1)
-    )
-
-    canvas.create_text(
-        783.0,
-        734.0,
-        anchor="nw",
-        text="Bacsain,\nShan Allen",
-        fill="#000000",
-        font=("Inter Bold", 24 * -1)
-    )
-
-    canvas.create_text(
-        377.0,
-        186.0,
-        anchor="nw",
-        text="Lalagay ba tayo about us or about app lang?",
-        fill="#000000",
-        font=("Inter Bold", 24 * -1)
-    )
-
-    canvas.create_rectangle(
-        73.0,
-        548.0,
-        275.0,
-        718.0,
-        fill="#D9D9D9",
-        outline="")
-
-    canvas.create_rectangle(
-        297.0,
-        548.0,
-        499.0,
-        718.0,
-        fill="#D9D9D9",
-        outline="")
-
-    canvas.create_rectangle(
-        521.0,
-        548.0,
-        723.0,
-        718.0,
-        fill="#D9D9D9",
-        outline="")
-
-    canvas.create_rectangle(
-        745.0,
-        548.0,
-        947.0,
-        718.0,
-        fill="#D9D9D9",
-        outline="")
-
-    canvas.create_rectangle(
-        969.0,
-        548.0,
-        1171.0,
-        718.0,
-        fill="#D9D9D9",
-        outline="")
+    
     window.resizable(False, False)
     window.mainloop()
 
@@ -205,4 +111,4 @@ if __name__ == '__main__':
     window = Tk()
     window.geometry("1244x838")
     window.configure(bg = "#DEEAEE")
-    start(window, frame=window)
+    start(window, frame=window, phone='11')
