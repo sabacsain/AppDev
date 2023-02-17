@@ -34,24 +34,24 @@ def start(window, frame, phone):
     )
 
     canvas.place(x = 0, y = 0)
-    canvas.create_text(
-        93.0,
-        #708.0,
-        745.0,
-        anchor="nw",
-        text="Do you want to see your weekly or monthly report?",
-        fill="#000000",
-        font=("Inter Bold", 24 * -1, 'bold')
-    )
+    # canvas.create_text(
+    #     93.0,
+    #     #708.0,
+    #     745.0,
+    #     anchor="nw",
+    #     text="Do you want to see your weekly or monthly report?",
+    #     fill="#000000",
+    #     font=("Inter Bold", 24 * -1, 'bold')
+    # )
 
-    canvas.create_text(
-        163.0,
-        227.0,
-        anchor="nw",
-        text="you’ve done a wonderful job up to this point.",
-        fill="#000000",
-        font=("Inter SemiBold", 36 * -1,'bold')
-    )
+    # canvas.create_text(
+    #     163.0,
+    #     227.0,
+    #     anchor="nw",
+    #     text="you’ve done a wonderful job up to this point.",
+    #     fill="#000000",
+    #     font=("Inter SemiBold", 36 * -1,'bold')
+    # )
 
     canvas.create_text(
         163.0,
@@ -130,7 +130,7 @@ def start(window, frame, phone):
         file=relative_to_assets("image_3.png"))
     image_3 = canvas.create_image(
         629.0,
-        501.0,
+        527.0,
         image=image_image_3
     )
 
@@ -166,6 +166,22 @@ def start(window, frame, phone):
         y = 720.0,
         width=219.0,
         height=78.0
+    )
+
+    image_image_8 = PhotoImage(
+        file=relative_to_assets("image_12.png"))
+    image_8 = canvas.create_image(
+        628.0,
+        270.0,
+        image=image_image_8
+    )
+
+    image_image_10 = PhotoImage(
+        file=relative_to_assets("image_10.png"))
+    image_10 = canvas.create_image(
+        360,
+        780,
+        image=image_image_10
     )
     
     hoverWeekly = PhotoImage(file=relative_to_assets("weekly.png"))

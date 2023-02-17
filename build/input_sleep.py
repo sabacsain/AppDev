@@ -34,14 +34,14 @@ def start(window, frame, phone):
     )
 
     canvas.place(x = 0, y = 0)
-    canvas.create_text(
-        164.0,
-        320.0,
-        anchor="nw",
-        text="how many hours did you sleep today?",
-        fill="#000000",
-        font=("Inter SemiBold", 36 * -1, 'bold')
-    )
+    # canvas.create_text(
+    #     164.0,
+    #     320.0,
+    #     anchor="nw",
+    #     text="how many hours did you sleep today?",
+    #     fill="#000000",
+    #     font=("Inter SemiBold", 36 * -1, 'bold')
+    # )
 
     enter_button_image = PhotoImage(
         file=relative_to_assets("button_1.png"))
@@ -176,6 +176,14 @@ def start(window, frame, phone):
         966.0,
         659.0,
         image=image_image_3
+    )
+
+    image_image_4 = PhotoImage(
+        file=relative_to_assets("image_4.png"))
+    image_4 = canvas.create_image(
+        500.0,
+        370.0,
+        image=image_image_4
     )
 
 

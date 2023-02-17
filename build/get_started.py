@@ -105,23 +105,23 @@ def start(window, frame, phone):
         height=78.0
     )
 
-    canvas.create_text(
-        128.0,
-        252.0,
-        anchor="nw",
-        text="Let's track your sleep habits!",
-        fill="#000000",
-        font=("Inter SemiBold", 36 * -1)
-    )
+    # canvas.create_text(
+    #     128.0,
+    #     252.0,
+    #     anchor="nw",
+    #     text="Let's track your sleep habits!",
+    #     fill="#000000",
+    #     font=("Inter SemiBold", 36 * -1)
+    # )
 
-    canvas.create_text(
-        128.0,
-        393.0,
-        anchor="nw",
-        text="You prioritize your health,\nThen start sleeping at the proper time!",
-        fill="#000000",
-        font=("Inter SemiBold", 36 * -1, 'bold')
-    )
+    # canvas.create_text(
+    #     128.0,
+    #     393.0,
+    #     anchor="nw",
+    #     text="You prioritize your health,\nThen start sleeping at the proper time!",
+    #     fill="#000000",
+    #     font=("Inter SemiBold", 36 * -1, 'bold')
+    # )
 
     # button_image_5 = PhotoImage(
     #     file=relative_to_assets("button_5.png"))
@@ -145,6 +145,14 @@ def start(window, frame, phone):
         127.0,
         76.0,
         image=image_image_2
+    )
+
+    image_image_4 = PhotoImage(
+        file=relative_to_assets("image_4.png"))
+    image_4 = canvas.create_image(
+        580.0,
+        380.0,
+        image=image_image_4
     )
 
     hoverGetStarted = PhotoImage(file=relative_to_assets("getStarted.png"))

@@ -34,14 +34,14 @@ def start(window, frame, phone):
     )
 
     canvas.place(x = 0, y = 0)
-    canvas.create_text(
-        112.0,
-        250.0,
-        anchor="nw",
-        text="Enter date range:",
-        fill="#000000",
-        font=("Inter Bold", 36 * -1, 'bold')
-    )
+    # canvas.create_text(
+    #     112.0,
+    #     250.0,
+    #     anchor="nw",
+    #     text="Enter date range:",
+    #     fill="#000000",
+    #     font=("Inter Bold", 36 * -1, 'bold')
+    # )
 
     generate_button_image = PhotoImage(
         file=relative_to_assets("button_1.png"))
@@ -59,14 +59,14 @@ def start(window, frame, phone):
         height=78.0
     )
 
-    canvas.create_text(
-        600.0,
-        361.0,
-        anchor="nw",
-        text="YEAR",
-        fill="#000000",
-        font=("Inter Bold", 24 * -1, 'bold')
-    )
+    # canvas.create_text(
+    #     600.0,
+    #     361.0,
+    #     anchor="nw",
+    #     text="YEAR",
+    #     fill="#000000",
+    #     font=("Inter Bold", 24 * -1, 'bold')
+    # )
 
     image_image_3 = PhotoImage(
         file=relative_to_assets("month.png"))
@@ -185,6 +185,15 @@ def start(window, frame, phone):
         image=image_image_2
     )
 
+    image_image_7 = PhotoImage(
+        file=relative_to_assets("image_11.png"))
+    image_7 = canvas.create_image(
+        400.0,
+        320.0,
+        image=image_image_7
+    )
+
+
     def cbx_year_click(event):
         global year
         year = cbx_year.get()
@@ -237,4 +246,4 @@ if __name__ == '__main__':
     window = Tk()
     window.geometry("1244x838")
     window.configure(bg = "#DEEAEE")
-    start(window, frame=window)
+    start(window, frame=window, phone='11')

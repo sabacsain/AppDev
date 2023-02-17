@@ -35,23 +35,23 @@ def start(window, frame):
     )
 
     canvas.place(x = 0, y = 0)
-    canvas.create_text(
-        78.0,
-        203.0,
-        anchor="nw",
-        text="HOW DID YOUR SLEEP GO?",
-        fill="#000000",
-        font=("Inter Medium", 40 * -1)
-    )
+    # canvas.create_text(
+    #     78.0,
+    #     203.0,
+    #     anchor="nw",
+    #     text="HOW DID YOUR SLEEP GO?",
+    #     fill="#000000",
+    #     font=("Inter Medium", 40 * -1)
+    # )
 
-    canvas.create_text(
-        78.0,
-        252.0,
-        anchor="nw",
-        text="WELCOME!",
-        fill="#000000",
-        font=("Inter Bold", 36 * -1)
-    )
+    # canvas.create_text(
+    #     78.0,
+    #     252.0,
+    #     anchor="nw",
+    #     text="WELCOME!",
+    #     fill="#000000",
+    #     font=("Inter Bold", 36 * -1)
+    # )
 
     # canvas.create_rectangle(
     #     159.0,
@@ -177,14 +177,14 @@ def start(window, frame):
         font=("Inter Bold", 17 * -1)
     )
 
-    canvas.create_text(
-        78.0,
-        780.0,
-        anchor="nw",
-        text="Have an existing account?",
-        fill="#000000",
-        font=("Inter Regular", 25 * -1)
-    )
+    # canvas.create_text(
+    #     78.0,
+    #     780.0,
+    #     anchor="nw",
+    #     text="Have an existing account?",
+    #     fill="#000000",
+    #     font=("Inter Regular", 25 * -1)
+    # )
 
     register_button_image = PhotoImage(
         file=relative_to_assets("button_3.png"))
@@ -362,6 +362,14 @@ def start(window, frame):
         682.0,
         426.0008850097656,
         image=image_image_1
+    )
+
+    image_image_11 = PhotoImage(
+        file=relative_to_assets("image_11.png"))
+    image_11 = canvas.create_image(
+        465.0,
+        260.,
+        image=image_image_11
     )
 
     hoverRegister = PhotoImage(file=relative_to_assets("register_RegisterForm.png"))

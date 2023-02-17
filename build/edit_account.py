@@ -40,6 +40,7 @@ def start(window, frame, phone):
     )
 
     canvas.place(x = 0, y = 0)
+
     image_image_1 = PhotoImage(
         file=relative_to_assets("image_1.png"))
     image_1 = canvas.create_image(
@@ -48,14 +49,21 @@ def start(window, frame, phone):
         image=image_image_1
     )
 
-    canvas.create_text(
-        0.0,
-        199.0,
-        anchor="nw",
-        text="Edit Account Details",
-        fill="#1E343D",
-        font=("Inter Bold", 50 * -1)
+    image_image_8 = PhotoImage(
+        file=relative_to_assets("image_8.png"))
+    image_8 = canvas.create_image(
+        642.0,
+        230.0,
+        image=image_image_8
     )
+    # canvas.create_text(
+    #     0.0,
+    #     199.0,
+    #     anchor="nw",
+    #     text="Edit Account Details",
+    #     fill="#1E343D",
+    #     font=("Inter Bold", 50 * -1)
+    # )
 
     # updates phone after updating profile
     def update_profile():

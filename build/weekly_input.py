@@ -35,14 +35,14 @@ def start(window, frame, phone):
     )
 
     canvas.place(x = 0, y = 0)
-    canvas.create_text(
-        112.0,
-        250.0,
-        anchor="nw",
-        text="Enter date range:",
-        fill="#000000",
-        font=("Inter Bold", 36 * -1, 'bold')
-    )
+    # canvas.create_text(
+    #     112.0,
+    #     250.0,
+    #     anchor="nw",
+    #     text="Enter date range:",
+    #     fill="#000000",
+    #     font=("Inter Bold", 36 * -1, 'bold')
+    # )
 
     generate_button_image = PhotoImage(
         file=relative_to_assets("button_1.png"))
@@ -60,23 +60,23 @@ def start(window, frame, phone):
         height=78.0
     )
 
-    canvas.create_text(
-        491.0,
-        412.0,
-        anchor="nw",
-        text="MONTH",
-        fill="#000000",
-        font=("Inter Bold", 24 * -1, 'bold')
-    )
+    # canvas.create_text(
+    #     491.0,
+    #     412.0,
+    #     anchor="nw",
+    #     text="MONTH",
+    #     fill="#000000",
+    #     font=("Inter Bold", 24 * -1, 'bold')
+    # )
 
-    canvas.create_text(
-        704.0,
-        412.0,
-        anchor="nw",
-        text="YEAR",
-        fill="#000000",
-        font=("Inter Bold", 24 * -1, 'bold')
-    )
+    # canvas.create_text(
+    #     704.0,
+    #     412.0,
+    #     anchor="nw",
+    #     text="YEAR",
+    #     fill="#000000",
+    #     font=("Inter Bold", 24 * -1, 'bold')
+    # )
 
     # canvas.create_rectangle(
     #     872.0,
@@ -250,6 +250,15 @@ def start(window, frame, phone):
     #     font=("Inter ExtraLight", 25 * -1)
     # )
 
+
+    image_image_7 = PhotoImage(
+        file=relative_to_assets("image_7.png"))
+    image_7 = canvas.create_image(
+        440.0,
+        340.0,
+        image=image_image_7
+    )
+
     image_image_2 = PhotoImage(
         file=relative_to_assets("image_2.png"))
     image_2 = canvas.create_image(
@@ -339,4 +348,4 @@ if __name__ == '__main__':
     window = Tk()
     window.geometry("1244x838")
     window.configure(bg = "#DEEAEE")
-    start(window, frame=window)
+    start(window, frame=window, phone='11')

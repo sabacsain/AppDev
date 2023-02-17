@@ -35,6 +35,22 @@ def start(window, frame, phone):
     )
 
     canvas.place(x = 0, y = 0)
+
+    image_image_6 = PhotoImage(
+        file=relative_to_assets("image_6.png"))
+    image_6 = canvas.create_image(
+        250,
+        215.0,
+        image=image_image_6
+    )
+
+    image_image_7 = PhotoImage(
+        file=relative_to_assets("image_5.png"))
+    image_7 = canvas.create_image(
+        380,
+        490.0,
+        image=image_image_7
+    )
     
     update_button_image = PhotoImage(
         file=relative_to_assets("button_1.png"))
@@ -52,14 +68,14 @@ def start(window, frame, phone):
         height=86.0
     )
 
-    canvas.create_text(
-        183.0,
-        200,
-        anchor="nw",
-        text="DATE",
-        fill="#000000",
-        font=("Inter SemiBold", 36 * -1)
-    )
+    # canvas.create_text(
+    #     183.0,
+    #     200,
+    #     anchor="nw",
+    #     text="DATE",
+    #     fill="#000000",
+    #     font=("Inter SemiBold", 36 * -1)
+    # )
 
         # Add Calendar
     cal = Calendar(window, selectmode = 'day',
@@ -89,14 +105,14 @@ def start(window, frame, phone):
     #     font=("Inter SemiBold", 36 * -1)
     # )
 
-    canvas.create_text(
-        183.0,
-        460.0,
-        anchor="nw",
-        text="HOURS OF SLEEP",
-        fill="#000000",
-        font=("Inter SemiBold", 36 * -1)
-    )
+    # canvas.create_text(
+    #     183.0,
+    #     460.0,
+    #     anchor="nw",
+    #     text="HOURS OF SLEEP",
+    #     fill="#000000",
+    #     font=("Inter SemiBold", 36 * -1)
+    # )
 
     image_image_1 = PhotoImage(
         file=relative_to_assets("image_1.png"))
@@ -217,8 +233,8 @@ def start(window, frame, phone):
     entry_image_4 = PhotoImage(
         file=relative_to_assets("entry_4.png"))
     entry_bg_4 = canvas.create_image(
-        430.5,
-        540.0,
+        447.5,
+        550.0,
         image=entry_image_4
     )
     entry_4 = Entry(
@@ -230,8 +246,8 @@ def start(window, frame, phone):
         justify="center"
     )
     entry_4.place(
-        x=173.0,
-        y=517.0,
+        x=190.0,
+        y=527.0,
         width=515.0,
         height=47.0
     )

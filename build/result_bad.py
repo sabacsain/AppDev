@@ -32,16 +32,16 @@ def start(window, frame, phone):
         highlightthickness = 0,
         relief = "ridge"
     )
-
     canvas.place(x = 0, y = 0)
-    canvas.create_text(
-        93.0,
-        760.0,
-        anchor="nw",
-        text="Do you want to see your weekly or monthly report?",
-        fill="#000000",
-        font=("Inter Bold",  24 * -1, 'bold')
-    )
+
+    # canvas.create_text(
+    #     93.0,
+    #     760.0,
+    #     anchor="nw",
+    #     text="Do you want to see your weekly or monthly report?",
+    #     fill="#000000",
+    #     font=("Inter Bold",  24 * -1, 'bold')
+    # )
 
     weekly_button_image = PhotoImage(
         file=relative_to_assets("button_1.png"))
@@ -77,14 +77,14 @@ def start(window, frame, phone):
         height=78.0
     )
 
-    canvas.create_text(
-        163.0,
-        221.0,
-        anchor="nw",
-        text="get more sleep with these tips.",
-        fill="#000000",
-        font=("Inter SemiBold", 36 * -1, 'bold')
-    )
+    # canvas.create_text(
+    #     163.0,
+    #     221.0,
+    #     anchor="nw",
+    #     text="get more sleep with these tips.",
+    #     fill="#000000",
+    #     font=("Inter SemiBold", 36 * -1, 'bold')
+    # )
 
     canvas.create_text(
         163.0,
@@ -159,50 +159,50 @@ def start(window, frame, phone):
         image=image_image_2
     )
 
-    canvas.create_text(
-        327.0,
-        308.0,
-        anchor="nw",
-        text="Limit day time naps.",
-        fill="#000000",
-        font=("Inter Regular", 24 * -1)
-    )
+    # canvas.create_text(
+    #     327.0,
+    #     308.0,
+    #     anchor="nw",
+    #     text="Limit day time naps.",
+    #     fill="#000000",
+    #     font=("Inter Regular", 24 * -1)
+    # )
 
-    canvas.create_text(
-        324.0,
-        395.0,
-        anchor="nw",
-        text="Include physical activity in your daily routine.",
-        fill="#000000",
-        font=("Inter Regular", 24 * -1)
-    )
+    # canvas.create_text(
+    #     324.0,
+    #     395.0,
+    #     anchor="nw",
+    #     text="Include physical activity in your daily routine.",
+    #     fill="#000000",
+    #     font=("Inter Regular", 24 * -1)
+    # )
 
-    canvas.create_text(
-        327.0,
-        486.0,
-        anchor="nw",
-        text="Manage worries.",
-        fill="#000000",
-        font=("Inter Regular", 24 * -1)
-    )
+    # canvas.create_text(
+    #     327.0,
+    #     486.0,
+    #     anchor="nw",
+    #     text="Manage worries.",
+    #     fill="#000000",
+    #     font=("Inter Regular", 24 * -1)
+    # )
 
-    canvas.create_text(
-        327.0,
-        580.0,
-        anchor="nw",
-        text="Create a restful environment.",
-        fill="#000000",
-        font=("Inter Regular", 24 * -1)
-    )
+    # canvas.create_text(
+    #     327.0,
+    #     580.0,
+    #     anchor="nw",
+    #     text="Create a restful environment.",
+    #     fill="#000000",
+    #     font=("Inter Regular", 24 * -1)
+    # )
 
-    canvas.create_text(
-        327.0,
-        670.0,
-        anchor="nw",
-        text="Pay attention to what you eat and drink.",
-        fill="#000000",
-        font=("Inter Regular", 24 * -1)
-    )
+    # canvas.create_text(
+    #     327.0,
+    #     670.0,
+    #     anchor="nw",
+    #     text="Pay attention to what you eat and drink.",
+    #     fill="#000000",
+    #     font=("Inter Regular", 24 * -1)
+    # )
 
     image_image_3 = PhotoImage(
         file=relative_to_assets("image_3.png"))
@@ -242,6 +242,31 @@ def start(window, frame, phone):
         265.0,
         679.0,
         image=image_image_7
+    )
+
+
+    image_image_8 = PhotoImage(
+        file=relative_to_assets("image_8.png"))
+    image_8 = canvas.create_image(
+        535.0,
+        250.0,
+        image=image_image_8
+    )
+
+    image_image_9 = PhotoImage(
+        file=relative_to_assets("image_9.png"))
+    image_9 = canvas.create_image(
+        670,
+        500,
+        image=image_image_9
+    )
+
+    image_image_10 = PhotoImage(
+        file=relative_to_assets("image_10.png"))
+    image_10 = canvas.create_image(
+        360,
+        780,
+        image=image_image_10
     )
     
     hoverWeekly = PhotoImage(file=relative_to_assets("weekly.png"))
