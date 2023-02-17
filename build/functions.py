@@ -89,76 +89,76 @@ def register(window,frame,fname_entry,lname_entry,phone_entry,birthday_entry,pas
     lname = lname_entry.get().upper()
     phone = phone_entry.get().upper()
     birthday = birthday_entry.get()
+
+    if not fname or not lname or not phone or not birthday or (gender== None) :
+        messagebox.showerror("Error", "Please satisfy all the fields")
+        return 
+    
     password = password_entry.get().encode()
     if not password: messagebox.showwarning('Password Error', 'Please input a password!'); return
     password = hashlib.md5(password).hexdigest()
     
-    if not fname or not lname or not phone or not birthday or (gender== None) :
-        messagebox.showerror("Error", "Please satisfy all the fields")
-        return 
+    try:
+        conn = sqlite3.connect('sleep_database.db')
+        c = conn.cursor()
+        
+        #CREATE TABLE IF DATABASE DOESNT EXIST
+        c.execute("""CREATE TABLE IF NOT EXISTS accounts (
+            FNAME text,
+            LNAME text,
+            SEX text,
+            PHONE text,
+            BIRTHDAY text,
+            PASSWORD text )""")
+        conn.commit()
 
-    else:
-        try:
-            conn = sqlite3.connect('sleep_database.db')
-            c = conn.cursor()
-            
-            #CREATE TABLE IF DATABASE DOESNT EXIST
-            c.execute("""CREATE TABLE IF NOT EXISTS accounts (
-                FNAME text,
-                LNAME text,
-                SEX text,
-                PHONE text,
-                BIRTHDAY text,
-                PASSWORD text )""")
+        #CREATE sleep_tracker TABLE IF DATABASE DOESNT EXIST
+        c.execute("""CREATE TABLE IF NOT EXISTS sleep_tracker (
+            PHONE text,
+            SLEEP FLOAT,
+            DATE text,
+            WEEK INT,
+            DAY INT
+            )""")
+
+
+        #check if phone number is already taken
+        c.execute("SELECT * FROM accounts where (PHONE=?)",[phone])
+        accounts = c.fetchall()
+
+        if(len(accounts)!=0):
+            messagebox.showerror("Error","Entered phone number is already taken. Try using another number or try logging in.")
+            conn.commit()
+            conn.close()      
+        
+        else:
+            c.execute("INSERT into accounts VALUES (:FNAME, :LNAME, :SEX, :PHONE, :BIRTHDAY, :PASSWORD)",
+                {
+                    "FNAME": fname,
+                    "LNAME": lname,
+                    "SEX": gender,
+                    "PHONE": phone,
+                    "BIRTHDAY": birthday,
+                    "PASSWORD": password
+                }
+            )
+
+            messagebox.showinfo("Registration","Congratulations! You have successfully registered!")
             conn.commit()
 
-            #CREATE sleep_tracker TABLE IF DATABASE DOESNT EXIST
-            c.execute("""CREATE TABLE IF NOT EXISTS sleep_tracker (
-                PHONE text,
-                SLEEP FLOAT,
-                DATE text,
-                WEEK INT,
-                DAY INT
-                )""")
-
-
-            #check if phone number is already taken
-            c.execute("SELECT * FROM accounts where (PHONE=?)",[phone])
+            #this is to see if record has been added to the database. delete laturrr
+            c.execute("SELECT * FROM accounts")
             accounts = c.fetchall()
+            print(accounts)
 
-            if(len(accounts)!=0):
-                messagebox.showerror("Error","Entered phone number is already taken. Try using another number or try logging in.")
-                conn.commit()
-                conn.close()      
-            
-            else:
-                c.execute("INSERT into accounts VALUES (:FNAME, :LNAME, :SEX, :PHONE, :BIRTHDAY, :PASSWORD)",
-                    {
-                        "FNAME": fname,
-                        "LNAME": lname,
-                        "SEX": gender,
-                        "PHONE": phone,
-                        "BIRTHDAY": birthday,
-                        "PASSWORD": password
-                    }
-                )
+            conn.commit()
+            conn.close()
 
-                messagebox.showinfo("Registration","Congratulations! You have successfully registered!")
-                conn.commit()
+            callGetStarted(window, frame, phone)
 
-                #this is to see if record has been added to the database. delete laturrr
-                c.execute("SELECT * FROM accounts")
-                accounts = c.fetchall()
-                print(accounts)
-
-                conn.commit()
-                conn.close()
-
-                callGetStarted(window, frame, phone)
-
-        except Exception as error:
-            messagebox.showerror("Registration Unsuccessful",f'Error: {error}')
-            return str(error)
+    except Exception as error:
+        messagebox.showerror("Registration Unsuccessful",f'Error: {error}')
+        return str(error)
 
 
 def login(window, frame, phone_entry, password_entry):

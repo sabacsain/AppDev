@@ -17,6 +17,7 @@ ASSETS_PATH = OUTPUT_PATH / Path(r"assets/frame1")
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
+
 def start(window, frame):
     window = window
     frame = frame
@@ -26,15 +27,15 @@ def start(window, frame):
 
     canvas = Canvas(
         window,
-        bg = "#DEEAEE",
-        height = 838,
-        width = 1244,
-        bd = 0,
-        highlightthickness = 0,
-        relief = "ridge"
+        bg="#DEEAEE",
+        height=838,
+        width=1244,
+        bd=0,
+        highlightthickness=0,
+        relief="ridge"
     )
 
-    canvas.place(x = 0, y = 0)
+    canvas.place(x=0, y=0)
     # canvas.create_text(
     #     78.0,
     #     203.0,
@@ -104,7 +105,7 @@ def start(window, frame):
         557.0,
         433.0,
         anchor="nw",
-        text="Birthday",
+        text="Birthday (YY-MM-DD)",
         fill="#000000",
         font=("Inter Bold", 17 * -1)
     )
@@ -124,7 +125,7 @@ def start(window, frame):
         image=radio_buttonMale_Image,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: change_imageRadioMale(), 
+        command=lambda: change_imageRadioMale(),
         relief="flat"
     )
     radio_buttonMale.place(
@@ -192,7 +193,8 @@ def start(window, frame):
         image=register_button_image,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: functions.register(window, frame, fname, lname, phone_number , birthday, password, gender),
+        command=lambda: functions.register(
+            window, frame, fname, lname, phone_number, birthday, password, gender),
         relief="flat"
     )
     register_button.place(
@@ -372,13 +374,15 @@ def start(window, frame):
         image=image_image_11
     )
 
-    hoverRegister = PhotoImage(file=relative_to_assets("register_RegisterForm.png"))
+    hoverRegister = PhotoImage(
+        file=relative_to_assets("register_RegisterForm.png"))
     hoverLogin = PhotoImage(file=relative_to_assets("loginRedder.png"))
     hoverRadio = PhotoImage(file=relative_to_assets("radioClicked.png"))
 
     # Function to change image when mouse enters button
     def change_imageRegister(event):
         register_button.config(image=hoverRegister)
+
     def change_imageLogin(event):
         login_button.config(image=hoverLogin)
 
@@ -389,6 +393,7 @@ def start(window, frame):
         gender = 'MALE'
         radio_buttonMale.config(image=hoverRadio)
         change_backRadioFemale()
+
     def change_imageRadioFemale():
         # functions.disable_radioBtn(radio_buttonFemale,radio_buttonMale)
         global gender
@@ -399,11 +404,14 @@ def start(window, frame):
     # Function to change back to original image when mouse leaves button
     def change_backRegister(event):
         register_button.config(image=register_button_image)
+
     def change_backLogin(event):
         login_button.config(image=login_button_image)
+
     def change_backRadioMale():
         radio_buttonMale.config(image=radio_buttonMale_Image)
-    def change_backRadioFemale():   
+
+    def change_backRadioFemale():
         radio_buttonFemale.config(image=radio_buttonMale_Image)
 
     # Bind the <Enter> event to change_image function
@@ -414,15 +422,12 @@ def start(window, frame):
     register_button.bind("<Leave>", change_backRegister)
     login_button.bind("<Leave>", change_backLogin)
 
-
-
-
-
     window.resizable(False, False)
     window.mainloop()
+
 
 if __name__ == '__main__':
     window = Tk()
     window.geometry("1244x838")
-    window.configure(bg = "#DEEAEE")
+    window.configure(bg="#DEEAEE")
     start(window, frame=window)
