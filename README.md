@@ -13,6 +13,9 @@
 - tkcalendar
     [pip install tkcalendar]
     
+# Instruction:
+- Execute the main.py
+
 #  Dummy User Data
 - Phone Number: 09123456789
 - Password: 123456
