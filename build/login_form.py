@@ -125,19 +125,19 @@ def start(window, frame):
         relief="flat"
     )
     register_button.place(
-        x=388.0,
+        x=550.0,
         y=773.0,
         width=161.0,
         height=41.0
     )
 
     canvas.create_text(
-        71.0,
+        250.0,
         776.0000610351562,
         anchor="nw",
         text="Haven't registered yet? ",
         fill="#000000",
-        font=("Inter Regular", 25 * -1)
+        font=("Inter Regular", 25 * -1, 'bold')
     )
 
     canvas.create_text(
@@ -149,24 +149,31 @@ def start(window, frame):
         font=("Inter SemiBold", 20 * -1)
     )
 
-    canvas.create_text(
-        71.0,
-        191.0,
-        anchor="nw",
-        text="Did you sleep well?",
-        fill="#000000",
-        font=("Inter Medium", 40 * -1)
-    )
+    # canvas.create_text(
+    #     71.0,
+    #     191.0,
+    #     anchor="nw",
+    #     text="Did you sleep well?",
+    #     fill="#000000",
+    #     font=("Inter Medium", 40 * -1)
+    # )
 
-    canvas.create_text(
-        69.0,
-        260.00006103515625,
-        anchor="nw",
-        text="WELCOME BACK!",
-        fill="#000000",
-        font=("Inter Bold", 36 * -1)
-    )
+    # canvas.create_text(
+    #     69.0,
+    #     260.00006103515625,
+    #     anchor="nw",
+    #     text="WELCOME BACK!",
+    #     fill="#000000",
+    #     font=("Inter Bold", 36 * -1)
+    # )
 
+    image_image_2 = PhotoImage(
+    file=relative_to_assets("image_welcome_back.png"))
+    image_1 = canvas.create_image(
+        400.0,
+        255.0,
+        image=image_image_2
+    )
     canvas.create_text(
         447.0,
         508.0,
