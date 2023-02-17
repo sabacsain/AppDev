@@ -126,7 +126,7 @@ def start(window, frame, phone):
 
         # Set Initial Width of Columns
         for col in sleep_table['columns']:
-            sleep_table.column(col, width=160)
+            sleep_table.column(col, width=160, anchor='center')
 
         for item in sleep_table.get_children():
             sleep_table.delete(item)
