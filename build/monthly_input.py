@@ -71,7 +71,7 @@ def start(window, frame, phone):
     image_image_3 = PhotoImage(
         file=relative_to_assets("month.png"))
     image_3 = canvas.create_image(
-        950.0,
+        965.0,
         250.0,
         image=image_image_3
     )
