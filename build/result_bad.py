@@ -264,8 +264,8 @@ def start(window, frame, phone):
     image_image_10 = PhotoImage(
         file=relative_to_assets("image_10.png"))
     image_10 = canvas.create_image(
-        360,
-        780,
+        380,
+        760,
         image=image_image_10
     )
     
