@@ -132,12 +132,12 @@ def start(window, frame):
     )
 
     canvas.create_text(
-        250.0,
+        230.0,
         776.0000610351562,
         anchor="nw",
         text="Haven't registered yet? ",
         fill="#000000",
-        font=("Inter Regular", 25 * -1, 'bold')
+        font=("Inter Regular", 20 * -1)
     )
 
     canvas.create_text(

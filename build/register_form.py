@@ -177,14 +177,14 @@ def start(window, frame):
         font=("Inter Bold", 17 * -1)
     )
 
-    # canvas.create_text(
-    #     78.0,
-    #     780.0,
-    #     anchor="nw",
-    #     text="Have an existing account?",
-    #     fill="#000000",
-    #     font=("Inter Regular", 25 * -1)
-    # )
+    canvas.create_text(
+        80.0,
+        776.0000610351562,
+        anchor="nw",
+        text="Have an Existing Account? ",
+        fill="#000000",
+        font=("Inter Regular", 20 * -1)
+    )
 
     register_button_image = PhotoImage(
         file=relative_to_assets("button_3.png"))
@@ -368,7 +368,7 @@ def start(window, frame):
         file=relative_to_assets("image_11.png"))
     image_11 = canvas.create_image(
         465.0,
-        260.,
+        240,
         image=image_image_11
     )
 
