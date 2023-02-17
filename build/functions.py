@@ -559,7 +559,7 @@ def create_weekly_df(window, month, year, phone):
 
     # Set Initial Width of Columns
     for col in sleep_table['columns']:
-        sleep_table.column(col, width=80)
+        sleep_table.column(col, width=80, anchor='center')
 
     sleep_table.tag_configure("oddrow", background="lightblue")
 
@@ -708,7 +708,7 @@ def create_monthly_df(window, year, phone):
 
     # Set Initial Width of Columns
     for col in sleep_table['columns']:
-        sleep_table.column(col, width=75)
+        sleep_table.column(col, width=75, anchor='center')
     
     # Populate the treeview with data from the dataframe
     for index, row in sleep_records.iterrows():
