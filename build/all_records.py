@@ -105,6 +105,14 @@ def start(window, frame, phone):
         266.0,
         image=image_image_3
     )
+
+    image_image_6 = PhotoImage(
+        file=relative_to_assets("image_6.png"))
+    image_6 = canvas.create_image(
+        625.0,
+        600.0,
+        image=image_image_6
+    )
     
     def show_records(phone, month, year):
         BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -151,8 +159,8 @@ def start(window, frame, phone):
     cbx_year.current(cbx_year_options.index(str(datetime.datetime.today().year)))
     cbx_year.bind("<<ComboboxSelected>>", click)
     cbx_year.place(
-        x=658.0,
-        y=600.0,
+        x=648.0,
+        y=650.0,
         width=182,
         height=56,
         )
@@ -167,8 +175,8 @@ def start(window, frame, phone):
     cbx_month.current(cbx_month_options.index(datetime.datetime.today().strftime('%m')))
     cbx_month.bind("<<ComboboxSelected>>", click)
     cbx_month.place(
-        x=440.0,
-        y=600.0,
+        x=430.0,
+        y=650.0,
         width=184,
         height=56,
         )
