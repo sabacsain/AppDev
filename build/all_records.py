@@ -107,7 +107,7 @@ def start(window, frame, phone):
     )
 
     image_image_6 = PhotoImage(
-        file=relative_to_assets("image_6.png"))
+        file=relative_to_assets("image_7.png"))
     image_6 = canvas.create_image(
         625.0,
         600.0,
@@ -159,8 +159,8 @@ def start(window, frame, phone):
     cbx_year.current(cbx_year_options.index(str(datetime.datetime.today().year)))
     cbx_year.bind("<<ComboboxSelected>>", click)
     cbx_year.place(
-        x=648.0,
-        y=650.0,
+        x=653.0,
+        y=630.0,
         width=182,
         height=56,
         )
@@ -176,7 +176,7 @@ def start(window, frame, phone):
     cbx_month.bind("<<ComboboxSelected>>", click)
     cbx_month.place(
         x=430.0,
-        y=650.0,
+        y=630.0,
         width=184,
         height=56,
         )
