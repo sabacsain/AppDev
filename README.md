@@ -14,7 +14,8 @@
     [pip install tkcalendar]
     
 # Instruction:
-- Execute the main.py
+- Execute the main.py inside the build folder
+- Note: The working directory should be the build folder
 
 #  Dummy User Data
 - Phone Number: 09123456789
